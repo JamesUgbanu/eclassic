@@ -1,7 +1,7 @@
 const createExt = 'CREATE EXTENSION IF NOT EXISTS "uuid-ossp"; ';
-const productDestroy = 'DROP TABLE IF EXISTS product CASCADE; ';
-const orderTable = 'DROP TABLE IF EXISTS order CASCADE; ';
+const productDestroy = 'DROP TABLE IF EXISTS products CASCADE; ';
+const orderDestroy = 'DROP TABLE IF EXISTS orders CASCADE; ';
 
-const destroyQuery = `${productDestroy}${orderTable}${createExt}`;
+const destroyQuery = `${productDestroy}${orderDestroy}${createExt}`;
 
 export default destroyQuery;
