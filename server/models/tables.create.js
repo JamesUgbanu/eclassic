@@ -1,5 +1,5 @@
 const createProductTable = `
-  CREATE TABLE IF NOT EXISTS product(
+  CREATE TABLE IF NOT EXISTS products(
     id SERIAL PRIMARY KEY NOT NULL,
     name VARCHAR(40) NOT NULL,
     long_desc TEXT,
@@ -19,7 +19,7 @@ const createProductTable = `
 `;
 
 const createOrderTable = `
-  CREATE TABLE IF NOT EXISTS order(
+  CREATE TABLE IF NOT EXISTS orders(
     id UUID NOT NULL DEFAULT uuid_generate_v4(),
     customer INTEGER,
     total NUMERIC NOT NULL,
