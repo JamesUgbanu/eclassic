@@ -1,7 +1,8 @@
 import request from 'supertest';
+import chai from 'chai';
 import app from '../../app';
 
-
+const { expect } = chai;
 /**
  * Testing product endpoint
  */
@@ -17,6 +18,7 @@ describe('PRODUCT CONTROLLER', () => {
       .expect('Content-Type', /json/)
       .expect(201)
       .end((err, res) => {
+        expect(res.body.success).to.be.equal('Product created successfully');
         done();
       });
   });
