@@ -11,14 +11,29 @@ describe('PRODUCT CONTROLLER', () => {
     request(app)
       .post('/api/v1/product')
       .send({
-        productName: 'Update website',
-        shortDescription: 'Remove content from header and place it below',
+        productName: 'Gucci',
+        shortDescription: 'Gucci is the best',
       })
       .set('Accept', 'application/json')
       .expect('Content-Type', /json/)
       .expect(201)
       .end((err, res) => {
         expect(res.body.success).to.be.equal('Product created successfully');
+        done();
+      });
+  });
+   it('it should not add a new product with correct when product name is empty', (done) => {
+    request(app)
+      .post('/api/v1/product')
+      .send({
+        productName: '',
+        shortDescription: 'Gucci is the best',
+      })
+      .set('Accept', 'application/json')
+      .expect('Content-Type', /json/)
+      .expect(400)
+      .end((err, res) => {
+        expect(res.body.errors[0].msg).to.be.equal('Product Name is required');
         done();
       });
   });
