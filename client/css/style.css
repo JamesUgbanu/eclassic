@@ -245,3 +245,70 @@ header {
     display: none;
 }
 
+/** All products page **/
+
+.product__container {
+    margin: 0 20px;
+}
+
+
+
+
+.cloth_img img {
+    width: 100%;
+    height: 100%;
+}
+
+
+@media only screen and (min-width: 768px) {
+    .container__page {
+        display: grid;
+        grid-template-columns: 15% 15% 70%;
+        height: 86vh;  
+    }
+    .cloth_text {
+        margin-top: 140%;
+        margin-left: 20px;
+        }
+        .cloth_img {
+        width: 21%;
+        float: left;
+        height: 150px;
+        margin: 50px 2% 10px 2%;
+     }
+     
+        hr {
+            width: 70px;
+            margin-left: 30%;
+        }
+     
+}
+@media only screen and (max-width: 768px) {
+    .cloth_text {
+        margin-left: 20px;
+        }
+        .cloth_img {
+            float: left;
+            height: 200px;
+            margin: 10px;
+     }
+
+
+     
+     
+    hr {
+        width: 50%;
+        margin-left: 25%;
+    }
+        
+}
+
+.cloth_img p {
+    position: relative;
+    bottom: 10px;
+    text-transform: capitalize;
+}
+
+.cloth_img:hover {
+    opacity: 0.5;
+}
