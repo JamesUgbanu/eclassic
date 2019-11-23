@@ -256,7 +256,7 @@ header {
 
 .cloth_img img {
     width: 100%;
-    height: 100%;
+    height: 150px;
 }
 
 
@@ -273,7 +273,7 @@ header {
         .cloth_img {
         width: 21%;
         float: left;
-        height: 150px;
+        height: 100%;
         margin: 50px 2% 10px 2%;
      }
      
@@ -289,12 +289,9 @@ header {
         }
         .cloth_img {
             float: left;
-            height: 200px;
+            height: 100%;
             margin: 10px;
      }
-
-
-     
      
     hr {
         width: 50%;
@@ -303,12 +300,26 @@ header {
         
 }
 
-.cloth_img p {
-    position: relative;
-    bottom: 10px;
-    text-transform: capitalize;
+.cloth_img button {
+    background: linear-gradient(45deg, #e4c52a 0%,#ffa751  100%);
+color: white;
+border: none;
+padding: 10px 10px 10px 10px;
+text-align: centre;
+cursor: pointer;
+width: 100%;
 }
 
-.cloth_img:hover {
+
+
+.cloth_img button:hover {
+    background: linear-gradient(45deg, #ffa751 0%,#e4c52a  100%);
+    
+
+}
+
+
+
+.cloth_img img:hover {
     opacity: 0.5;
 }
