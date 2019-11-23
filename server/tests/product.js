@@ -187,8 +187,39 @@ describe("Test on product endpoints", () => {
           done();
         });
     });
+    // test to check quantity value
+    it("should check if quantity is not empty", done => {
+      request(app)
+        .post("/api/v1/products")
+        .send({
+          prod_name: "handy",
+          long_desc: "jh jmlkj kk. hvhvj",
+          short_desc: "cdkn kjhk  nnn",
+          discount: 20,
+          coupons: {
+            blackfriday: 12334,
+            v1: "edo"
+          },
+          sku_id: "S001",
+          price: 500,
+          image_url: "href:oooo",
+          available_color: { back: "blue", front: "white" },
+          quantity: "thirty five",
+          is_active: true,
+          last_updated_by: 12
+        })
+        .set("Accept", "application/json")
+        .expect("Content-Type", /json/)
+        .expect(201)
+        .end((err, res) => {
+          expect(res.body.errors[0].msg).to.equal(
+            "Quantity should be an number"
+          );
+          done();
+        });
+    });
     // test for last updated by
-    it("should check last updated value is integer", done => {
+    it("should check last_updatedby is not empty", done => {
       request(app)
         .post("/api/v1/products")
         .send({
@@ -205,15 +236,14 @@ describe("Test on product endpoints", () => {
           image_url: "href:oooo",
           available_color: { back: "blue", front: "white" },
           quantity: 35,
-          is_active: true,
-          last_updated_by: "mr monday"
+          is_active: true
         })
         .set("Accept", "application/json")
         .expect("Content-Type", /json/)
         .expect(201)
         .end((err, res) => {
           expect(res.body.errors[0].msg).to.equal(
-            "Last updated by value should be integer"
+            "Last updated by should have a value"
           );
           done();
         });
