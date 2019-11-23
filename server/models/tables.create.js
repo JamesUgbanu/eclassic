@@ -1,7 +1,7 @@
 const createProductTable = `
   CREATE TABLE IF NOT EXISTS products(
-    id SERIAL PRIMARY KEY NOT NULL,
-    name VARCHAR(40) NOT NULL,
+    prod_id SERIAL PRIMARY KEY NOT NULL,
+    prod_name VARCHAR(40) NOT NULL,
     long_desc TEXT,
     short_desc TEXT NOT NULL,
     discount INTEGER,
@@ -10,9 +10,9 @@ const createProductTable = `
     price NUMERIC,
     image_url TEXT,
     available_color JSONB,
-    weight INTEGER,
+    quantity INTEGER,
     is_active BOOLEAN DEFAULT false,
-    created_on TIMESTAMP WITH TIME ZONE,
+    datecreated TIMESTAMP WITH TIME ZONE DEFAULT now(),
     last_update TIMESTAMP WITH TIME ZONE,
     last_updated_by INTEGER
   );

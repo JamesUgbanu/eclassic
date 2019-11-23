@@ -1,12 +1,14 @@
-import { check } from 'express-validator';
+import checkNewProduct from '../validations/checkNewProduct';
 import validation from '../middleware/validator';
 import ProductController from '../controller/ProductController';
 
 const routes = (app) => {
-  app.post('/api/v1/product', [
-    check('productName').not().isEmpty().withMessage('Product Name is required'),
-    check('shortDescription').not().isEmpty().withMessage('Description is required')
-  ], validation.validatorError, ProductController.createProduct);
+  app.post(
+    '/api/v1/products',
+    checkNewProduct,
+    validation.validatorError,
+    ProductController.createProduct
+  );
 };
 
 export default routes;
