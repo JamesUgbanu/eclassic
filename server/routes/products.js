@@ -7,7 +7,10 @@ const routes = (app) => {
     '/api/v1/products',
     checkNewProduct,
     validation.validatorError,
-    ProductController.createProduct
+    ProductController.create
+  );
+  app.get(
+    '/api/v1/products', ProductController.getAll
   );
 };
 
