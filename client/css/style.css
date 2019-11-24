@@ -389,3 +389,54 @@ width: 100%;
     height: 70px;
     cursor: pointer;
 }
+
+.quantity {
+    background-color: black;
+    width: 273px;
+    height: 200px;
+    position: fixed;
+    top: 50%;
+}
+
+.quantity table {
+    color:white;
+    position: relative;
+    bottom:10px;
+    left:10px;
+}
+
+.l_box {
+    background-color: white;
+    position: relative;
+    left:10%;
+    width:80%;
+    height: 100px;
+    display: flex;
+
+}
+
+.l_box img {
+    width:100px;
+    height:100px;
+}
+
+.l_box table {
+    margin-left: 20px;
+    text-align: left;
+    margin-top: 2%;
+}
+
+.l_box .fa {
+    position: absolute;
+    top: 35%;
+    right: 50px;
+    cursor: pointer;
+    font-size: 26px
+}
+.l_box th {
+    font-size: 12px;
+    color: #9ea2a5;
+}
+.l_box td {
+    font-size: 18px;
+}
