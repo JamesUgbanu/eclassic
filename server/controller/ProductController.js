@@ -1,7 +1,4 @@
-import conn from '../helpers/conn';
-
-const client = conn();
-client.connect();
+import dbQuery from '../helpers/dbQuery';
 
 class ProductController {
   /**
@@ -10,7 +7,7 @@ class ProductController {
    *  @param {Object} response
    *  @return {Object} json
    */
-  static createProduct(request, response) {
+  static create(request, response) {
     const {
       prod_name, long_desc, short_desc, discount, coupons, sku_id, price, image_url, available_color, quantity, is_active,
       last_updated_by
@@ -24,27 +21,12 @@ class ProductController {
         prod_name, long_desc, short_desc, discount, coupons, sku_id, price, image_url, available_color, quantity, is_active, last_updated_by
       ]
     };
-    ProductController.addProductQuery(response, query);
+    dbQuery(response, query, 201, 'Product created successfully');
   }
 
-  /**
-   *  Run user addUser query
-   *  @param {Object} request
-   *  @param {Object} response
-   *  @param {String} query
-   *  @return {Object} json
-   *
-   */
-  static addProductQuery(response, query) {
-    client
-      .query(query)
-      .then(() => response.status(201).json({
-        status: 201,
-        success: 'Product created successfully'
-      }))
-      .catch(error => response
-        .status(500)
-        .json({ status: 500, error: `Server error ${error}` }));
+  static getAll(request, response) {
+    const query = 'SELECT * FROM products';
+    dbQuery(response, query, 200, 'Product retrieved successfully');
   }
 }
 

@@ -249,4 +249,18 @@ describe('Test on product endpoints', () => {
         });
     });
   });
+  // retrieve all products end point
+  describe('retrieve all products endpoint', () => {
+    it('should return all existing products', (done) => {
+      request(app)
+        .get('/api/v1/products')
+        .set('Accept', 'application/json')
+        .expect('Content-Type', /json/)
+        .expect(200)
+        .end((err, res) => {
+          expect(res.body.success).to.equal('Product retrieved successfully');
+          done();
+        });
+    });
+  });
 });
