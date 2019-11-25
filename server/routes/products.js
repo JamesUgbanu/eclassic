@@ -12,6 +12,9 @@ const routes = (app) => {
   app.get(
     '/api/v1/products', ProductController.getAll
   );
+  app.get(
+    '/api/v1/products/:id', ProductController.getById
+  );
 };
 
 export default routes;

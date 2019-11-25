@@ -258,7 +258,7 @@ describe('Test on product endpoints', () => {
         .expect('Content-Type', /json/)
         .expect(200)
         .end((err, res) => {
-          expect(res.body.success).to.equal('Product retrieved successfully');
+          expect(res.body.success).to.equal('Products retrieved successfully');
           done();
         });
     });

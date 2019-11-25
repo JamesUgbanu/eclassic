@@ -23,4 +23,5 @@ const dbQuery = (response, query, status, msg) => {
       .json({ status: 500, error: `Server error ${error}` }));
 };
 
+
 export default dbQuery;

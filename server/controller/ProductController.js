@@ -24,9 +24,28 @@ class ProductController {
     dbQuery(response, query, 201, 'Product created successfully');
   }
 
+  /**
+   * @param {Object} request
+   * @param {Object} response
+   * @return {Object} json
+   */
   static getAll(request, response) {
     const query = 'SELECT * FROM products';
-    dbQuery(response, query, 200, 'Product retrieved successfully');
+    dbQuery(response, query, 200, 'Products retrieved successfully');
+  }
+
+  /**
+   * @param {Object} request
+   * @param {Object} response
+   * @return {Object} json
+   */
+  static getById(request, response) {
+    const id = parseInt(request.params.id, 10);
+    const query = {
+      text: 'SELECT * FROM products WHERE prod_id = $1',
+      values: [id]
+    };
+    dbQuery(response, query, 200, 'Products retrieved successfully');
   }
 }
 
