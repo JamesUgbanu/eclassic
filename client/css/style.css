@@ -9,7 +9,9 @@ header {
     display: grid;
     grid-template-columns: 15% 65% 20%;
     height: 80px;
-    /* box-shadow: 0px 1px 15px 1px ; */
+}
+header.shadow__menu {
+    box-shadow: 0px 1px 15px 1px ;
 }
 .topbar .menu{
     margin-top: 20px;
@@ -126,7 +128,7 @@ header {
     .top__menu {
         border-right: 1px solid #509197;
     }
-    aside {
+    aside.container__box {
         border-right: 1px solid #509197;
     }
     .banner__img {
@@ -545,4 +547,94 @@ width: 100%;
         cursor: pointer;
         font-size: 26px;
     }
+}
+
+/**acount overview*/
+.acc__main {
+    display: grid;
+    grid-template-columns: 35% 65%;
+}
+.acc__main aside {
+    margin-left: 100px;
+}
+.account__sidebar {
+    background-color: #fff;
+    width: 90%;
+    margin-top: 70px;
+    border-radius: 15px;
+    overflow: hidden;
+}
+.dashboard__menu {
+    display: block;
+    width: 95%;
+    padding: 15px 0 15px 18px;
+    text-decoration: none;
+    color: #000;
+    
+}
+.dashboard__menu span {
+    font-weight: 500;
+    padding-left: 10px;
+}
+.dashboard__menu:hover {
+    background: #ededed;
+}
+.account__sidebar__top {
+    position: relative;
+}
+.account__sidebar .active {
+    background: #ededed;
+}
+
+.account__sidebar__bottom button{
+    border: none;
+    color: orange;
+    width: 100%;
+    height: 50px;
+    background-color: white;
+    cursor: pointer;
+    font-size: 17px;
+    border-top: 1px solid orange;
+}
+
+.acc__container {
+    background:#fff;
+    border-radius: 15px;
+    width: 90%;
+    margin-top: 70px;
+    padding-left: 50px;
+    padding-bottom: 50px;
+}
+    
+.acc__details {
+    position: relative;
+    width: 45%;
+    border: 2px solid #eee;
+    border-radius: 5px;
+    padding: 10px;
+    float: left;
+    margin-right: 10px;
+}
+
+.acc__details__head {
+    font-size: 14px;
+    font-weight: 500;
+}
+.acc__details__body {
+    width: 150px;
+}
+.acc__details__footer {
+    padding: 20px 0;
+}
+.acc__details__footer a{
+    color: orange;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 16px;
+}
+.acc__details__head .fas {
+    position: absolute;
+    right: 10px;
+    color: orange;
+    cursor: pointer;
 }
