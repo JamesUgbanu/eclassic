@@ -9,7 +9,7 @@ header {
     display: grid;
     grid-template-columns: 15% 65% 20%;
     height: 80px;
-    /* box-shadow: 0px 1px 15px 1px #888; */
+    /* box-shadow: 0px 1px 15px 1px ; */
 }
 .topbar .menu{
     margin-top: 20px;
@@ -390,13 +390,8 @@ width: 100%;
     cursor: pointer;
 }
 
-.quantity {
-    background-color: black;
-    width: 273px;
-    height: 200px;
-    position: fixed;
-    top: 50%;
-}
+
+/** Cart Page **/
 
 .quantity table {
     color:white;
@@ -408,24 +403,116 @@ width: 100%;
 .l_box {
     background-color: white;
     position: relative;
-    left:10%;
-    width:80%;
-    height: 100px;
-    display: flex;
-
+    top:35px;
+    margin-bottom: 18px;
+    width:90%;
+    box-shadow: 5px 5px 5px 5px #888;
 }
 
-.l_box img {
-    width:100px;
-    height:100px;
-}
+
 
 .l_box table {
     margin-left: 20px;
     text-align: left;
     margin-top: 2%;
+    float:left;
 }
 
+.remove__btn {
+    width: 20px;
+}
+
+.l_box th {
+    font-size: 12px;
+    color: #9ea2a5;
+}
+.l_box td {
+    font-size: 18px;
+}
+.cart__items {
+    padding-bottom: 50px;
+    margin-left: 10%;
+}
+
+.cart__items p {
+    font-size: 14px;
+    font-style: italic;
+}
+
+.back__to__product {
+    font-size: 18px;
+    margin: 80px 0;
+}
+.back__to__product .fa {
+    padding-right: 10px;
+}
+.amount__btn {
+    padding-left: 50px;
+    font-size: 22px;
+}
+
+.l_box .value-button {
+    display: inline-block;
+    border: 1px solid #ddd;
+    margin: 0px;
+    width: 40px;
+    height: 30px;
+    text-align: center;
+    vertical-align: middle;
+    background: #eee;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+  
+  .l_box .value-button:hover {
+    cursor: pointer;
+  }
+  
+
+  .l_box form #input-wrap {
+    margin: 0px;
+    padding: 0px;
+  }
+  
+  .l_box input#number {
+    text-align: center;
+    border: none;
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    margin: 0px;
+    width: 40px;
+    height: 30px;
+  }
+  
+  .l_box input[type=number]::-webkit-inner-spin-button,
+  .l_box input[type=number]::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+  }
+
+@media only screen and (min-width: 768px) {
+    .l_box img {
+        width:100px;
+        height:100px;
+        float:left;
+    }
+    .l_box table {
+        width: 75%;
+    }
+    .quantity {
+    background-color: black;
+    width: 273px;
+    height: 200px;
+    position: fixed;
+    top: 50%;
+}
+.l_box {
+    height: 100px;
+}
 .l_box .fa {
     position: absolute;
     top: 35%;
@@ -433,10 +520,29 @@ width: 100%;
     cursor: pointer;
     font-size: 26px
 }
-.l_box th {
-    font-size: 12px;
-    color: #9ea2a5;
+.l_box form #decrease,.l_box form #increase {
+    margin-right: -4px;
+  }
+  
 }
-.l_box td {
-    font-size: 18px;
+
+@media only screen and (max-width: 768px) {
+    .l_box img {
+        width:100%;
+        height:150px;
+        float:left;
+    }
+    .quantity {
+        display: none;
+    }
+    .l_box {
+        height: 90%;
+    }
+    .l_box .fa {
+        position: absolute;
+        right: 0;
+        color: #fff;
+        cursor: pointer;
+        font-size: 26px;
+    }
 }

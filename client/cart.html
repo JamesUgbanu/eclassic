@@ -3,7 +3,7 @@
 <head>
     <meta charset='utf-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-    <title>Single Product Page</title>
+    <title>Cart Page</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel="stylesheet" href="./css/css/all.css">
     <link rel='stylesheet' type='text/css' media='screen' href='./css/style.css'>
@@ -49,20 +49,44 @@
                     <div class="dots far fa-circle  fa-1x"></div>
             </div>
         </aside>
-        <div class="container__box"> 
+        <div class="container__box cart__items">
             <h1>Cart</h1>
-            <tt>here you can check your order with futher confirmation and payment</tt>
-            
+            <p>here you can check your order with futher confirmation and payment</p>
             <div class="l_box">
             <img src="./images/lady-on-nike-sneaker.jpg">
             <table cellpadding="6">
                 <tr><th width="200">New Product</th> <th>Size</th><th>Quantity</th> <th>Cost</th></tr>
-                <tr><td>Modern Line</td><td>M</td> <td>-1+</td><td>52.99$</td></tr>
+                <tr><td>Modern Line</td><td>M</td>
+                    <td>
+                    <form>
+                    <div class="value-button" id="decrease">-</div>
+                            <input type="number" id="number" value="0" />
+                            <div class="value-button" id="increase">+</div>
+                        </form>
+                    </td><td>52.99$</td></tr>
             </table>
-
-            <i class="fa fa-times"></i>
+            <div class="remove__btn fa fa-times"></div>
             </div>
-          
+
+            <div class="l_box">
+                    <img src="./images/lady-on-nike-sneaker.jpg">
+                    <table cellpadding="6">
+                        <tr><th width="200">New Product</th> <th>Size</th><th>Quantity</th> <th>Cost</th></tr>
+                        <tr><td>Modern Line</td><td>M</td>
+                            <td>
+                                    <form>
+                                            <div class="value-button" id="decrease">-</div>
+                                                    <input type="number" id="number" value="0" />
+                                                    <div class="value-button" id="increase">+</div>
+                                                </form>
+                            </td>
+                            <td>52.99$</td></tr>
+                    </table>
+        
+                    <i class="fa fa-times"></i>
+            </div>
+                <div class="back__to__product"><a href="#"><i class="fa fa-arrow-left"></i>Back to product</a></div>                   
+                                       
             </div>
             
         <div class="container__box">
@@ -84,9 +108,11 @@
         </table>
             </div>
 
-            <button>Checkout <i class="fa fa-arrow-right fa-1x"></i></button>
+            <button>Checkout <i class="fa fa-arrow-right fa-1x"></i><span class="amount__btn">$25000</span></button>
         </div>
+
         </main>
+        
   
 </body>
 </html>
