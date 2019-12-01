@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>ACCOUNT OVERVIEW</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel="stylesheet" href="./css/css/all.css">
+    <link rel='stylesheet' type='text/css' media='screen' href='./css/style.css'>
+</head>
+<body>
+    
+    <header class="shadow__menu">   
+        <div class="topbar">
+            <input type="checkbox" id="menuToggle">
+            <label for="menuToggle" class="menu__icon fa fa-bars fa-2x"></label>
+                <!-- <div class="menu"><button class="fa fa-bars fa-2x"></button></div> -->
+                <nav class="navigation__menu">
+                        <ul>
+                                
+                                <a href="#"><li>Home</li></a>
+                                <a href="#"><li>All Products</li></a>
+                                <a href="#"><li>About us</li></a>
+                                <a href="#"><li>Contact us</li></a>
+                                <a href="#"><li>Login/Sign Up</li></a>
+                            </ul>   
+                        </nav>
+        </div>
+        
+        <div class="topbar"> <img class="logo" src="images/eclassic.png" alt="Eclassic logo"> </div>
+        
+        <div class="topbar">
+            <div class="cart__box">
+               <i class="fa fa-shopping-bag fa-3x"><span>5</span></i>
+               <div class="cart__total">150.55 $</div>
+            </div>
+        </div>
+    </header>
+
+    <main class="acc__main">
+    <aside>
+        <div class="account__sidebar">
+            <div class="account__sidebar__top">
+                <a href="#" class="dashboard__menu fas fa-user active"><span>Account</span></a>
+                <a href="#" class="dashboard__menu fas fa-suitcase"><span>Orders</span></a>
+                <a href="#" class="dashboard__menu"><span>Address Book</span></a>
+                <a href="#" class="dashboard__menu"><span>Change Password</span></a>
+            </div>
+            <div class="account__sidebar__bottom">
+                <button>Log Out</button>
+            </div>
+        </div>
+        <div class="mobile__nav__container">
+            <div class="mobile__nav active">
+                <i class="fas fa-user"></i>
+                <a href="#" class="dashboard__mobile__menu">Account</a>
+            </div>    
+            <div class="mobile__nav">
+                    <i class="fas fa-suitcase"></i>
+                    <a href="#" class="dashboard__mobile__menu">Orders</a>
+                </div>    
+                <div class="mobile__nav">
+                        <i class="fas fa-book"></i>
+                        <a href="#" class="dashboard__mobile__menu">Address Book</a>
+                    </div> 
+        </div>
+    </aside>
+
+    <div class="acc__container">
+        <h1>Acount Overview</h1>
+        <div class="acc__details">
+            <div class="acc__details__head">ACCOUNT DETAIL <i class="fas fa-pencil-alt"></i></div>
+            <div class="acc__details__body">
+                    <p>james</p>
+                    <em>example@gmail.com</em>
+            </div>
+            <div class="acc__details__footer">
+                <a href="#">CHANGE PASSWORD</a>
+            </div>
+        </div>
+        <div class="acc__details">
+                <div class="acc__details__head">ADDRESS BOOK<i class="fas fa-pencil-alt"></i></div>
+                <div class="acc__details__body">
+                        <p>Your Shipping addres:</p>
+                        <em>20 Oyedele Street, Off Liasu rd, Ikotun Egbe Lagos</em>
+                </div>
+
+            </div>
+    </div>
+    </main>

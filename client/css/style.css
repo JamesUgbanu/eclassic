@@ -9,7 +9,9 @@ header {
     display: grid;
     grid-template-columns: 15% 65% 20%;
     height: 80px;
-    /* box-shadow: 0px 1px 15px 1px ; */
+}
+header.shadow__menu {
+    box-shadow: 0px 1px 15px 1px ;
 }
 .topbar .menu{
     margin-top: 20px;
@@ -126,7 +128,7 @@ header {
     .top__menu {
         border-right: 1px solid #509197;
     }
-    aside {
+    aside.container__box {
         border-right: 1px solid #509197;
     }
     .banner__img {
@@ -544,5 +546,151 @@ width: 100%;
         color: #fff;
         cursor: pointer;
         font-size: 26px;
+    }
+}
+
+/**acount overview*/
+
+.acc__main aside {
+    margin-left: 100px;
+}
+.account__sidebar {
+    background-color: #fff;
+    width: 90%;
+    margin-top: 70px;
+    border-radius: 15px;
+    overflow: hidden;
+}
+.dashboard__menu {
+    display: block;
+    width: 95%;
+    padding: 15px 0 15px 18px;
+    text-decoration: none;
+    color: #000;
+    
+}
+.dashboard__menu span {
+    font-weight: 500;
+    padding-left: 10px;
+}
+.dashboard__menu:hover {
+    background: #ededed;
+}
+.account__sidebar__top {
+    position: relative;
+}
+.account__sidebar .active {
+    background: #ededed;
+}
+
+.account__sidebar__bottom button{
+    border: none;
+    color: orange;
+    width: 100%;
+    height: 50px;
+    background-color: white;
+    cursor: pointer;
+    font-size: 17px;
+    border-top: 1px solid orange;
+}
+
+.acc__details__head {
+    font-size: 14px;
+    font-weight: 500;
+}
+.acc__details__body {
+    width: 150px;
+}
+.acc__details__footer {
+    padding: 20px 0;
+}
+.acc__details__footer a{
+    color: orange;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 16px;
+}
+.acc__details__head .fas {
+    position: absolute;
+    right: 10px;
+    color: orange;
+    cursor: pointer;
+}
+@media only screen and (min-width: 768px) {
+    .acc__main {
+        display: grid;
+        grid-template-columns: 35% 65%;
+    }
+    .acc__details {
+        position: relative;
+        width: 45%;
+        border: 2px solid #eee;
+        border-radius: 5px;
+        padding: 10px;
+        float: left;
+        margin-right: 10px;
+    }
+    .acc__container {
+        background:#fff;
+        border-radius: 15px;
+        width: 90%;
+        margin-top: 70px;
+        padding-left: 50px;
+        padding-bottom: 50px;
+    }
+    .mobile__nav__container {
+        display: none;
+    }
+}
+@media only screen and (max-width: 768px) {
+    .account__sidebar {
+        display: none;
+    }
+    .acc__details {
+        position: relative;
+        width: 90%;
+        border: 2px solid #eee;
+        border-radius: 5px;
+        padding: 10px;
+        margin-right: 10px;
+        margin-bottom: 20px;
+        background: #fff;
+    }
+    .acc__container {
+        width: 90%;
+        margin-top: 70px;
+        margin-left: 4%;
+        padding-left: 10px;
+        padding-bottom: 50px;
+    }
+    .mobile__nav__container {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 70px;
+        background: orange;
+        box-shadow: 5px 5px 10px 1px;
+    }
+    .mobile__nav  {
+        width: 27%;
+        float: left;
+        padding: 15px 10px;
+        text-align: center;
+        cursor: pointer;
+        color: #fff;
+    }
+    .mobile__nav__container .active {
+        background: #ddd;
+        color: #000 !important;
+    }
+    .mobile__nav .fas {
+        width: 100%;
+        font-size: 22px;
+    }
+    .mobile__nav a {
+        text-decoration: none;
+        font-size: 18px;
+        font-weight: 500;
     }
 }
