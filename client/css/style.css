@@ -550,10 +550,7 @@ width: 100%;
 }
 
 /**acount overview*/
-.acc__main {
-    display: grid;
-    grid-template-columns: 35% 65%;
-}
+
 .acc__main aside {
     margin-left: 100px;
 }
@@ -597,25 +594,6 @@ width: 100%;
     border-top: 1px solid orange;
 }
 
-.acc__container {
-    background:#fff;
-    border-radius: 15px;
-    width: 90%;
-    margin-top: 70px;
-    padding-left: 50px;
-    padding-bottom: 50px;
-}
-    
-.acc__details {
-    position: relative;
-    width: 45%;
-    border: 2px solid #eee;
-    border-radius: 5px;
-    padding: 10px;
-    float: left;
-    margin-right: 10px;
-}
-
 .acc__details__head {
     font-size: 14px;
     font-weight: 500;
@@ -637,4 +615,82 @@ width: 100%;
     right: 10px;
     color: orange;
     cursor: pointer;
+}
+@media only screen and (min-width: 768px) {
+    .acc__main {
+        display: grid;
+        grid-template-columns: 35% 65%;
+    }
+    .acc__details {
+        position: relative;
+        width: 45%;
+        border: 2px solid #eee;
+        border-radius: 5px;
+        padding: 10px;
+        float: left;
+        margin-right: 10px;
+    }
+    .acc__container {
+        background:#fff;
+        border-radius: 15px;
+        width: 90%;
+        margin-top: 70px;
+        padding-left: 50px;
+        padding-bottom: 50px;
+    }
+    .mobile__nav__container {
+        display: none;
+    }
+}
+@media only screen and (max-width: 768px) {
+    .account__sidebar {
+        display: none;
+    }
+    .acc__details {
+        position: relative;
+        width: 90%;
+        border: 2px solid #eee;
+        border-radius: 5px;
+        padding: 10px;
+        margin-right: 10px;
+        margin-bottom: 20px;
+        background: #fff;
+    }
+    .acc__container {
+        width: 90%;
+        margin-top: 70px;
+        margin-left: 4%;
+        padding-left: 10px;
+        padding-bottom: 50px;
+    }
+    .mobile__nav__container {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 70px;
+        background: orange;
+        box-shadow: 5px 5px 10px 1px;
+    }
+    .mobile__nav  {
+        width: 27%;
+        float: left;
+        padding: 15px 10px;
+        text-align: center;
+        cursor: pointer;
+        color: #fff;
+    }
+    .mobile__nav__container .active {
+        background: #ddd;
+        color: #000 !important;
+    }
+    .mobile__nav .fas {
+        width: 100%;
+        font-size: 22px;
+    }
+    .mobile__nav a {
+        text-decoration: none;
+        font-size: 18px;
+        font-weight: 500;
+    }
 }
