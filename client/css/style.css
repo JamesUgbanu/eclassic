@@ -636,6 +636,7 @@ width: 100%;
         border-radius: 15px;
         width: 90%;
         margin-top: 70px;
+        margin-bottom: 20px;
         padding-left: 50px;
         padding-bottom: 50px;
     }
@@ -772,4 +773,16 @@ width: 100%;
         font-weight: 900;
     }
     
+}
+
+
+/** Order details **/
+.order__details .fa-arrow-left {
+    font-size: 22px;
+    margin-right: 20px;
+    text-decoration: none;
+    color: #000;
+}
+.order__details .order__list {
+    padding-left: 20px;
 }
