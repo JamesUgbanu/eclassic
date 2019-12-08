@@ -3,6 +3,10 @@ body{
     background: #ddd;
     font-family: 'Roboto', serif;
 }
+h1 {
+    font-weight: 18px;
+    font-weight: 500;
+}
 
 /* top navigation */
 
@@ -305,7 +309,7 @@ header.shadow__menu {
 
 .cloth_img button {
     background: linear-gradient(45deg, #e4c52a 0%,#ffa751  100%);
-color: white;
+color: #fff;
 border: none;
 padding: 10px 10px 10px 10px;
 text-align: centre;
@@ -789,7 +793,7 @@ width: 100%;
 /** Account Details **/
 .form__control input[type=text], .form__control input[type=date], .form__control input[type=tel] {
     border: none;
-    border-bottom: 1px solid black;
+    border-bottom: 0.5px solid #777;
     margin-bottom: 50px;
     background: transparent;
     height: 30px;
@@ -853,7 +857,7 @@ width: 100%;
     }
     .form__control select {
         border: none; 
-        border-bottom: 1px solid black;
+        border-bottom: 0.5px solid #777;
         width:70%;
     }
 }
@@ -868,3 +872,15 @@ width: 100%;
     width: 90% !important;
 }
 }
+/** Address Book **/
+.address__book__btn {
+    background: linear-gradient(45deg, #e4c52a 0%,#ffa751  100%);
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    float: right;
+    font-size: 18px;
+    margin-right: 20px;
+    }
