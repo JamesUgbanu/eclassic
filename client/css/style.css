@@ -4,7 +4,7 @@ body{
     font-family: 'Roboto', serif;
 }
 h1 {
-    font-weight: 18px;
+    font-size: 22px;
     font-weight: 500;
 }
 
@@ -791,7 +791,8 @@ width: 100%;
 }
 
 /** Account Details **/
-.form__control input[type=text], .form__control input[type=date], .form__control input[type=tel] {
+.form__control input[type=text], .form__control input[type=date], .form__control input[type=tel], .form__control select
+, .form__control textarea {
     border: none;
     border-bottom: 0.5px solid #777;
     margin-bottom: 50px;
@@ -819,10 +820,7 @@ width: 100%;
 
 
 @media only screen and (max-width: 768px) {
-    .form__grid {
-        width: 100%;
-    }
-    .form__control input {
+    .form__control input, .form__control textarea {
         width: 90%;
     }
     .form__control .form__select {
@@ -830,21 +828,29 @@ width: 100%;
     }
     .form__control select {
         border: none; 
-        border-bottom: 1px solid black;
+        border-bottom: 1px solid #777;
         width:90%;
         background: transparent;
+        outline: none;
     }
 }
 @media only screen and (min-width: 768px) {
     .form__control {
     margin-left: 7%;
     }
-    .form__grid {
+    .form__one__grid {
+        width: 100%;
+    }
+    .form__two__grid {
     display: grid;
     grid-template-columns: 50% 50%;
     }
+
     .form__control input {
         width:70%;
+    }
+    .form__control textarea {
+        width: 85%;
     }
     .form__control input[type=tel] {
     width: 60% !important;
@@ -859,6 +865,7 @@ width: 100%;
         border: none; 
         border-bottom: 0.5px solid #777;
         width:70%;
+        outline: none;
     }
 }
 
@@ -877,10 +884,16 @@ width: 100%;
     background: linear-gradient(45deg, #e4c52a 0%,#ffa751  100%);
     color: #fff;
     border: none;
-    padding: 10px 20px;
+    padding: 10px 15px;
     border-radius: 5px;
     cursor: pointer;
     float: right;
     font-size: 18px;
     margin-right: 20px;
     }
+    .address__book__btn:hover {
+    background: linear-gradient(45deg, #ffa751 0%,#e4c52a  100%);
+    }
+
+    /** Add new address page **/
+
