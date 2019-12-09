@@ -895,5 +895,66 @@ width: 100%;
     background: linear-gradient(45deg, #ffa751 0%,#e4c52a  100%);
     }
 
-    /** Add new address page **/
+    /** Admin Dashboard **/
+    .dashboard__box {
+        width: 80%;
+        height: 130px;
+        border-radius: 10px;
+        position: relative;
+        overflow: hidden;
+    }
+    .dashboard__one {
+        background:linear-gradient(#B779F8,#C791EF);
+    }
 
+    .dashboard__two{
+        background:linear-gradient(#6A7CE8,#6FA2E1);
+    }
+
+    .dashboard__three{
+        background:linear-gradient(#FD978F,#FDB487);
+    }
+
+    .circle__one {
+    width: 90px;
+    height: 80px;
+    position: absolute;
+    left: 70%;
+    top: 8px;
+    border-radius:100px;
+    background-color: #fff;
+    opacity: 0.2;
+    }
+
+    .circle__two {
+        width: 90px;
+        height: 80px;
+        position: absolute;
+        left: 65%;
+        top: 70px;
+        border-radius:100px;
+        background-color: #fff;
+        opacity: 0.2; 
+    }
+
+    .dashboard__box p {
+        color: #fff;
+        margin-left: 5px;
+    }
+    .dashboard__box p:nth-child(2) {
+        font-size: 25px;
+        font-weight: 700;
+    }
+@media only screen and (min-width: 768px) {
+    .admin__dashboard {
+        display: grid;
+        grid-template-columns: 33.3% 33.3% 33.3%;
+        padding-top: 50px;
+    }
+}
+@media only screen and (max-width: 768px) {
+    .dashboard__box {
+        margin: 20px 10%;
+
+    }
+}
