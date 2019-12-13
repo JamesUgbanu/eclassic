@@ -964,7 +964,7 @@ width: 100%;
     margin-top: 5%;
 }
 .product__header button {
-    background-color: #0f0;
+    background: linear-gradient(45deg, #e4c52a 0%,#ffa751  100%);
     height:30px;
     border-radius: 10px;
     border:none;
@@ -981,7 +981,7 @@ width: 100%;
 
 .product__form {
     margin-top: 6%;
-    background-color:rgb(235, 235, 235);
+    background:rgb(235, 235, 235);
     width: 95%;
     height: 50px;
     border-radius: 5px;   
@@ -1017,9 +1017,9 @@ width: 100%;
 }
 
 .product__four input[type=submit] {
-background-color: #00f;
+background: linear-gradient(45deg, #e4c52a 0%,#ffa751  100%);
 border: none;
-color: white;
+color: #fff;
 border-radius: 5px;
 }
 
@@ -1041,7 +1041,7 @@ border-collapse: collapse;
 }
 
 .product__table table  button:nth-child(1){
-background-color:blue;
+background: linear-gradient(45deg, #e4c52a 0%,#ffa751  100%);
  border: 2px solid #fff;
  border-radius: 5px;
  height: 30px;
@@ -1051,7 +1051,7 @@ background-color:blue;
 }
 
 .product__table table  button:nth-child(2){
-background-color: red;
+background-color: #f00;
  border-radius: 5px;
  border: 2px solid #fff;
  height: 30px;
@@ -1064,7 +1064,7 @@ background-color: red;
 }
 
 .pagination li a{
-   color: black;
+   color: #000;
    border: 1px solid rgb(204, 201, 201);
    font-size: 18px;
    text-decoration: none;
