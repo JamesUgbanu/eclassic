@@ -284,7 +284,7 @@ header.shadow__menu {
         margin: 50px 2% 10px 2%;
      }
      
-        hr {
+       .cloth_img hr {
             width: 70px;
             margin-left: 30%;
         }
@@ -300,7 +300,7 @@ header.shadow__menu {
             margin: 10px;
      }
      
-    hr {
+     .cloth_img hr {
         width: 50%;
         margin-left: 25%;
     }
@@ -958,3 +958,203 @@ width: 100%;
 
     }
 }
+
+/**product styling**/
+.product__header{
+    margin-top: 5%;
+}
+.product__header button {
+    background: linear-gradient(45deg, #e4c52a 0%,#ffa751  100%);
+    height:30px;
+    border-radius: 10px;
+    border:none;
+    margin-right: 10%;
+    float: right;
+    color: #fff;
+    cursor: pointer;
+}
+
+.product__header span {
+    font-size: 35px;
+    font-weight: 50px;
+}
+
+.product__form {
+    margin-top: 10px;
+    background:rgb(235, 235, 235);
+    width: 95%;
+    height: 50px;
+    border-radius: 5px;   
+    
+}
+
+.product__form form {
+    display: grid;
+    grid-template-columns: 33% 30% 30% 10%;
+    padding-top: 10px;
+}
+
+.product__one input {
+    width: 60%;
+}
+
+.product__two input {
+    width: 40%;
+    border-radius:5px;
+}
+
+.product__three input {
+    width: 40%;
+    border-radius: 5px;
+}
+
+.product__three .joint__form {
+    width: 20%;
+    border-radius: 5px;
+   position: relative;
+   right: 5px;
+   border-left: none;
+}
+
+.product__four input[type=submit] {
+background: linear-gradient(45deg, #e4c52a 0%,#ffa751  100%);
+border: none;
+color: #fff;
+border-radius: 5px;
+}
+.product__table {
+    overflow-x: scroll;
+}
+
+.product__table table,th,tr {
+border: 1px solid #E3E3E3;
+border-collapse: collapse;
+}
+
+.product__table table {
+    margin-top: 25px;
+    
+}
+.acc__container hr {
+    margin-left: -50px !important;
+}
+
+.product__table table td  {
+    padding:10px;
+}
+
+.product__table table  .action__btn button:nth-child(1){
+ background: linear-gradient(45deg, #e4c52a 0%,#ffa751  100%) !important;
+ border: 2px solid #fff;
+ border-radius: 5px;
+ height: 30px;
+ cursor: pointer;
+ color: #fff;
+
+}
+
+.product__table table  .action__btn button:nth-child(even){
+background-color: #f00;
+ border-radius: 5px;
+ border: 2px solid #fff;
+ height: 30px;
+ cursor: pointer;
+ color: #fff;
+}
+
+.product__table table tr:nth-child(even) {
+    background-color:rgb(235, 235, 235);
+}
+
+.pagination li a{
+   color: #000;
+   border: 1px solid rgb(204, 201, 201);
+   font-size: 18px;
+   text-decoration: none;
+   float: left;
+   padding: 8px 16px;
+  
+}
+
+.pagination li {
+    display: inline;
+    
+}
+
+.pagination{
+    margin-left: 25%;
+    margin-top: 10px;
+}
+
+.pagination li a:hover {
+    background-color:rgb(212, 206, 206);
+}
+
+.pagination li a.active {
+    background: rgb(201, 198, 198);
+    color: #000;
+}
+
+.pagination li a {
+    color: #00f;
+}
+.pagination__div {
+    margin-bottom: 50px;
+}
+@media only screen and (max-width: 768px) {
+    .action__btn button {
+        width: 100% !important;
+    }
+}
+@media only screen and (min-width: 768px) {
+    .acc__container hr {
+        border: 1px solid #eee
+    }
+}
+
+/* Dropdown */
+.action__dropdown {
+    position: relative;
+}
+.dropdown__button {
+    position:absolute;
+    background: #fff;
+    width: 80%;
+    margin: 0 5px;
+    z-index: 1;
+}
+
+.dropdown__button button {
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    padding: 10px 0;
+    background: #fff;
+    font-size: 12px;
+}
+
+.action__dropdown details {
+    border: 1px solid #000;
+    border-radius: 5px;
+}
+.action__dropdown details summary {
+    padding: 5px 20px;
+    z-index: 0;
+    cursor: pointer;
+}
+
+.action__dropdown details > summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .dropdown__button button:hover {
+      background: linear-gradient(45deg, #e4c52a 0%,#ffa751  100%);
+      width: 100%;
+  }
+
+  .admin__sortable a{
+    text-decoration: none;
+    padding: 0 5px;
+  }
+  
+  
