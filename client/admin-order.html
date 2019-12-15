@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>ADMIN ORDER</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+    <link rel="stylesheet" href="./css/css/all.css">
+    <link rel='stylesheet' type='text/css' media='screen' href='./css/style.css'>
+</head>
+<body>
+    
+    <header class="shadow__menu">   
+        <div class="topbar">
+            <input type="checkbox" id="menuToggle">
+            <label for="menuToggle" class="menu__icon fa fa-bars fa-2x"></label>
+                <!-- <div class="menu"><button class="fa fa-bars fa-2x"></button></div> -->
+                <nav class="navigation__menu">
+                        <ul>
+                                
+                                <a href="#"><li>Home</li></a>
+                                <a href="#"><li>All Products</li></a>
+                                <a href="#"><li>About us</li></a>
+                                <a href="#"><li>Contact us</li></a>
+                                <a href="#"><li>Login/Sign Up</li></a>
+                            </ul>   
+                        </nav>
+        </div>
+        
+        <div class="topbar"> <img class="logo" src="images/eclassic.png" alt="Eclassic logo"> </div>
+        
+        <div class="topbar">
+            <div class="cart__box">
+               <i class="fa fa-shopping-bag fa-3x"><span>5</span></i>
+               <div class="cart__total">150.55 $</div>
+            </div>
+        </div>
+    </header>
+
+    <main class="acc__main">
+    <aside>
+        <div class="account__sidebar">
+            <div class="account__sidebar__top">
+                <a href="#" class="dashboard__menu fas fa-box"><span>Dashboard</span></a>
+                <a href="#" class="dashboard__menu fas fa-suitcase"><span>Produts</span></a>
+                <a href="#" class="dashboard__menu fas fa-dolly"><span>Orders</span></a>
+                <a href="#" class="dashboard__menu"><span>Change Password</span></a>
+            </div>
+            <div class="account__sidebar__bottom">
+                <button>Log Out</button>
+            </div>
+        </div>
+        <div class="mobile__nav__container">
+            <div class="mobile__nav active">
+                <i class="fas fa-user"></i>
+                <a href="#" class="dashboard__mobile__menu">Account</a>
+            </div>    
+            <div class="mobile__nav">
+                    <i class="fas fa-suitcase"></i>
+                    <a href="#" class="dashboard__mobile__menu">Orders</a>
+                </div>    
+                <div class="mobile__nav">
+                        <i class="fas fa-book"></i>
+                        <a href="#" class="dashboard__mobile__menu">Address Book</a>
+                    </div> 
+        </div>
+    </aside>
+
+    <div class="acc__container">
+        <!-- start here-->
+        <div class="product__header">
+            <span>Orders</span>
+        </div>
+        <hr>
+        <div class="admin__sortable">
+            <a href="#">All<span>(20)</span></a>|
+            <a href="#">processing<span>(18)</span></a>|
+            <a href="#">delivered<span>(2)</span></a>|
+            <a href="#">cancelled<span>(0)</span></a>
+        </div>
+        <div class="product__form">
+         <form>
+             <div class="product__one">
+             <label>Search:</label>
+             <input type="search" name="search">
+            </div>
+
+            <div class="product__two">
+             <label>Filter by:</label>
+             <input type="number" name="number" placeholder="all">
+            </div>
+
+            <div class="product__three">
+             <label>Order by:</label>
+             <input type="number" name="number" placeholder="id">
+             <input class="joint__form" type="number" name="number" placeholder="Asc">
+            </div>
+
+            <div class="product__four">
+            <input type="submit" value="GO">
+        </div>
+         </form>
+        
+        </div>
+
+        <div class="product__table">
+
+               <table border="1">
+                   <tr>
+                       <th>ID</th><th>Order</th><th>Purchased</th><th>Ship to</th><th>Date</th><th>Total</th><th>Status</th><th>Action</th>
+                    </tr>
+                   <tr>
+                       <td>1</td><td><a href="#">Wireless Keyboard</a> by James</td><td>1 item</td><td>Location and address, Lagos</td><td>May 29th 2020</td><td>$12</td><td>Pending</td>
+                       <td class="action__dropdown">
+                           <details>
+                               <summary class="fas fa-eye"></summary>
+                               <div class="dropdown__button">
+                               <button>completed</button>
+                               <button>processing</button>
+                               <button>cancel</button>
+                                </div>
+                           </details>    
+                    </td>
+                    </tr>
+                    <tr>
+                        <td>2</td><td><a href="#">Wireless Keyboard</a> by James</td><td>1 item</td><td>Location and address, Lagos</td><td>May 29th 2020</td><td>$12</td><td>Pending</td><td class="action__dropdown">
+                           <details>
+                               <summary><div class="fas fa-eye"></div></summary>
+                               <div class="dropdown__button">
+                               <button>completed</button>
+                               <button>going</button>
+                               <button>action</button>
+                            </div>
+                           </details>    
+                    </td>
+                     </tr>
+                     <tr>
+                        <td>3</td><td><a href="#">Wireless Keyboard</a> by James</td><td>1 item</td><td>Location and address, Lagos</td><td>May 29th 2020</td><td>$12</td><td>Pending</td><td class="action__dropdown">
+                           <details>
+                               <summary><div class="fas fa-eye"></div></summary>
+                               <div class="dropdown__button">
+                               <button>completed</button>
+                               <button>going</button>
+                               <button>action</button>
+                            </div>
+                           </details>    
+                    </td>
+                     </tr>
+                     <tr>
+                        <td>4</td><td><a href="#">Wireless Keyboard</a> by James</td><td>1 item</td><td>Location and address, Lagos</td><td>May 29th 2020</td><td>$12</td><td>Pending</td><td class="action__dropdown">
+                           <details>
+                               <summary><div class="fas fa-eye"></div></summary>
+                               <div class="dropdown__button">
+                               <button>completed</button>
+                               <button>going</button>
+                               <button>action</button>
+                            </div>
+                           </details>    
+                    </td>
+                     </tr>
+               </table>
+        </div>
+
+        <div class="pagination__div">
+            <ul class="pagination">
+            <li><a href="#" class="active">1</a></li>
+            <li><a href="#">2</a></li>
+            <li><a href="#">&gt;</a></li>
+        </ul>
+        </div>
+        <!-- End here-->
+    </div>
+    </main>
