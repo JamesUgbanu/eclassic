@@ -250,7 +250,7 @@ describe('Test on product endpoints', () => {
     });
   });
   // retrieve all products end point
-  describe('retrieve all products endpoint', () => {
+  describe('retrieve products endpoint', () => {
     it('should return all existing products', (done) => {
       request(app)
         .get('/api/v1/products')
@@ -259,6 +259,39 @@ describe('Test on product endpoints', () => {
         .expect(200)
         .end((err, res) => {
           expect(res.body.success).to.equal('Products retrieved successfully');
+          done();
+        });
+    });
+    it('should return not found', (done) => {
+      request(app)
+        .get('/api/v1/products/200')
+        .set('accept', 'application/json')
+        .expect('content-Type', /json/)
+        .expect(200)
+        .end((err, res) => {
+          expect(res.body.error).to.equal('product not found');
+          done();
+        });
+    });
+    it('should catch error from database', (done) => {
+      request(app)
+        .get('/api/v1/products/ii')
+        .set('accept', 'application/json')
+        .expect('content-Type', /json/)
+        .expect(200)
+        .end((err, res) => {
+          expect(res.body.status).to.equal(500);
+          done();
+        });
+    });
+    it('should return a single product', (done) => {
+      request(app)
+        .get('/api/v1/products/1')
+        .set('accept', 'application/json')
+        .expect('content-Type', /json/)
+        .expect(200)
+        .end((err, res) => {
+          expect(res.body.success).to.equal('Product retrieved successfully');
           done();
         });
     });
