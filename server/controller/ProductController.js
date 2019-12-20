@@ -56,6 +56,21 @@ class ProductController {
     ProductController.dbQuery(response, query);
   }
 
+  /**
+   * @param {Object} request
+   * @param {Object} response
+   * @return {Object} json
+   */
+  static removeById(request, response) {
+    const id = parseInt(request.params.id, 10);
+
+    const query = {
+      text: 'DELETE FROM products WHERE prod_id = $1',
+      values: [id]
+    };
+    ProductController.dbQuery(response, query, 200, 'product removed successfully');
+  }
+
   static notFoundError(response) {
     return response.status(404).json({
       status: 404,
