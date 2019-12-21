@@ -1022,10 +1022,12 @@ border: none;
 color: #fff;
 border-radius: 5px;
 }
-.product__table {
-    overflow-x: scroll;
-}
 
+@media only screen and (max-width: 768px) {
+    .product__table {
+        overflow-x: scroll;
+    }
+}
 .product__table table,th,tr {
 border: 1px solid #E3E3E3;
 border-collapse: collapse;
@@ -1157,4 +1159,206 @@ background-color: #f00;
     padding: 0 5px;
   }
   
-  
+ .product__page {
+     display: grid;
+     grid-template-columns: 20% 80%;
+ }
+
+ .tab__content {
+     margin-bottom: 1%;
+     background: #e7e2d2;
+     height: 40px;
+     padding: 10px 0px 0px 10px;
+     cursor: pointer;
+ }
+ .tab__content:nth-child(1) {
+     background: rgb(255, 187, 0);
+ }
+ .tab__button {
+     position: relative;
+     float: right;
+ }
+.tab__button button {
+    height: 30px;
+    margin: 0 10px;
+    border: none;
+    cursor: pointer;
+}
+ .tab__button button:nth-child(even ){
+    background: rgb(255, 187, 0);
+ }
+
+ .tab__page h1 {
+    margin-top: 50px;
+    margin-left: 20px;
+ }
+
+ .tab__form form {
+     margin-left: 50px;
+ }
+ .tab__form .section__box {
+     display: grid;
+     grid-template-columns: 20% 80%;
+     margin: 15px 0;
+ }
+ .tab__form form label {
+     display: block;
+ }
+
+.tab__form form input[type=text], .tab__form form input[type=number] {
+    display: block;
+    height: 30px;
+    width: 70%;
+}
+
+.tab__form textarea {
+    width: 70%;
+    height: 110px;
+    margin-bottom: 6%;
+}
+
+.tab__page hr {
+    position: relative;
+    left: 70px;
+    bottom: 16px;
+    width: 90%;
+}
+
+ .tab__content:hover {
+     background: #ededed;
+ }
+
+ .product__tab {
+     margin-top: 20px;
+ }
+
+ .tab__content span {
+     margin-left: 8px;
+ }
+
+ /**image start here**/
+ .image__button button {
+    height: 30px;
+    float: right;
+    margin-left: 9px;
+    margin-right: 10px;
+    border: none;
+    cursor: pointer; 
+ }
+ .image__button button:nth-child(even ){
+    background: rgb(255, 187, 0);
+ }
+ .image__tab h1 {
+   position: relative;
+   top: 50px;
+   left: 30px;
+}
+
+.image__form  {
+    margin-left: 30%;
+    margin-top: 10%;
+}
+.image__form form label {
+        border-radius: 5px; 
+        color: #fff;
+}
+.image__table .fas {
+    width: 30px;
+}
+.image__table table img {
+    width: 30px;
+    height: 30px;
+}
+
+.image__table table {
+    width: 100%;
+   cursor: move;
+ border-collapse: collapse;
+}
+
+.image__form form legend {
+    position: relative;
+    right:35%;
+    top: 25px;
+    
+}
+
+.image__table table button {
+    background: linear-gradient(45deg, #e4c52a 0%,#ffa751  100%); 
+    border: none;
+    border-radius: 5px;
+    height: 35px;
+    color: #fff;
+    cursor: pointer;
+    
+}
+
+.image__table table td {
+    text-align: center;
+   
+}  
+
+.image__table table th {
+  border: 1px solid #fff;
+  border-bottom: 2px solid rgba(151, 148, 148, 0.6);
+}
+
+.file__label input {
+    display: none;
+}
+
+.file__label label {
+    display: block;
+    height: 35px;
+    width: 30%;
+    position: relative;
+  text-align: center;
+  background: linear-gradient(45deg, #e4c52a 0%,#ffa751  100%); 
+  font-size: 20px;
+  padding-top: 10px;
+  cursor: pointer;
+}
+
+.image__table table,td,th {
+    border-bottom: 1px solid rgb(153, 153, 153);
+   border: none;
+}
+
+/**image ends here**/
+
+/** quantity stars here **/
+.quantity__button button {
+    height: 30px;
+    float: right;
+    margin-left: 9px;
+    margin-right: 10px;
+    border: none;
+    cursor: pointer; 
+ }
+ .quantity__button button:nth-child(even ){
+    background: rgb(255, 187, 0);
+ }
+ .quantity__tab h1 {
+   position: relative;
+   top: 50px;
+   left: 30px;
+}
+
+
+.quantity__form form legend {
+    position: relative;
+    right:35%;
+    top: 25px;
+}
+
+
+.quantity__form  {
+    margin-left: 30%;
+    margin-top: 10%;
+    }
+
+    .quantity__form form input {
+        height: 30px;
+        width: 60%;
+    }
+/** quantity ends here**/
