@@ -249,7 +249,7 @@ describe('Test on product endpoints', () => {
         });
     });
   });
-  // retrieve all products end point
+  // retrieve products end points
   describe('retrieve products endpoint', () => {
     it('should return all existing products', (done) => {
       request(app)
@@ -296,4 +296,29 @@ describe('Test on product endpoints', () => {
         });
     });
   });
-});
+  // remove product endpoint
+  describe('remove products endpoint', () => {
+    it('should return not found', (done) => {
+      request(app)
+        .delete('/api/v1/products/200')
+        .set('accept', 'application/json')
+        .expect('content-Type', /json/)
+        .expect(200)
+        .end((err, res) => {
+          expect(res.body.error).to.equal('product not found');
+          done();
+        });
+    });
+    it('should remove product by id', (done) => {
+      request(app)
+        .delete('/api/v1/products/1')
+        .set('Accept', 'application/json')
+        .expect('Content-Type', /json/)
+        .expect(200)
+        .end((err, res) => {
+          expect(res.body.success).to.equal('product removed successfully');
+          done();
+        });
+    });
+  });
+}); // end of test
