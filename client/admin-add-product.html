@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>ADMIN ADD PRODUCT</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+    <link rel="stylesheet" href="./css/css/all.css">
+    <link rel='stylesheet' type='text/css' media='screen' href='./css/style.css'>
+</head>
+<body>
+    
+    <header class="shadow__menu">   
+        <div class="topbar">
+            <input type="checkbox" id="menuToggle">
+            <label for="menuToggle" class="menu__icon fa fa-bars fa-2x"></label>
+                <!-- <div class="menu"><button class="fa fa-bars fa-2x"></button></div> -->
+                <nav class="navigation__menu">
+                        <ul>
+                                
+                                <a href="#"><li>Home</li></a>
+                                <a href="#"><li>All Products</li></a>
+                                <a href="#"><li>About us</li></a>
+                                <a href="#"><li>Contact us</li></a>
+                                <a href="#"><li>Login/Sign Up</li></a>
+                            </ul>   
+                        </nav>
+        </div>
+        
+        <div class="topbar"> <img class="logo" src="images/eclassic.png" alt="Eclassic logo"> </div>
+        
+        <div class="topbar">
+            <div class="cart__box">
+               <i class="fa fa-shopping-bag fa-3x"><span>5</span></i>
+               <div class="cart__total">150.55 $</div>
+            </div>
+        </div>
+    </header>
+
+    <main class="acc__main">
+    <aside>
+        <div class="account__sidebar">
+            <div class="account__sidebar__top">
+                <a href="#" class="dashboard__menu fas fa-box"><span>Dashboard</span></a>
+                <a href="#" class="dashboard__menu fas fa-suitcase"><span>Produts</span></a>
+                <a href="#" class="dashboard__menu fas fa-dolly"><span>Orders</span></a>
+                <a href="#" class="dashboard__menu"><span>Change Password</span></a>
+            </div>
+            <div class="account__sidebar__bottom">
+                <button>Log Out</button>
+            </div>
+        </div>
+        <div class="mobile__nav__container">
+            <div class="mobile__nav active">
+                <i class="fas fa-user"></i>
+                <a href="#" class="dashboard__mobile__menu">Account</a>
+            </div>    
+            <div class="mobile__nav">
+                    <i class="fas fa-suitcase"></i>
+                    <a href="#" class="dashboard__mobile__menu">Orders</a>
+                </div>    
+                <div class="mobile__nav">
+                        <i class="fas fa-book"></i>
+                        <a href="#" class="dashboard__mobile__menu">Address Book</a>
+                    </div> 
+        </div>
+    </aside>
+
+    <div class="acc__container">
+            <h1><a href="#" class="fa  fa-arrow-left"></a>Add product</h1>
+        <!-- start here-->
+        <div class="product__page">
+      <div class="product__tab">
+<div class="tab__content">
+    <i class="fas fa-info-circle"></i>
+    <span>Information</span>
+</div>
+
+
+
+<div class="tab__content">
+        <i class="fas fa-dollar-sign"></i>
+        <span>Price</span>
+    </div>
+
+    <div class="tab__content">
+            <i class="fas fa-book"></i>
+            <span>SEO</span>
+        </div>
+
+        <div class="tab__content">
+                <i class="fas fa-truck"></i>
+                <span>Shipping</span>
+            </div>
+
+            <div class="tab__content">
+                    <i class="fas fa-image"></i>
+                    <span>images</span>
+                </div>
+
+                <div class="tab__content">
+                        <i class="fas fa-file"></i>
+                        <span>Quantities</span>
+                    </div>
+      </div>
+
+      <div class="tab__page">
+           <!-- Start Information form -->
+            <div class="tab__button">
+            <button><i class="fas fa-window-close"></i>  Cancel Changes</button>
+            <button><i class= "fas fa-save"></i>   Save Changes </button>
+            </div>
+            <h1>Product Information</h1>
+            <hr>
+            <div class="tab__form">
+                <!--Information Starts-->
+                    <form>
+                    <div class="section__box">   
+                        <label>Type</label>
+                        <div><input type="radio" id="product" name="product" value="Standard Product"><span>Standard Product</span></div> 
+                     </div>
+                     <div class="section__box">
+                    <label>Name</label>
+                    <input type="text" placeholder="Nike shoe">
+                    </div>
+                    <div class="section__box">
+                    <label>SK</label>
+                    <input type="text" placeholder="00345675">
+                    </div>
+                    <div class="section__box">
+                    <label>Description</label>
+                    <textarea></textarea>
+                    </div>
+                        </form>
+                <!--Information ends-->
+                <!--Price starts-->
+                        <!-- <form>
+                                <div class="section__box">  
+                                <legend>Before Price</legend>
+                                <input type="text">
+                                </div>
+                                <div class="section__box">  
+                                        <legend>After Price</legend>
+                                        <input type="text">
+                                </div>
+                                <div class="section__box">  
+                                        <legend>Discount in %</legend>
+                                        <input type="number">
+                                        </div>
+        
+                            </form>       -->
+                <!--Price ends-->
+                <!--SEO starts-->
+                <!-- <form>
+                    <div class="section__box"> 
+                        <legend>Meta Title</legend>
+                        <input type="text">
+                    </div>
+                    <div class="section__box"> 
+                        <legend>Meta Description</legend>
+                        <input type="text">
+                    </div>    
+                    </form> -->
+                <!--SEO ends-->
+                <!--Shipping Starts-->
+                <!-- <form>
+                    <div class="section__box"> 
+                        <legend>Package Width(inches)</legend>
+                        <input type="text">
+                    </div>
+                    <div class="section__box"> 
+                        <legend>Package Height(inches)</legend>
+                        <input type="text">
+                    </div>
+                    <div class="section__box"> 
+                        <legend>Package Depth(inches)</legend>
+                        <input type="text">
+                    </div>
+                    <div class="section__box"> 
+                        <legend>Package Weight(lb)</legend>
+                        <input type="text">
+                    </div>
+                    </form> -->
+                <!--Shipping ends-->
+                <!--Images starts-->
+                <!-- <form>
+                    <div class="section__box"> 
+                    <legend>Add a new image to this product</legend>
+                    <div class="file__label">
+                    <label for="file">  <i class="fas fa-plus"></i> Add File...</label>
+                    <input type="file" name="file" id="file" class="image__file">  
+                    </div>
+                    </div>
+                    </form>
+                    <div class="image__table">
+                            <table>
+                                <tr><th>Image</th> <th>Caption</th> <th>Position</th> <th>Cover</th> <th>none</th></tr>
+                                <tr draggable="true"><td><i class="fas fa-cross"></i> <img src="images/lady-on-nike-sneaker.jpg"></td><td>puma1</td><td>1</td><td><input type="radio" id="cover" name="cover"></td><td><button><i class="fas fa-trash"></i>   Delete Thid Image</button></td></tr>
+                                <tr draggable="true"><td><i class="fas fa-cross"></i> <img src="images/lady-on-nike-sneaker.jpg"></td><td>puma2</td><td>1</td><td><input type="radio" id="cover" name="cover"></td><td><button><i class="fas fa-trash"></i>   Delete Thid Image</button></td></tr>
+                                <tr draggable="true"><td><i class="fas fa-cross"></i> <img src="images/lady-on-nike-sneaker.jpg"></td><td>puma3</td><td>1</td><td><input type="radio" id="cover" name="cover"></td><td><button><i class="fas fa-trash"></i>    Delete Thid Image</button></td></tr>
+                                <tr draggable="true"><td><i class="fas fa-cross"></i> <img src="images/lady-on-nike-sneaker.jpg"></td><td>puma4</td><td>1</td><td><input type="radio" id="cover" name="cover"></td><td><button><i class="fas fa-trash"></i>  Delete Thid Image</button></td></tr>
+                            </table>
+                    </div> -->
+                <!-- Images ends-->
+                <!--Quantity starts-->
+                <!-- <form>
+                   <div class="section__box"> 
+                        <legend>quantity</legend>
+                        <input type="number" name="age">
+                   </div>
+                </form> -->
+                <!--Quantity ends-->
+             </div>
+        </div>
+      <!--End Infromation form-->
+    </main>
