@@ -1036,7 +1036,7 @@ border-collapse: collapse;
 
 .product__table table {
     margin-top: 25px;
-    
+    width: 100%;
 }
 .acc__container hr {
     margin-left: -50px !important;
