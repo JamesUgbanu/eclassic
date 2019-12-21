@@ -321,4 +321,4 @@ describe('Test on product endpoints', () => {
         });
     });
   });
-});
+}); // end of test
