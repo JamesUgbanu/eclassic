@@ -78,7 +78,7 @@ class ProductController {
     });
   }
 
-  static getTaskSuccess(response, dbresult) {
+  static getProductSuccess(response, dbresult) {
     return response.status(200).json({
       status: 200,
       success: 'Product retrieved successfully',
@@ -86,7 +86,7 @@ class ProductController {
     });
   }
 
-  static updateTaskSuccess(response, dbresult, status, message) {
+  static updateProductSuccess(response, dbresult, status, message) {
     return response.status(status).json({
       status,
       success: message,
@@ -102,9 +102,9 @@ class ProductController {
           return ProductController.notFoundError(response);
         }
         if (message) {
-          return ProductController.updateTaskSuccess(response, result, status, message);
+          return ProductController.updateProductSuccess(response, result, status, message);
         }
-        ProductController.getTaskSuccess(response, result);
+        ProductController.getProductSuccess(response, result);
       })
       .catch(error => response
         .status(500)
