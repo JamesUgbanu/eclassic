@@ -8,54 +8,92 @@ const { expect } = chai;
  * testing order endpoints
  */
 describe('Test order endpoints', () => {
-  it('should create a new order', (done) => {
-    request(app)
-      .post('/api/v1/orders')
-      .send({
-        customer_id: 'adebayo 3',
-        total_prize: 10000,
-        item: {
-          product_id: 1, qty: 5
-        }
-      })
-      .set('Accept', 'application/json')
-      .expect('Content-Type', /json/)
-      .expect(201)
-      .end((err, res) => {
-        expect(res.body.success).to.equal('order created successfully');
-        done();
-      });
+  describe('Test for creating orders endpoints', () => {
+    it('should create a new order', (done) => {
+      request(app)
+        .post('/api/v1/orders')
+        .send({
+          customer_id: 'adebayo 5',
+          total_prize: 10000,
+          item: {
+            product_id: 6, qty: 9
+          }
+        })
+        .set('Accept', 'application/json')
+        .expect('Content-Type', /json/)
+        .expect(201)
+        .end((err, res) => {
+          expect(res.body.success).to.equal('order created successfully');
+          done();
+        });
+    });
+    it('should check for custumer id', (done) => {
+      request(app)
+        .post('/api/v1/orders')
+        .send({
+          total_prize: 10000,
+          item: {
+            product_id: 1, qty: 5
+          }
+        })
+        .set('Accept', 'application/json')
+        .expect('Content-Type', /json/)
+        .expect(400)
+        .end((err, res) => {
+          expect(res.body.errors[0].msg).to.equal('customer id is required');
+          done();
+        });
+    });
+    it('should check for items selected', (done) => {
+      request(app)
+        .post('/api/v1/orders')
+        .send({
+          customer_id: 'adebayo 3',
+          total_prize: 10000,
+        })
+        .set('Accept', 'application/json')
+        .expect('Content-Type', /json/)
+        .expect(400)
+        .end((err, res) => {
+          expect(res.body.errors[0].msg).to.equal('no item selected');
+          done();
+        });
+    });
   });
-  it('should check for custumer id', (done) => {
-    request(app)
-      .post('/api/v1/orders')
-      .send({
-        total_prize: 10000,
-        item: {
-          product_id: 1, qty: 5
-        }
-      })
-      .set('Accept', 'application/json')
-      .expect('Content-Type', /json/)
-      .expect(400)
-      .end((err, res) => {
-        expect(res.body.errors[0].msg).to.equal('customer id is required');
-        done();
-      });
-  });
-  it('should check for items selected', (done) => {
-    request(app)
-      .post('/api/v1/orders')
-      .send({
-        customer_id: 'adebayo 3',
-        total_prize: 10000,
-      })
-      .set('Accept', 'application/json')
-      .expect('Content-Type', /json/)
-      .expect(400)
-      .end((err, res) => {
-        expect(res.body.errors[0].msg).to.equal('no item selected');
-        done();
-      });
+  // Test for retrieving orders
+  describe('retrieve orders endpoints', () => {
+    it('should return all existing orders', (done) => {
+      request(app)
+        .get('/api/v1/orders')
+        .set('Accept', 'application/json')
+        .expect('Content-Type', /json/)
+        .expect(200)
+        .end((err, res) => {
+          expect(res.body.success).to.equal('orders retrieved successfully');
+          done();
+        });
+    });
+    it('should return not found', (done) => {
+      request(app)
+        .get('/api/v1/orders/206f6e92-a568-46cb-89aa-d138d1ad345a')
+        .set('accept', 'application/json')
+        .expect('content-Type', /json/)
+        .expect(200)
+        .end((err, res) => {
+          expect(res.body.error).to.equal('order not found');
+          done();
+        });
+    });
+    it('should catch error from database', (done) => {
+      request(app)
+        .get('/api/v1/orders/ii')
+        .set('accept', 'application/json')
+        .expect('content-Type', /json/)
+        .expect(200)
+        .end((err, res) => {
+          expect(res.body.status).to.equal(500);
+          done();
+        });
+    });
   });
 });

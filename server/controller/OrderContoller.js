@@ -27,6 +27,31 @@ class OrderController {
     OrderController.dbQuery(response, query, 201, 'order created successfully');
   }
 
+  /**
+   *  @param {Object} request
+   *  @param {Object} response
+   *  @return {Object} json
+   */
+  static getAll(request, response) {
+    const query = 'SELECT * FROM orders';
+    OrderController.dbQuery(response, query, 200, 'orders retrieved successfully');
+  }
+
+  /**
+   * @param {Object} request
+   * @param {Object} response
+   * @return {Object} json
+   */
+  static getById(request, response) {
+    const { id } = request.params;
+
+    const query = {
+      text: 'SELECT * FROM orders WHERE order_id = $1',
+      values: [id]
+    };
+    OrderController.dbQuery(response, query);
+  }
+
   static notFoundError(response) {
     return response.status(404).json({
       status: 404,
@@ -38,7 +63,7 @@ class OrderController {
     return response.status(200).json({
       status: 200,
       success: 'order retrieved successfully',
-      products: dbresult.rows
+      orders: dbresult.rows
     });
   }
 
@@ -46,7 +71,7 @@ class OrderController {
     return response.status(status).json({
       status,
       success: message,
-      products: dbresult.rows
+      orders: dbresult.rows
     });
   }
 
