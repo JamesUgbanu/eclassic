@@ -21,7 +21,7 @@ class UserController {
     }).then((response) => {
     // access_token!
       return res.status(200).json({ token: response.data.access_token });
-    }).catch(error => console.log(error));
+    }).catch(error => res.status(error.response.status).json({ error: error.response.data.error_description }));
   }
 }
 
