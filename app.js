@@ -9,7 +9,7 @@ dotenv.config();
 
 // declare constants
 const app = new Express();
-const port = process.env.PORT || 5000;
+const port = process.env.PORT;
 
 // declare middleware
 app.use(bodyParser.urlencoded({

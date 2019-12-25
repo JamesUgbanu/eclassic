@@ -4,6 +4,7 @@ import app from '../../app';
 
 const { expect } = chai;
 let currrentToken;
+let unauthorizedToken;
 /**
  * Testing product endpoint
  */
@@ -319,6 +320,30 @@ describe('Test on product endpoints', () => {
   });
   // remove product endpoint
   describe('remove products endpoint', () => {
+    before((done) => {
+      request(app)
+        .post('/api/v1/login')
+        .send({
+          username: 'lonadekonline@gmail.com',
+          password: 'testing@123',
+        })
+        .end((error, response) => {
+          unauthorizedToken = response.body.token;
+          done();
+        });
+    });
+    it('should return insufficient role', (done) => {
+      request(app)
+        .delete('/api/v1/products/200')
+        .set('Authorization', `Bearer ${unauthorizedToken}`)
+        .set('accept', 'application/json')
+        .expect('content-Type', /json/)
+        .expect(401)
+        .end((err, res) => {
+          expect(res.body.error).to.equal('Insufficient role');
+          done();
+        });
+    });
     it('should return not found', (done) => {
       request(app)
         .delete('/api/v1/products/200')

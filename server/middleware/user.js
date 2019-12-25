@@ -7,7 +7,10 @@ class UserMiddleware {
       if (Array.isArray(assignedRoles) && assignedRoles.includes(role)) {
         return next();
       }
-      return res.status(401).send('Insufficient role');
+      return res.status(401).json({
+        status: 401,
+        error: 'Insufficient role',
+      });
     };
   }
 }
