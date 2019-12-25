@@ -20,13 +20,12 @@ const createProductTable = `
 
 const createOrderTable = `
   CREATE TABLE IF NOT EXISTS orders(
-    id UUID NOT NULL DEFAULT uuid_generate_v4(),
-    customer INTEGER,
-    total NUMERIC NOT NULL,
-    date TIMESTAMP WITH TIME ZONE,
+    order_id UUID NOT NULL DEFAULT uuid_generate_v4(),
+    customer_id VARCHAR(20),
+    total_prize NUMERIC NOT NULL,
     item JSONB,
     status VARCHAR(10) DEFAULT 'open',
-    created_on TIMESTAMP WITH TIME ZONE,
+    created_on TIMESTAMP WITH TIME ZONE DEFAULT now(),
     updated_on TIMESTAMP WITH TIME ZONE
   );
 `;

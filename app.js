@@ -3,12 +3,13 @@ import bodyParser from 'body-parser';
 import dotenv from 'dotenv';
 import orderRoutes from './server/routes/orders';
 import productRoutes from './server/routes/products';
+import userRoutes from './server/routes/users';
 
 dotenv.config();
 
 // declare constants
 const app = new Express();
-const port = process.env.PORT || 5000;
+const port = process.env.PORT;
 
 // declare middleware
 app.use(bodyParser.urlencoded({
@@ -18,7 +19,7 @@ app.use(bodyParser.json());
 
 orderRoutes(app);
 productRoutes(app);
-
+userRoutes(app);
 // declare 404 route
 app.all('*', (req, res) => res.status(404).json({
   status: 404,
