@@ -3,15 +3,30 @@ import chai from 'chai';
 import app from '../../app';
 
 const { expect } = chai;
+let currrentToken;
+let unauthorizedToken;
 /**
  * Testing product endpoint
  */
 describe('Test on product endpoints', () => {
   describe('Create products endpoint', () => {
+    before((done) => {
+      request(app)
+        .post('/api/v1/login')
+        .send({
+          username: 'singlecliq@gmail.com',
+          password: 'testing@123',
+        })
+        .end((error, response) => {
+          currrentToken = response.body.token;
+          done();
+        });
+    });
     // test for when all inputs are supplied correctly
     it('should create new product when complete information is supplied', (done) => {
       request(app)
         .post('/api/v1/products')
+        .set('Authorization', `Bearer ${currrentToken}`)
         .send({
           prod_name: 'handy',
           long_desc: 'jh jmlkj kk. hvhvj',
@@ -41,6 +56,7 @@ describe('Test on product endpoints', () => {
     it('should request for product name when its not supplied', (done) => {
       request(app)
         .post('/api/v1/products')
+        .set('Authorization', `Bearer ${currrentToken}`)
         .send({
           long_desc: 'jh jmlkj kk. hvhvj',
           short_desc: 'cdkn kjhk  nnn',
@@ -69,6 +85,7 @@ describe('Test on product endpoints', () => {
     it('should check the length of product name', (done) => {
       request(app)
         .post('/api/v1/products')
+        .set('Authorization', `Bearer ${currrentToken}`)
         .send({
           prod_name:
             'handy jjjdf iojdf hjhd ijf vih kjidu ehie fi jherh kujewhuuf hndfjir ehfeiehf  grrdfgvyvyu',
@@ -101,6 +118,7 @@ describe('Test on product endpoints', () => {
     it('should request for removal of special characters', (done) => {
       request(app)
         .post('/api/v1/products')
+        .set('Authorization', `Bearer ${currrentToken}`)
         .send({
           prod_name: 'randy =+ #@',
           long_desc: 'jh jmlkj kk. hvhvj',
@@ -132,6 +150,7 @@ describe('Test on product endpoints', () => {
     it('should check if product description is supplied', (done) => {
       request(app)
         .post('/api/v1/products')
+        .set('Authorization', `Bearer ${currrentToken}`)
         .send({
           prod_name: 'handy',
           long_desc: 'jh jmlkj kk. hvhvj',
@@ -162,6 +181,7 @@ describe('Test on product endpoints', () => {
     it('should check for product price', (done) => {
       request(app)
         .post('/api/v1/products')
+        .set('Authorization', `Bearer ${currrentToken}`)
         .send({
           prod_name: 'handy',
           long_desc: 'jh jmlkj kk. hvhvj',
@@ -191,6 +211,7 @@ describe('Test on product endpoints', () => {
     it('should check if quantity is not empty', (done) => {
       request(app)
         .post('/api/v1/products')
+        .set('Authorization', `Bearer ${currrentToken}`)
         .send({
           prod_name: 'handy',
           long_desc: 'jh jmlkj kk. hvhvj',
@@ -222,6 +243,7 @@ describe('Test on product endpoints', () => {
     it('should check last_updatedby is not empty', (done) => {
       request(app)
         .post('/api/v1/products')
+        .set('Authorization', `Bearer ${currrentToken}`)
         .send({
           prod_name: 'handy',
           long_desc: 'jh jmlkj kk. hvhvj',
@@ -298,9 +320,34 @@ describe('Test on product endpoints', () => {
   });
   // remove product endpoint
   describe('remove products endpoint', () => {
+    before((done) => {
+      request(app)
+        .post('/api/v1/login')
+        .send({
+          username: 'lonadekonline@gmail.com',
+          password: 'testing@123',
+        })
+        .end((error, response) => {
+          unauthorizedToken = response.body.token;
+          done();
+        });
+    });
+    it('should return insufficient role', (done) => {
+      request(app)
+        .delete('/api/v1/products/200')
+        .set('Authorization', `Bearer ${unauthorizedToken}`)
+        .set('accept', 'application/json')
+        .expect('content-Type', /json/)
+        .expect(401)
+        .end((err, res) => {
+          expect(res.body.error).to.equal('Insufficient role');
+          done();
+        });
+    });
     it('should return not found', (done) => {
       request(app)
         .delete('/api/v1/products/200')
+        .set('Authorization', `Bearer ${currrentToken}`)
         .set('accept', 'application/json')
         .expect('content-Type', /json/)
         .expect(200)
@@ -312,6 +359,7 @@ describe('Test on product endpoints', () => {
     it('should remove product by id', (done) => {
       request(app)
         .delete('/api/v1/products/1')
+        .set('Authorization', `Bearer ${currrentToken}`)
         .set('Accept', 'application/json')
         .expect('Content-Type', /json/)
         .expect(200)
