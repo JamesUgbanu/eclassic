@@ -51,6 +51,21 @@ class OrderController {
     };
     queryDb.dbQuery(response, query, 'orders retrieved successfully', 'order not found');
   }
+
+  /**
+   * @param {Object} request
+   * @param {Object} response
+   * @return {Object} json
+   */
+  static getUserOrder(request, response) {
+    const userId = removeAuth0fromUserId(request.user.sub);
+
+    const query = {
+      text: 'SELECT * FROM orders WHERE customer_id = $1',
+      values: [userId]
+    };
+    queryDb.dbQuery(response, query, 'orders retrieved successfully', 'order not found');
+  }
 }
 
 export default OrderController;
