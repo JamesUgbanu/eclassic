@@ -88,6 +88,18 @@ describe('Test order endpoints', () => {
           done();
         });
     });
+    it('should return all user orders', (done) => {
+      request(app)
+        .get('/api/v1/user/orders')
+        .set('Authorization', `Bearer ${currrentToken}`)
+        .set('Accept', 'application/json')
+        .expect('Content-Type', /json/)
+        .expect(200)
+        .end((err, res) => {
+          expect(res.body.success).to.equal('orders retrieved successfully');
+          done();
+        });
+    });
     it('should return not found', (done) => {
       request(app)
         .get('/api/v1/orders/206f6e92-a568-46cb-89aa-d138d1ad345a')
