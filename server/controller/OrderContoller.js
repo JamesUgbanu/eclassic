@@ -1,5 +1,5 @@
 import queryDb from '../helpers/db';
-
+import removeAuth0fromUserId from '../helpers/helpers';
 
 class OrderController {
   /**
@@ -10,8 +10,10 @@ class OrderController {
 
   static create(request, response) {
     const {
-      customer_id, total_prize, item
+      total_prize, item
     } = request.body;
+
+    const userId = removeAuth0fromUserId(request.user.sub);
 
     const query = {
       text:
@@ -19,7 +21,7 @@ class OrderController {
         `INSERT INTO orders(customer_id, total_prize, item) 
         VALUES ($1, $2, $3) RETURNING *`,
       values: [
-        customer_id, total_prize, item
+        userId, total_prize, item
       ]
     };
     queryDb.dbQuery(response, query, 'order created successfully', 'order not found');

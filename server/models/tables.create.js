@@ -21,7 +21,7 @@ const createProductTable = `
 const createOrderTable = `
   CREATE TABLE IF NOT EXISTS orders(
     order_id UUID NOT NULL DEFAULT uuid_generate_v4(),
-    customer_id VARCHAR(20),
+    customer_id VARCHAR(50),
     total_prize NUMERIC NOT NULL,
     item JSONB,
     status VARCHAR(10) DEFAULT 'open',

@@ -17,9 +17,9 @@ class queryController {
     });
   }
 
-  static getandUpdateSuccess(response, status, dbresult, successMsg) {
+  static getSuccess(response, status, dbresult, successMsg) {
     return response.status(status).json({
-        status,
+      status,
       success: successMsg,
       orders: dbresult.rows
     });
@@ -33,10 +33,7 @@ class queryController {
         if (result.rowCount === 0) {
           return queryController.notFoundError(response, notFound);
         }
-        if (message) {
-          return queryController.getandUpdateSuccess(response, 201, result, message);
-        }
-        queryController.getandUpdateSuccess(response, 200, result, message);
+        queryController.getSuccess(response, 200, result, message);
       })
       .catch(error => response
         .status(500)
