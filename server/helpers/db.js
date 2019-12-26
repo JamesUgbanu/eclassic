@@ -17,21 +17,14 @@ class queryController {
     });
   }
 
-  static getSuccess(response, dbresult, successMsg) {
-    return response.status(200).json({
-      status: 200,
+  static getandUpdateSuccess(response, status, dbresult, successMsg) {
+    return response.status(status).json({
+        status,
       success: successMsg,
       orders: dbresult.rows
     });
   }
 
-  static updateSuccess(response, dbresult, message) {
-    return response.status(201).json({
-      status: 201,
-      success: message,
-      orders: dbresult.rows
-    });
-  }
 
   static dbQuery(response, query, message, notFound) {
     client
@@ -41,9 +34,9 @@ class queryController {
           return queryController.notFoundError(response, notFound);
         }
         if (message) {
-          return queryController.updateSuccess(response, result, message);
+          return queryController.getandUpdateSuccess(response, 201, result, message);
         }
-        queryController.getSuccess(response, result, message);
+        queryController.getandUpdateSuccess(response, 200, result, message);
       })
       .catch(error => response
         .status(500)
