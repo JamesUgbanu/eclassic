@@ -59,7 +59,7 @@ class OrderController {
     });
   }
 
-  static getTaskSuccess(response, dbresult) {
+  static getOrderSuccess(response, dbresult) {
     return response.status(200).json({
       status: 200,
       success: 'order retrieved successfully',
@@ -67,7 +67,7 @@ class OrderController {
     });
   }
 
-  static updateTaskSuccess(response, dbresult, status, message) {
+  static updateOrderSuccess(response, dbresult, status, message) {
     return response.status(status).json({
       status,
       success: message,
@@ -83,9 +83,9 @@ class OrderController {
           return OrderController.notFoundError(response);
         }
         if (message) {
-          return OrderController.updateTaskSuccess(response, result, status, message);
+          return OrderController.updateOrderSuccess(response, result, status, message);
         }
-        OrderController.getTaskSuccess(response, result);
+        OrderController.getOrderSuccess(response, result);
       })
       .catch(error => response
         .status(500)

@@ -3,15 +3,29 @@ import chai from 'chai';
 import app from '../../app';
 
 const { expect } = chai;
+let currrentToken;
 
 /**
  * testing order endpoints
  */
 describe('Test order endpoints', () => {
   describe('Test for creating orders endpoints', () => {
+    before((done) => {
+      request(app)
+        .post('/api/v1/login')
+        .send({
+          username: 'singlecliq@gmail.com',
+          password: 'testing@123',
+        })
+        .end((error, response) => {
+          currrentToken = response.body.token;
+          done();
+        });
+    });
     it('should create a new order', (done) => {
       request(app)
         .post('/api/v1/orders')
+        .set('Authorization', `Bearer ${currrentToken}`)
         .send({
           customer_id: 'adebayo 5',
           total_prize: 10000,
@@ -30,6 +44,7 @@ describe('Test order endpoints', () => {
     it('should check for custumer id', (done) => {
       request(app)
         .post('/api/v1/orders')
+        .set('Authorization', `Bearer ${currrentToken}`)
         .send({
           total_prize: 10000,
           item: {
@@ -47,6 +62,7 @@ describe('Test order endpoints', () => {
     it('should check for items selected', (done) => {
       request(app)
         .post('/api/v1/orders')
+        .set('Authorization', `Bearer ${currrentToken}`)
         .send({
           customer_id: 'adebayo 3',
           total_prize: 10000,
@@ -65,6 +81,7 @@ describe('Test order endpoints', () => {
     it('should return all existing orders', (done) => {
       request(app)
         .get('/api/v1/orders')
+        .set('Authorization', `Bearer ${currrentToken}`)
         .set('Accept', 'application/json')
         .expect('Content-Type', /json/)
         .expect(200)
@@ -76,6 +93,7 @@ describe('Test order endpoints', () => {
     it('should return not found', (done) => {
       request(app)
         .get('/api/v1/orders/206f6e92-a568-46cb-89aa-d138d1ad345a')
+        .set('Authorization', `Bearer ${currrentToken}`)
         .set('accept', 'application/json')
         .expect('content-Type', /json/)
         .expect(200)
@@ -87,9 +105,10 @@ describe('Test order endpoints', () => {
     it('should catch error from database', (done) => {
       request(app)
         .get('/api/v1/orders/ii')
+        .set('Authorization', `Bearer ${currrentToken}`)
         .set('accept', 'application/json')
         .expect('content-Type', /json/)
-        .expect(200)
+        .expect(500)
         .end((err, res) => {
           expect(res.body.status).to.equal(500);
           done();
