@@ -19,7 +19,7 @@ class queryController {
 
   static getandUpdateSuccess(response, status, dbresult, successMsg) {
     return response.status(status).json({
-        status,
+      status,
       success: successMsg,
       orders: dbresult.rows
     });
