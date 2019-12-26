@@ -1,8 +1,4 @@
-// import dbQuery from '../helpers/dbQuery';
-import conn from '../helpers/conn';
-
-const client = conn();
-client.connect();
+import queryDb from '../helpers/db';
 
 class ProductController {
   /**
@@ -28,7 +24,7 @@ class ProductController {
         quantity, is_active, last_updated_by
       ]
     };
-    ProductController.dbQuery(response, query, 201, 'Product created successfully');
+    queryDb.dbQuery(response, query, 'Product created successfully', 'product not found');
   }
 
   /**
@@ -76,7 +72,7 @@ class ProductController {
   */
   static getAll(request, response) {
     const query = 'SELECT * FROM products';
-    ProductController.dbQuery(response, query, 200, 'Products retrieved successfully');
+    queryDb.dbQuery(response, query, 'Products retrieved successfully', 'product not found');
   }
 
   /**
@@ -91,7 +87,7 @@ class ProductController {
       text: 'SELECT * FROM products WHERE prod_id = $1',
       values: [id]
     };
-    ProductController.dbQuery(response, query);
+    queryDb.dbQuery(response, query, 'product retrieved successfully', 'product not found');
   }
 
   /**
@@ -106,47 +102,7 @@ class ProductController {
       text: 'DELETE FROM products WHERE prod_id = $1',
       values: [id]
     };
-    ProductController.dbQuery(response, query, 200, 'product removed successfully');
-  }
-
-  static notFoundError(response) {
-    return response.status(404).json({
-      status: 404,
-      error: 'product not found',
-    });
-  }
-
-  static getProductSuccess(response, dbresult) {
-    return response.status(200).json({
-      status: 200,
-      success: 'Product retrieved successfully',
-      products: dbresult.rows
-    });
-  }
-
-  static updateProductSuccess(response, dbresult, status, message) {
-    return response.status(status).json({
-      status,
-      success: message,
-      products: dbresult.rows
-    });
-  }
-
-  static dbQuery(response, query, status, message) {
-    client
-      .query(query)
-      .then((result) => {
-        if (result.rowCount === 0) {
-          return ProductController.notFoundError(response);
-        }
-        if (message) {
-          return ProductController.updateProductSuccess(response, result, status, message);
-        }
-        ProductController.getProductSuccess(response, result);
-      })
-      .catch(error => response
-        .status(500)
-        .json({ status: 500, error: `Server error ${error}` }));
+    queryDb.dbQuery(response, query, 'product removed successfully', 'product not found');
   }
 }
 
