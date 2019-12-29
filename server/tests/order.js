@@ -27,7 +27,6 @@ describe('Test order endpoints', () => {
         .post('/api/v1/orders')
         .set('Authorization', `Bearer ${currrentToken}`)
         .send({
-          customer_id: 'adebayo 5',
           total_prize: 10000,
           item: {
             product_id: 6, qty: 9
@@ -41,30 +40,29 @@ describe('Test order endpoints', () => {
           done();
         });
     });
-    it('should check for custumer id', (done) => {
-      request(app)
-        .post('/api/v1/orders')
-        .set('Authorization', `Bearer ${currrentToken}`)
-        .send({
-          total_prize: 10000,
-          item: {
-            product_id: 1, qty: 5
-          }
-        })
-        .set('Accept', 'application/json')
-        .expect('Content-Type', /json/)
-        .expect(400)
-        .end((err, res) => {
-          expect(res.body.errors[0].msg).to.equal('customer id is required');
-          done();
-        });
-    });
+    // it('should check for custumer id', (done) => {
+    //   request(app)
+    //     .post('/api/v1/orders')
+    //     .set('Authorization', `Bearer ${currrentToken}`)
+    //     .send({
+    //       total_prize: 10000,
+    //       item: {
+    //         product_id: 1, qty: 5
+    //       }
+    //     })
+    //     .set('Accept', 'application/json')
+    //     .expect('Content-Type', /json/)
+    //     .expect(400)
+    //     .end((err, res) => {
+    //       expect(res.body.errors[0].msg).to.equal('customer id is required');
+    //       done();
+    //     });
+    // });
     it('should check for items selected', (done) => {
       request(app)
         .post('/api/v1/orders')
         .set('Authorization', `Bearer ${currrentToken}`)
         .send({
-          customer_id: 'adebayo 3',
           total_prize: 10000,
         })
         .set('Accept', 'application/json')
@@ -81,6 +79,18 @@ describe('Test order endpoints', () => {
     it('should return all existing orders', (done) => {
       request(app)
         .get('/api/v1/orders')
+        .set('Authorization', `Bearer ${currrentToken}`)
+        .set('Accept', 'application/json')
+        .expect('Content-Type', /json/)
+        .expect(200)
+        .end((err, res) => {
+          expect(res.body.success).to.equal('orders retrieved successfully');
+          done();
+        });
+    });
+    it('should return all user orders', (done) => {
+      request(app)
+        .get('/api/v1/user/orders')
         .set('Authorization', `Bearer ${currrentToken}`)
         .set('Accept', 'application/json')
         .expect('Content-Type', /json/)
