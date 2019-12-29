@@ -4,6 +4,8 @@ import React, { Component } from 'react';
 // eslint-disable-next-line react/prefer-stateless-function
 class Nav extends Component {
   render() {
+    const { isAuthenticated, login, logout } = this.props.auth;
+
     return (
     // eslint-disable-next-line react/jsx-filename-extension
       <header className="shadow__menu">
@@ -16,7 +18,12 @@ class Nav extends Component {
               <a href="/products"><li>All Products</li></a>
               <a href="#"><li>About us</li></a>
               <a href="#"><li>Contact us</li></a>
-              <a href="#"><li>Login/Sign Up</li></a>
+              {isAuthenticated() ? (
+                 <button className="auth__btn" onClick={logout}>Logout</button>
+              ) : (
+          <button className="auth__btn" onClick={login}>Log In/SignUp</button>
+              )}
+
             </ul>
           </nav>
         </div>

@@ -72,6 +72,28 @@ header.shadow__menu {
     width:100px;
     z-index: 2;
 }
+.auth__btn {
+    cursor: pointer;
+    width: 100%;
+    padding: 10px 0;
+    background: #35363A;
+    border: none;
+    color: #fff;
+    font-weight: 700;
+    margin-top: 20px;
+}
+.login__box {
+    margin-top: 10%;
+    text-align: center;
+}
+.login__btn {
+    background: linear-gradient(rgb(240,153,60),rgb(244,181,114));
+    padding: 20px 100px;
+    border: none;
+    cursor: pointer;
+    color: #fff;
+    font-weight: 700
+}
 @media only screen and (max-width: 768px) {
 .logo {
     position: relative;

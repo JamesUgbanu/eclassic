@@ -8,7 +8,7 @@ class Home extends Component {
     // eslint-disable-next-line react/jsx-filename-extension
     <main className="container__section">
         <Left />
-      <div className="container__box banner">      
+      <div className="container__box banner">
         <img className="banner__img" src="images/banner.png" />
         <div className="collection">
           <h1 className="main_text">Urban <br/> COLLECTION</h1>
@@ -17,8 +17,8 @@ class Home extends Component {
         </div>
       </div>
       <div className="container__box">
-        <a href="#" class="box box__one"><p>Categories</p></a>
-        <a href="/products" class="box box__two"> <p>All Products</p></a>
+        <a href="#" className="box box__one"><p>Categories</p></a>
+        <a href="/products" className="box box__two"> <p>All Products</p></a>
       </div>
     </main>
     );

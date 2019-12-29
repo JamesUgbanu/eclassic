@@ -1,30 +1,31 @@
+const path = require('path');
+const Dotenv = require('dotenv-webpack');
+
 module.exports = {
-  entry: ['./src/index.js'],
-  output: {
-    path: __dirname,
-    publicPath: '/',
-    filename: 'bundle.js'
+  context: __dirname,
+  entry: {
+    app: './src/index.js'
   },
   module: {
-    loaders: [
+    rules: [
       {
+        test: /.js$/,
         exclude: /node_modules/,
-        loader: 'babel',
-        query: {
-          presets: ['react', 'es2015', 'stage-1']
+        use: {
+          loader: 'babel-loader',
         }
       }
     ]
   },
-  resolve: {
-    extensions: ['', '.js', '.jsx']
+  output: {
+    path: path.resolve(__dirname, 'dist'),
+    publicPath: '/',
+    filename: 'bundle.js'
   },
   devServer: {
     historyApiFallback: true,
-    contentBase: './',
-    watchOptions: {
-      aggregateTimeout: 300,
-      poll: 1000
-    }
-  }
+  },
+  plugins: [
+    new Dotenv()
+  ]
 };
