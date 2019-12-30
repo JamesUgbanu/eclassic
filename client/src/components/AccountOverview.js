@@ -4,18 +4,8 @@ import SideNav from './SideNav';
 // eslint-disable-next-line react/prefer-stateless-function
 class AccountOverview extends Component {
   render() {
-    const { isAuthenticated, login } = this.props.auth;
     return (
     // eslint-disable-next-line react/jsx-filename-extension
-      <div>
-        { !isAuthenticated() && (
-          <div class="login__box"><h1>Login to continue</h1>
-        <button className="login__btn" onClick={login}>Login</button>
-        </div>
-        )
-  }
-        {
-    isAuthenticated() && (
       <main className="acc__main">
         <SideNav />
         <div className="acc__container">
@@ -46,9 +36,6 @@ class AccountOverview extends Component {
         </div>
       </main>
     )
-        }
-      </div>
-    );
   }
 }
 

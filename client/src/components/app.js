@@ -17,6 +17,9 @@ import AdminOrder from './admin/AdminOrder';
 import Auth from '../Auth/Auth';
 import Callback from './Callback';
 import history from '../history';
+import PrivateRoute from './PrivateRoute';
+import AdminRoute from './AdminRoute';
+import Login from './Login';
 
 // eslint-disable-next-line react/prefer-stateless-function
 class App extends Component {
@@ -39,16 +42,20 @@ class App extends Component {
             />
             <Route path="/cart" component={Cart} />
             <Route path="/products" component={Products} />
-            <Route path="/account-overview" render={props => <AccountOverview auth={this.auth} {...props} />} />
-            <Route path="/account-details" component={AccountDetails} />
-            <Route path="/address-book" component={AddressBook} />
-            <Route path="/add-address" component={AddAddress} />
-            <Route path="/order" component={Order} />
-            <Route path="/order-details" component={OrderDetails} />
-            <Route path="/admin-dashboard" component={AdminDashboard} />
-            <Route path="/admin-products" component={AdminProducts} />
-            <Route path="/add-product" component={AddProduct} />
-            <Route path="/admin-order" component={AdminOrder} />
+            <PrivateRoute path="/account-overview" component={AccountOverview} />
+            <PrivateRoute path="/account-details" component={AccountDetails} />
+            <PrivateRoute path="/address-book" component={AddressBook} />
+            <PrivateRoute path="/add-address" component={AddAddress} />
+            <PrivateRoute path="/order" component={Order} />
+            <PrivateRoute path="/order-details" component={OrderDetails} />
+            <AdminRoute path="/admin-dashboard" component={AdminDashboard} />
+            <AdminRoute path="/admin-products" component={AdminProducts} />
+            <AdminRoute path="/add-product" component={AddProduct} />
+            <AdminRoute path="/admin-order" component={AdminOrder} />
+            <Route
+              path="/login"
+              render={props => <Login auth={this.auth} {...props} />}
+            />
             <Route
               path="/callback"
               render={props => <Callback auth={this.auth} {...props} />}

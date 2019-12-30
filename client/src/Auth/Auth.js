@@ -1,4 +1,5 @@
 import auth0 from 'auth0-js';
+import decode from 'jwt-decode';
 import history from '../history';
 
 export default class Auth {
@@ -21,10 +22,10 @@ export default class Auth {
     this.auth0.parseHash((err, authResult) => {
       if (authResult && authResult.accessToken && authResult.idToken) {
         this.setSession(authResult);
-        history.replace('/account-overview');
+        this.isAdmin(authResult.idToken) ? history.replace('/admin-dashboard') : history.replace('/account-overview');
         location.reload();
       } else if (err) {
-        history.replace('/account-overview');
+        this.isAdmin(authResult.idToken) ? history.replace('/admin-dashboard') : history.replace('/account-overview');
         alert(`Invalid login`);
       }
     });
@@ -45,6 +46,16 @@ export default class Auth {
   isAuthenticated = () => {
     const expiresAt = JSON.parse(localStorage.getItem('expires_at'));
     return new Date().getTime() < expiresAt;
+  }
+
+  isAdmin = (idToken) => {
+    const token = localStorage.getItem('id_token');
+    const decoded = decode(token);
+    const assignedRoles = decoded['http://localhost:3000.com/roles'];
+    if (Array.isArray(assignedRoles) && assignedRoles.includes('admin')) {
+      return true;
+    }
+    return false;
   }
 
   logout = () => {
