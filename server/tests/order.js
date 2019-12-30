@@ -4,6 +4,7 @@ import app from '../../app';
 
 const { expect } = chai;
 let currrentToken;
+console.log(currrentToken);
 
 /**
  * testing order endpoints
@@ -40,24 +41,6 @@ describe('Test order endpoints', () => {
           done();
         });
     });
-    // it('should check for custumer id', (done) => {
-    //   request(app)
-    //     .post('/api/v1/orders')
-    //     .set('Authorization', `Bearer ${currrentToken}`)
-    //     .send({
-    //       total_prize: 10000,
-    //       item: {
-    //         product_id: 1, qty: 5
-    //       }
-    //     })
-    //     .set('Accept', 'application/json')
-    //     .expect('Content-Type', /json/)
-    //     .expect(400)
-    //     .end((err, res) => {
-    //       expect(res.body.errors[0].msg).to.equal('customer id is required');
-    //       done();
-    //     });
-    // });
     it('should check for items selected', (done) => {
       request(app)
         .post('/api/v1/orders')
