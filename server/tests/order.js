@@ -4,7 +4,6 @@ import app from '../../app';
 
 const { expect } = chai;
 let currrentToken;
-console.log(currrentToken);
 
 /**
  * testing order endpoints
