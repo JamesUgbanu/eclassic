@@ -1,4 +1,4 @@
-import queryDb from '../helpers/db';
+import { queryController } from '../helpers/db';
 import removeAuth0fromUserId from '../helpers/helpers';
 
 class OrderController {
@@ -24,7 +24,7 @@ class OrderController {
         userId, total_prize, item
       ]
     };
-    queryDb.dbQuery(response, query, 'order created successfully', 'order not found');
+    queryController.dbQuery(response, query, 'order created successfully', 'order not found');
   }
 
   /**
@@ -34,7 +34,7 @@ class OrderController {
    */
   static getAll(request, response) {
     const query = 'SELECT * FROM orders';
-    queryDb.dbQuery(response, query, 'orders retrieved successfully', 'order not found');
+    queryController.dbQuery(response, query, 'orders retrieved successfully', 'order not found');
   }
 
   /**
@@ -49,7 +49,7 @@ class OrderController {
       text: 'SELECT * FROM orders WHERE order_id = $1',
       values: [id]
     };
-    queryDb.dbQuery(response, query, 'orders retrieved successfully', 'order not found');
+    queryController.dbQuery(response, query, 'orders retrieved successfully', 'order not found');
   }
 
   /**
@@ -64,7 +64,7 @@ class OrderController {
       text: 'SELECT * FROM orders WHERE customer_id = $1',
       values: [userId]
     };
-    queryDb.dbQuery(response, query, 'orders retrieved successfully', 'order not found');
+    queryController.dbQuery(response, query, 'orders retrieved successfully', 'order not found');
   }
 }
 

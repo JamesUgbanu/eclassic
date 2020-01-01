@@ -1,4 +1,4 @@
-import queryDb from '../helpers/db';
+import { queryController, client } from '../helpers/db';
 
 class ProductController {
   /**
@@ -24,7 +24,7 @@ class ProductController {
         quantity, is_active, last_updated_by
       ]
     };
-    queryDb.dbQuery(response, query, 'Product created successfully', 'product not found');
+    queryController.dbQuery(response, query, 'Product created successfully', 'product not found');
   }
 
   /**
@@ -32,38 +32,60 @@ class ProductController {
   * @param {Object} response
   * @return {Object} json
   */
-  // static async updateProduct(request, response) {
-  //   const id = parseInt(request.params.id, 10);
-  //   const today = new Date();
-  //   const date = `${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate()}`;
-  //   const findquery = {
-  //     text: 'SELECT * FROM products WHERE prod_id = $1',
-  //     values: [id]
-  //   };
-  //   try {
-  //     const {
-  //       rows
-  //     } = await client.query(findquery);
-  //     if (!rows[0]) {
-  //       return ProductController.notFoundError(response);
-  //     }
-  //     const values = [
-  //       request.body.prod_name, request.body.long_desc, request.body.short_desc, request.body.discount,
-  //       request.body.coupons, request.body.sku_id, request.body.price, request.body.image_url,
-  //       request.body.available_color, request.body.quantity, request.body.is_active, date,
-  //       request.body.last_updated_by, id
-  //     ];
-  //     const updatequery = {
-  //       text: `UPDATE products SET prod_name = $1, long_desc = $2, short_desc = $3, discount = $4, coupons = $5, 
-  //       sku_id = $6, price = $7, image_url = $8, available_color = $9, quantity = $10, 
-  //       is_active = $11, last_update = $12, last_updated_by = $13 WHERE prod_id = $14 RETURNING *`,
-  //       values
-  //     };
+  static updateProduct(request, response) {
+    // client.connect();
+    const id = parseInt(request.params.id, 10);
+    const today = new Date();
+    const date = `${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate()}`;
+    let product;
+    const findquery = {
+      text: 'SELECT * FROM products WHERE prod_id = $1',
+      values: [id]
+    };
 
-  //     const result = await client.query(updatequery);
-  //     return ProductController.updateTaskSuccess(response, result, 200, 'product updated successfully');
-  //   } catch (error) { return response.status(500).json({ status: 500, error: `Server error ${error}` }); }
-  // }
+    client.query(findquery, (err, result) => {
+      if (err) {
+        return response.status(500).json({ status: 500, error: `Server error ${err}` });
+      }
+      if (result.rowCount === 0) {
+        return queryController.notFoundError(response, 'product not found');
+      }
+      const { rows } = result;
+      product = {
+        prod_name: rows[0].prod_name,
+        long_desc: rows[0].long_desc,
+        short_desc: rows[0].short_desc,
+        discount: rows[0].discount,
+        coupons: rows[0].coupons,
+        sku_id: rows[0].sku_id,
+        price: rows[0].price,
+        image_url: rows[0].image_url,
+        available_color: rows[0].available_color,
+        quantity: rows[0].quantity,
+        is_active: rows[0].is_active,
+        last_updated_by: rows[0].last_updated_by,
+      };
+      const values = [
+        request.body.prod_name || product.prod_name, request.body.long_desc || product.long_desc,
+        request.body.short_desc || product.short_desc, request.body.discount || product.discount,
+        request.body.coupons || product.coupons, request.body.sku_id || product.sku_id,
+        request.body.price || product.price, request.body.image_url || product.image_url,
+        request.body.available_color || product.available_color, request.body.quantity || product.quantity,
+        request.body.is_active || product.is_active, date,
+        request.body.last_updated_by || product.last_updated_by, id
+      ];
+      const updatequery = {
+        text: `UPDATE products SET prod_name = $1, long_desc = $2, short_desc = $3, discount = $4, coupons = $5, 
+        sku_id = $6, price = $7, image_url = $8, available_color = $9, quantity = $10, 
+        is_active = $11, last_update = $12, last_updated_by = $13 WHERE prod_id = $14 RETURNING *`,
+        values
+      };
+      client.query(updatequery).then((res) => {
+        queryController.getSuccess(response, 200, res, 'product updated successfully');
+      });
+      // queryController.dbQuery(response, updatequery, 'product updated successfully', 'product not found');
+    });
+  }
 
   /**
   * @param {Object} request
@@ -72,7 +94,7 @@ class ProductController {
   */
   static getAll(request, response) {
     const query = 'SELECT * FROM products';
-    queryDb.dbQuery(response, query, 'Products retrieved successfully', 'product not found');
+    queryController.dbQuery(response, query, 'Products retrieved successfully', 'product not found');
   }
 
   /**
@@ -87,7 +109,7 @@ class ProductController {
       text: 'SELECT * FROM products WHERE prod_id = $1',
       values: [id]
     };
-    queryDb.dbQuery(response, query, 'product retrieved successfully', 'product not found');
+    queryController.dbQuery(response, query, 'product retrieved successfully', 'product not found');
   }
 
   /**
@@ -102,7 +124,7 @@ class ProductController {
       text: 'DELETE FROM products WHERE prod_id = $1',
       values: [id]
     };
-    queryDb.dbQuery(response, query, 'product removed successfully', 'product not found');
+    queryController.dbQuery(response, query, 'product removed successfully', 'product not found');
   }
 }
 
