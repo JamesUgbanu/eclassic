@@ -41,4 +41,4 @@ class queryController {
   }
 }
 
-export default queryController;
+export { queryController, client };
