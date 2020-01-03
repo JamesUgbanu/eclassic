@@ -42,13 +42,13 @@ describe('Test on product endpoints', () => {
           available_color: { back: 'blue', front: 'white' },
           quantity: 35,
           is_active: true,
-          last_updated_by: 12
+          last_updated_by: 'bnk6IO0965chhjj'
         })
         .set('Accept', 'application/json')
         .expect('Content-Type', /json/)
         .expect(201)
         .end((err, res) => {
-          expect(res.body.success).to.equal('Product created successfully');
+          expect(res.body.message).to.equal('Product created successfully');
           done();
         });
     });
@@ -71,7 +71,7 @@ describe('Test on product endpoints', () => {
           available_color: { back: 'blue', front: 'white' },
           quantity: 35,
           is_active: true,
-          last_updated_by: 12
+          last_updated_by: 'bnk6IO0965chhjj'
         })
         .set('Accept', 'application/json')
         .expect('Content-Type', /json/)
@@ -102,7 +102,7 @@ describe('Test on product endpoints', () => {
           available_color: { back: 'blue', front: 'white' },
           quantity: 35,
           is_active: true,
-          last_updated_by: 12
+          last_updated_by: 'bnk6IO0965chhjj'
         })
         .set('Accept', 'application/json')
         .expect('Content-Type', /json/)
@@ -134,7 +134,7 @@ describe('Test on product endpoints', () => {
           available_color: { back: 'blue', front: 'white' },
           quantity: 35,
           is_active: true,
-          last_updated_by: 12
+          last_updated_by: 'bnk6IO0965chhjj'
         })
         .set('Accept', 'application/json')
         .expect('Content-Type', /json/)
@@ -165,7 +165,7 @@ describe('Test on product endpoints', () => {
           available_color: { back: 'blue', front: 'white' },
           quantity: 35,
           is_active: true,
-          last_updated_by: 12
+          last_updated_by: 'bnk6IO0965chhjj'
         })
         .set('Accept', 'application/json')
         .expect('Content-Type', /json/)
@@ -197,7 +197,7 @@ describe('Test on product endpoints', () => {
           available_color: { back: 'blue', front: 'white' },
           quantity: 35,
           is_active: true,
-          last_updated_by: 12
+          last_updated_by: 'bnk6IO0965chhjj'
         })
         .set('Accept', 'application/json')
         .expect('Content-Type', /json/)
@@ -227,7 +227,7 @@ describe('Test on product endpoints', () => {
           available_color: { back: 'blue', front: 'white' },
           quantity: 'thirty five',
           is_active: true,
-          last_updated_by: 12
+          last_updated_by: 'bnk6IO0965chhjj'
         })
         .set('Accept', 'application/json')
         .expect('Content-Type', /json/)
@@ -293,13 +293,13 @@ describe('Test on product endpoints', () => {
           available_color: { back: 'blue', front: 'white' },
           quantity: 35,
           is_active: true,
-          last_updated_by: 12
+          last_updated_by: 'bnk6IO0965chhjj'
         })
         .set('Accept', 'application/json')
         .expect('Content-Type', /json/)
         .expect(200)
         .end((err, res) => {
-          expect(res.body.success).to.equal('product updated successfully');
+          expect(res.body.message).to.equal('product updated successfully');
           done();
         });
     });
@@ -323,13 +323,13 @@ describe('Test on product endpoints', () => {
           available_color: { back: 'blue', front: 'white' },
           quantity: 35,
           is_active: true,
-          last_updated_by: 12
+          last_updated_by: 'bnk6IO0965chhjj'
         })
         .set('Accept', 'application/json')
         .expect('Content-Type', /json/)
         .expect(404)
         .end((err, res) => {
-          expect(res.body.error).to.equal('product not found');
+          expect(res.body.message).to.equal('product not found');
           done();
         });
     });
@@ -352,7 +352,7 @@ describe('Test on product endpoints', () => {
           available_color: { back: 'blue', front: 'white' },
           quantity: 35,
           is_active: true,
-          last_updated_by: 12
+          last_updated_by: 'bnk6IO0965chhjj'
         })
         .set('Accept', 'application/json')
         .expect('Content-Type', /json/)
@@ -383,7 +383,7 @@ describe('Test on product endpoints', () => {
           available_color: { back: 'blue', front: 'white' },
           quantity: 35,
           is_active: true,
-          last_updated_by: 12
+          last_updated_by: 'bnk6IO0965chhjj'
         })
         .set('Accept', 'application/json')
         .expect('Content-Type', /json/)
@@ -415,7 +415,7 @@ describe('Test on product endpoints', () => {
           available_color: { back: 'blue', front: 'white' },
           quantity: 35,
           is_active: true,
-          last_updated_by: 12
+          last_updated_by: 'bnk6IO0965chhjj'
         })
         .set('Accept', 'application/json')
         .expect('Content-Type', /json/)
@@ -446,7 +446,7 @@ describe('Test on product endpoints', () => {
           available_color: { back: 'blue', front: 'white' },
           quantity: 35,
           is_active: true,
-          last_updated_by: 12
+          last_updated_by: 'bnk6IO0965chhjj'
         })
         .set('Accept', 'application/json')
         .expect('Content-Type', /json/)
@@ -478,7 +478,7 @@ describe('Test on product endpoints', () => {
           available_color: { back: 'blue', front: 'white' },
           quantity: 35,
           is_active: true,
-          last_updated_by: 12
+          last_updated_by: 'bnk6IO0965chhjj'
         })
         .set('Accept', 'application/json')
         .expect('Content-Type', /json/)
@@ -508,7 +508,7 @@ describe('Test on product endpoints', () => {
           available_color: { back: 'blue', front: 'white' },
           quantity: 'thirty five',
           is_active: true,
-          last_updated_by: 12
+          last_updated_by: 'bnk6IO0965chhjj'
         })
         .set('Accept', 'application/json')
         .expect('Content-Type', /json/)
@@ -561,24 +561,24 @@ describe('Test on product endpoints', () => {
         .expect('Content-Type', /json/)
         .expect(200)
         .end((err, res) => {
-          expect(res.body.success).to.equal('Products retrieved successfully');
+          expect(res.body.message).to.equal('Products retrieved successfully');
           done();
         });
     });
     it('should return not found', (done) => {
       request(app)
-        .get('/api/v1/products/200')
+        .get('/api/v1/product/200')
         .set('accept', 'application/json')
         .expect('content-Type', /json/)
         .expect(200)
         .end((err, res) => {
-          expect(res.body.error).to.equal('product not found');
+          expect(res.body.message).to.equal('product not found');
           done();
         });
     });
     it('should catch error from database', (done) => {
       request(app)
-        .get('/api/v1/products/ii')
+        .get('/api/v1/product/ii')
         .set('accept', 'application/json')
         .expect('content-Type', /json/)
         .expect(200)
@@ -589,12 +589,12 @@ describe('Test on product endpoints', () => {
     });
     it('should return a single product', (done) => {
       request(app)
-        .get('/api/v1/products/1')
+        .get('/api/v1/product/1')
         .set('accept', 'application/json')
         .expect('content-Type', /json/)
         .expect(200)
         .end((err, res) => {
-          expect(res.body.success).to.equal('product retrieved successfully');
+          expect(res.body.message).to.equal('product retrieved successfully');
           done();
         });
     });
@@ -615,37 +615,37 @@ describe('Test on product endpoints', () => {
     });
     it('should return insufficient role', (done) => {
       request(app)
-        .delete('/api/v1/products/200')
+        .delete('/api/v1/product/200')
         .set('Authorization', `Bearer ${unauthorizedToken}`)
         .set('accept', 'application/json')
         .expect('content-Type', /json/)
         .expect(401)
         .end((err, res) => {
-          expect(res.body.error).to.equal('Insufficient role');
+          expect(res.body.message).to.equal('Insufficient role');
           done();
         });
     });
     it('should return not found', (done) => {
       request(app)
-        .delete('/api/v1/products/200')
+        .delete('/api/v1/product/200')
         .set('Authorization', `Bearer ${currrentToken}`)
         .set('accept', 'application/json')
         .expect('content-Type', /json/)
         .expect(200)
         .end((err, res) => {
-          expect(res.body.error).to.equal('product not found');
+          expect(res.body.message).to.equal('product not found');
           done();
         });
     });
     it('should remove product by id', (done) => {
       request(app)
-        .delete('/api/v1/products/1')
+        .delete('/api/v1/product/1')
         .set('Authorization', `Bearer ${currrentToken}`)
         .set('Accept', 'application/json')
         .expect('Content-Type', /json/)
         .expect(200)
         .end((err, res) => {
-          expect(res.body.success).to.equal('product removed successfully');
+          expect(res.body.message).to.equal('product removed successfully');
           done();
         });
     });

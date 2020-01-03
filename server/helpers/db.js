@@ -11,17 +11,17 @@ class queryController {
    */
 
   static notFoundError(response, errorMsg) {
-    return response.status(404).json({
-      status: 404,
-      error: errorMsg,
+    return response.status(200).json({
+      status: 200,
+      message: errorMsg,
     });
   }
 
   static getSuccess(response, status, dbresult, successMsg) {
     return response.status(status).json({
       status,
-      success: successMsg,
-      orders: dbresult.rows
+      message: successMsg,
+      data: dbresult.rows
     });
   }
 
@@ -37,7 +37,7 @@ class queryController {
       })
       .catch(error => response
         .status(500)
-        .json({ status: 500, error: `Server error ${error}` }));
+        .json({ status: 500, message: `Server error ${error}` }));
   }
 }
 

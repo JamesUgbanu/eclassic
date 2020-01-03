@@ -8,8 +8,8 @@ const routes = (app) => {
   app.post('/api/v1/products', auth, role.checkRole('admin'), checkNewProduct, validation.validatorError, ProductController.create);
   app.put('/api/v1/products/:id', auth, role.checkRole('admin'), checkNewProduct, validation.validatorError, ProductController.updateProduct);
   app.get('/api/v1/products', ProductController.getAll);
-  app.get('/api/v1/products/:id', ProductController.getById);
-  app.delete('/api/v1/products/:id', auth, role.checkRole('admin'), ProductController.removeById);
+  app.get('/api/v1/product/:id', ProductController.getById);
+  app.delete('/api/v1/product/:id', auth, role.checkRole('admin'), ProductController.removeById);
 };
 
 export default routes;

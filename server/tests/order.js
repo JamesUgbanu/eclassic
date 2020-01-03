@@ -36,7 +36,7 @@ describe('Test order endpoints', () => {
         .expect('Content-Type', /json/)
         .expect(201)
         .end((err, res) => {
-          expect(res.body.success).to.equal('order created successfully');
+          expect(res.body.message).to.equal('order created successfully');
           done();
         });
     });
@@ -66,7 +66,7 @@ describe('Test order endpoints', () => {
         .expect('Content-Type', /json/)
         .expect(200)
         .end((err, res) => {
-          expect(res.body.success).to.equal('orders retrieved successfully');
+          expect(res.body.message).to.equal('orders retrieved successfully');
           done();
         });
     });
@@ -78,7 +78,7 @@ describe('Test order endpoints', () => {
         .expect('Content-Type', /json/)
         .expect(200)
         .end((err, res) => {
-          expect(res.body.success).to.equal('orders retrieved successfully');
+          expect(res.body.message).to.equal('orders retrieved successfully');
           done();
         });
     });
@@ -90,7 +90,7 @@ describe('Test order endpoints', () => {
         .expect('content-Type', /json/)
         .expect(200)
         .end((err, res) => {
-          expect(res.body.error).to.equal('order not found');
+          expect(res.body.message).to.equal('order not found');
           done();
         });
     });

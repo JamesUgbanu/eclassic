@@ -9,7 +9,7 @@ class UserMiddleware {
       }
       return res.status(401).json({
         status: 401,
-        error: 'Insufficient role',
+        message: 'Insufficient role',
       });
     };
   }
