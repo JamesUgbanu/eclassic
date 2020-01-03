@@ -14,7 +14,7 @@ const createProductTable = `
     is_active BOOLEAN DEFAULT false,
     datecreated TIMESTAMP WITH TIME ZONE DEFAULT now(),
     last_update TIMESTAMP WITH TIME ZONE,
-    last_updated_by INTEGER
+    last_updated_by VARCHAR(50)
   );
 `;
 

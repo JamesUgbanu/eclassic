@@ -1,4 +1,5 @@
 import queryDb from '../helpers/db';
+import removeAuth0fromUserId from '../helpers/helpers';
 
 class ProductController {
   /**
@@ -10,9 +11,9 @@ class ProductController {
     const {
       prod_name, long_desc, short_desc, discount,
       coupons, sku_id, price, image_url,
-      available_color, quantity, is_active,
-      last_updated_by
+      available_color, quantity, is_active
     } = request.body;
+    const lastUpdatedBy = removeAuth0fromUserId(request.user.sub);
 
     const query = {
       text:
@@ -21,7 +22,7 @@ class ProductController {
       values: [
         prod_name, long_desc, short_desc, discount,
         coupons, sku_id, price, image_url, available_color,
-        quantity, is_active, last_updated_by
+        quantity, is_active, lastUpdatedBy
       ]
     };
     queryDb.dbQuery(response, query, 'Product created successfully', 'product not found');
