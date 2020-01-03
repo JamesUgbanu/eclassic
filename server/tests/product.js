@@ -293,13 +293,13 @@ describe('Test on product endpoints', () => {
           available_color: { back: 'blue', front: 'white' },
           quantity: 35,
           is_active: true,
-          last_updated_by: 12
+          last_updated_by: 'bnk6IO0965chhjj'
         })
         .set('Accept', 'application/json')
         .expect('Content-Type', /json/)
         .expect(200)
         .end((err, res) => {
-          expect(res.body.success).to.equal('product updated successfully');
+          expect(res.body.message).to.equal('product updated successfully');
           done();
         });
     });
@@ -323,13 +323,13 @@ describe('Test on product endpoints', () => {
           available_color: { back: 'blue', front: 'white' },
           quantity: 35,
           is_active: true,
-          last_updated_by: 12
+          last_updated_by: 'bnk6IO0965chhjj'
         })
         .set('Accept', 'application/json')
         .expect('Content-Type', /json/)
         .expect(404)
         .end((err, res) => {
-          expect(res.body.error).to.equal('product not found');
+          expect(res.body.message).to.equal('product not found');
           done();
         });
     });
@@ -352,7 +352,7 @@ describe('Test on product endpoints', () => {
           available_color: { back: 'blue', front: 'white' },
           quantity: 35,
           is_active: true,
-          last_updated_by: 12
+          last_updated_by: 'bnk6IO0965chhjj'
         })
         .set('Accept', 'application/json')
         .expect('Content-Type', /json/)
@@ -383,7 +383,7 @@ describe('Test on product endpoints', () => {
           available_color: { back: 'blue', front: 'white' },
           quantity: 35,
           is_active: true,
-          last_updated_by: 12
+          last_updated_by: 'bnk6IO0965chhjj'
         })
         .set('Accept', 'application/json')
         .expect('Content-Type', /json/)
@@ -415,7 +415,7 @@ describe('Test on product endpoints', () => {
           available_color: { back: 'blue', front: 'white' },
           quantity: 35,
           is_active: true,
-          last_updated_by: 12
+          last_updated_by: 'bnk6IO0965chhjj'
         })
         .set('Accept', 'application/json')
         .expect('Content-Type', /json/)
@@ -446,7 +446,7 @@ describe('Test on product endpoints', () => {
           available_color: { back: 'blue', front: 'white' },
           quantity: 35,
           is_active: true,
-          last_updated_by: 12
+          last_updated_by: 'bnk6IO0965chhjj'
         })
         .set('Accept', 'application/json')
         .expect('Content-Type', /json/)
@@ -478,7 +478,7 @@ describe('Test on product endpoints', () => {
           available_color: { back: 'blue', front: 'white' },
           quantity: 35,
           is_active: true,
-          last_updated_by: 12
+          last_updated_by: 'bnk6IO0965chhjj'
         })
         .set('Accept', 'application/json')
         .expect('Content-Type', /json/)
@@ -508,7 +508,7 @@ describe('Test on product endpoints', () => {
           available_color: { back: 'blue', front: 'white' },
           quantity: 'thirty five',
           is_active: true,
-          last_updated_by: 12
+          last_updated_by: 'bnk6IO0965chhjj'
         })
         .set('Accept', 'application/json')
         .expect('Content-Type', /json/)
