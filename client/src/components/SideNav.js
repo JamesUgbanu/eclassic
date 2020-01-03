@@ -1,6 +1,7 @@
 import React from 'react';
+import Auth from '../Auth/Auth';
 
-
+const auth = new Auth();
 // eslint-disable-next-line react/prefer-stateless-function
 const SideNav = () => (
   // eslint-disable-next-line react/jsx-filename-extension
@@ -13,7 +14,7 @@ const SideNav = () => (
           <a href="#" className="dashboard__menu"><span>Change Password</span></a>
       </div>
       <div className="account__sidebar__bottom">
-          <button>Log Out</button>
+          <button onClick={auth.logout}>Log Out</button>
       </div>
     </div>
     <div className="mobile__nav__container">
