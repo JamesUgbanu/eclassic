@@ -62,6 +62,7 @@ class AdminOrder extends Component {
           <div className="product__table">
 
             <table border="1">
+              <thead>
               <tr>
                 <th>ID</th>
                 <th>Order</th>
@@ -72,6 +73,8 @@ class AdminOrder extends Component {
                 <th>Status</th>
                 <th>Action</th>
               </tr>
+              </thead>
+              <tbody>
               <tr>
                 <td>1</td>
                 <td>
@@ -160,6 +163,7 @@ class AdminOrder extends Component {
                   </details>
                 </td>
               </tr>
+              </tbody>
             </table>
           </div>
 
