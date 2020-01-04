@@ -14,7 +14,7 @@ const SideNav = () => (
           <a href="#" className="dashboard__menu"><span>Change Password</span></a>
       </div>
       <div className="account__sidebar__bottom">
-          <button onClick={auth.logout}>Log Out</button>
+          <button onClick={auth.logout()}>Log Out</button>
       </div>
     </div>
     <div className="mobile__nav__container">
