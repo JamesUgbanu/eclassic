@@ -25,15 +25,15 @@ class AddProduct extends Component {
                 <span>Price</span>
               </div>
 
-              <div className="tab__content">
+              {/* <div className="tab__content">
                 <i className="fas fa-book" />
                 <span>SEO</span>
-              </div>
+              </div> */}
 
-              <div className="tab__content">
+              {/* <div className="tab__content">
                 <i className="fas fa-truck" />
                 <span>Shipping</span>
-              </div>
+              </div> */}
 
               <div className="tab__content">
                 <i className="fas fa-image" />
