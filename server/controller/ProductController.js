@@ -39,6 +39,7 @@ class ProductController {
     const id = parseInt(request.params.id, 10);
     const today = new Date();
     const date = `${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate()}`;
+    const lastUpdatedBy = removeAuth0fromUserId(request.user.sub);
     let product;
     const findquery = {
       text: 'SELECT * FROM products WHERE prod_id = $1',
@@ -74,7 +75,7 @@ class ProductController {
         request.body.price || product.price, request.body.image_url || product.image_url,
         request.body.available_color || product.available_color, request.body.quantity || product.quantity,
         request.body.is_active || product.is_active, date,
-        request.body.last_updated_by || product.last_updated_by, id
+        lastUpdatedBy || product.last_updated_by, id
       ];
       const updatequery = {
         text: `UPDATE products SET prod_name = $1, long_desc = $2, short_desc = $3, discount = $4, coupons = $5, 

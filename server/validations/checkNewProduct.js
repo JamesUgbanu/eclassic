@@ -35,11 +35,7 @@ const checkNewProduct = [
     .isInt(),
   check('is_active')
     .optional()
-    .isBoolean(),
-  check('last_updated_by')
-    .not()
-    .isEmpty()
-    .withMessage('Last updated by should have a value')
+    .isBoolean()
 ];
 
 export default checkNewProduct;

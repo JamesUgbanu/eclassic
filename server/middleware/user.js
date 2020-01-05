@@ -3,7 +3,7 @@
 class UserMiddleware {
   static checkRole(role) {
     return function(req, res, next) {
-      const assignedRoles = req.user['http://localhost:3000/roles'];
+      const assignedRoles = req.user['http://localhost:3000.com/roles'];
       if (Array.isArray(assignedRoles) && assignedRoles.includes(role)) {
         return next();
       }

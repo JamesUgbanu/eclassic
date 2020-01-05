@@ -14,6 +14,7 @@ class queryController {
     return response.status(200).json({
       status: 200,
       message: errorMsg,
+      data: []
     });
   }
 
