@@ -1218,7 +1218,7 @@ background-color: #f00;
      padding: 10px 0px 0px 10px;
      cursor: pointer;
  }
- .tab__content:nth-child(1) {
+ .product__tab .active{
      background: rgb(255, 187, 0);
  }
  .tab__button {
@@ -1231,7 +1231,7 @@ background-color: #f00;
     border: none;
     cursor: pointer;
 }
- .tab__button button:nth-child(even ){
+ .tab__button button:nth-child(1){
     background: rgb(255, 187, 0);
  }
 
@@ -1240,7 +1240,7 @@ background-color: #f00;
     margin-left: 20px;
  }
 
- .tab__form form {
+ .tab__form {
      margin-left: 50px;
  }
  .tab__form .section__box {
@@ -1248,11 +1248,11 @@ background-color: #f00;
      grid-template-columns: 20% 80%;
      margin: 15px 0;
  }
- .tab__form form label {
+ .tab__form  label {
      display: block;
  }
 
-.tab__form form input[type=text], .tab__form form input[type=number] {
+.tab__form input[type=text], .tab__form input[type=number] {
     display: block;
     height: 30px;
     width: 70%;
