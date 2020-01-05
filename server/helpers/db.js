@@ -26,6 +26,12 @@ class queryController {
     });
   }
 
+  static serverError(response, error) {
+    return response.status(500).json({
+      status: 500,
+      message: `Server error ${error}`
+    });
+  }
 
   static dbQuery(response, query, message, notFound) {
     client
@@ -36,9 +42,7 @@ class queryController {
         }
         queryController.getSuccess(response, 200, result, message);
       })
-      .catch(error => response
-        .status(500)
-        .json({ status: 500, message: `Server error ${error}` }));
+      .catch(error => queryController.serverError(response, error));
   }
 }
 
