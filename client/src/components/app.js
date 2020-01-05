@@ -20,6 +20,7 @@ import history from '../history';
 import PrivateRoute from './PrivateRoute';
 import AdminRoute from './AdminRoute';
 import Login from './Login';
+import Message from './admin/Message';
 
 // eslint-disable-next-line react/prefer-stateless-function
 class App extends Component {
@@ -34,12 +35,9 @@ class App extends Component {
       <Router history={history}>
         <div>
           <Nav auth={this.auth} />
+          <Message />
           <Switch>
-            <Route
-              path="/"
-              exact
-              render={({ props }) => <Home auth={this.auth} {...props} />}
-            />
+            <Route path="/" exact component={Home} />
             <Route path="/cart" component={Cart} />
             <Route path="/products" component={Products} />
             <PrivateRoute path="/account-overview" component={AccountOverview} />

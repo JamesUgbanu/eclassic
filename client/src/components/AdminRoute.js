@@ -11,7 +11,7 @@ const AdminRoute = ({
   <Route
     {...rest}
     render={props => (
-  auth.isAuthenticated() && auth.isAdmin() ?
+  auth.isAuthenticated() && auth.isAdmin(localStorage.getItem('id_token')) ?
    <Component {...props} />
       : <Redirect to='/' />
 )}

@@ -8,7 +8,7 @@ class Login extends Component {
     // eslint-disable-next-line react/jsx-filename-extension
       <div>
         { !isAuthenticated() && (
-          <div class="login__box"><h1>Login to continue</h1>
+          <div className="login__box"><h1>Login to continue</h1>
         <button className="login__btn" onClick={login}>Login</button>
         </div>
         )

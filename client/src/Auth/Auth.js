@@ -10,7 +10,7 @@ export default class Auth {
       clientID: process.env.REACT_APP_AUTH0_CLIENT_ID,
       redirectUri: process.env.REACT_APP_AUTH0_CALLBACK_URL,
       responseType: 'token id_token',
-      scope: 'openid profile email'
+      scope: 'openid profile email',
     });
   }
 
@@ -22,11 +22,8 @@ export default class Auth {
     this.auth0.parseHash((err, authResult) => {
       if (authResult && authResult.accessToken && authResult.idToken) {
         this.setSession(authResult);
-        this.isAdmin(authResult.idToken) ? history.replace('/admin-dashboard') : history.replace('/account-overview');
-        location.reload();
       } else if (err) {
-        this.isAdmin(authResult.idToken) ? history.replace('/admin-dashboard') : history.replace('/account-overview');
-        alert(`Invalid login`);
+        console.log(err)
       }
     });
   };
@@ -36,11 +33,11 @@ export default class Auth {
     const expiresAt = JSON.stringify(
       authResult.expiresIn * 1000 + new Date().getTime()
     );
-
     localStorage.setItem('access_token', authResult.accessToken);
     localStorage.setItem('id_token', authResult.idToken);
     localStorage.setItem('expires_at', expiresAt);
-    history.replace('/account-overview');
+    !this.isAdmin(authResult.idToken) ? history.replace('/account-overview') : history.replace('/admin-dashboard');
+    location.reload();
   };
 
   isAuthenticated = () => {
@@ -48,8 +45,7 @@ export default class Auth {
     return new Date().getTime() < expiresAt;
   }
 
-  isAdmin = (idToken) => {
-    const token = localStorage.getItem('id_token');
+  isAdmin = (token) => {
     const decoded = decode(token);
     const assignedRoles = decoded['http://localhost:3000.com/roles'];
     if (Array.isArray(assignedRoles) && assignedRoles.includes('admin')) {
@@ -70,7 +66,7 @@ export default class Auth {
   };
 
   getAccessToken = () => {
-    const accessToken = localStorage.getItem('access_token');
+    const accessToken = localStorage.getItem('id_token');
     if (!accessToken) {
       throw new Error('No access token found.');
     }

@@ -1,13 +1,17 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import AdminSideNav from './AdminSideNav';
 import Product from './AdminProductList';
+import { deleteProduct, fetchAllProducts } from '../../actions/index';
 
-const AdminProducts = ({ products }) => {
+const AdminProducts = ({ getAllProducts, products, onDelete }) => {
+  useEffect(() => {
+    getAllProducts();
+  }, []);
 
   if (!products.data) {
     return (
-      <div className="login__box">Loading</div>
+      <div className="login__box">Loading...</div>
     );
   }
   return (
@@ -61,11 +65,15 @@ const AdminProducts = ({ products }) => {
             </thead>
             <tbody>
               {
-                products.data.map((product, index) => {
-                  return (
-                    <Product product={product} key={index} />
-                  );
-                })
+                !products.data.length
+                  ? (
+                    <tr><td>No product</td></tr>
+                  )
+                  : (
+                    products.data.map((product, index) => (
+                      <Product product={product} onDelete={onDelete} key={index} />
+                    ))
+                  )
               }
             </tbody>
 
@@ -85,7 +93,15 @@ const AdminProducts = ({ products }) => {
 };
 
 const mapStateToProps = ({ products }) => ({ products });
-
+const mapDispatchToProps = dispatch => ({
+  onDelete: (id) => {
+    dispatch(deleteProduct(id));
+  },
+  getAllProducts: () => {
+    dispatch(fetchAllProducts());
+  }
+});
 export default connect(
-  mapStateToProps
+  mapStateToProps,
+  mapDispatchToProps
 )(AdminProducts);

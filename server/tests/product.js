@@ -41,8 +41,7 @@ describe('Test on product endpoints', () => {
           image_url: 'href:oooo',
           available_color: { back: 'blue', front: 'white' },
           quantity: 35,
-          is_active: true,
-          last_updated_by: 'bnk6IO0965chhjj'
+          is_active: true
         })
         .set('Accept', 'application/json')
         .expect('Content-Type', /json/)
@@ -70,8 +69,7 @@ describe('Test on product endpoints', () => {
           image_url: 'href:oooo',
           available_color: { back: 'blue', front: 'white' },
           quantity: 35,
-          is_active: true,
-          last_updated_by: 'bnk6IO0965chhjj'
+          is_active: true
         })
         .set('Accept', 'application/json')
         .expect('Content-Type', /json/)
@@ -101,8 +99,7 @@ describe('Test on product endpoints', () => {
           image_url: 'href:oooo',
           available_color: { back: 'blue', front: 'white' },
           quantity: 35,
-          is_active: true,
-          last_updated_by: 'bnk6IO0965chhjj'
+          is_active: true
         })
         .set('Accept', 'application/json')
         .expect('Content-Type', /json/)
@@ -133,8 +130,7 @@ describe('Test on product endpoints', () => {
           image_url: 'href:oooo',
           available_color: { back: 'blue', front: 'white' },
           quantity: 35,
-          is_active: true,
-          last_updated_by: 'bnk6IO0965chhjj'
+          is_active: true
         })
         .set('Accept', 'application/json')
         .expect('Content-Type', /json/)
@@ -164,8 +160,7 @@ describe('Test on product endpoints', () => {
           image_url: 'href:oooo',
           available_color: { back: 'blue', front: 'white' },
           quantity: 35,
-          is_active: true,
-          last_updated_by: 'bnk6IO0965chhjj'
+          is_active: true
         })
         .set('Accept', 'application/json')
         .expect('Content-Type', /json/)
@@ -196,8 +191,7 @@ describe('Test on product endpoints', () => {
           image_url: 'href:oooo',
           available_color: { back: 'blue', front: 'white' },
           quantity: 35,
-          is_active: true,
-          last_updated_by: 'bnk6IO0965chhjj'
+          is_active: true
         })
         .set('Accept', 'application/json')
         .expect('Content-Type', /json/)
@@ -226,38 +220,6 @@ describe('Test on product endpoints', () => {
           image_url: 'href:oooo',
           available_color: { back: 'blue', front: 'white' },
           quantity: 'thirty five',
-          is_active: true,
-          last_updated_by: 'bnk6IO0965chhjj'
-        })
-        .set('Accept', 'application/json')
-        .expect('Content-Type', /json/)
-        .expect(400)
-        .end((err, res) => {
-          expect(res.body.errors[0].msg).to.equal(
-            'Quantity should be an number'
-          );
-          done();
-        });
-    });
-    // test for last updated by
-    it('should check last_updatedby is not empty', (done) => {
-      request(app)
-        .post('/api/v1/products')
-        .set('Authorization', `Bearer ${currrentToken}`)
-        .send({
-          prod_name: 'handy',
-          long_desc: 'jh jmlkj kk. hvhvj',
-          short_desc: 'cdkn kjhk  nnn',
-          discount: 20,
-          coupons: {
-            blackfriday: 12334,
-            v1: 'edo'
-          },
-          sku_id: 'S001',
-          price: 5,
-          image_url: 'href:oooo',
-          available_color: { back: 'blue', front: 'white' },
-          quantity: 35,
           is_active: true
         })
         .set('Accept', 'application/json')
@@ -265,7 +227,7 @@ describe('Test on product endpoints', () => {
         .expect(400)
         .end((err, res) => {
           expect(res.body.errors[0].msg).to.equal(
-            'Last updated by should have a value'
+            'Quantity should be an number'
           );
           done();
         });
@@ -292,8 +254,7 @@ describe('Test on product endpoints', () => {
           image_url: 'href:oooo',
           available_color: { back: 'blue', front: 'white' },
           quantity: 35,
-          is_active: true,
-          last_updated_by: 'bnk6IO0965chhjj'
+          is_active: true
         })
         .set('Accept', 'application/json')
         .expect('Content-Type', /json/)
@@ -322,8 +283,7 @@ describe('Test on product endpoints', () => {
           image_url: 'href:oooo',
           available_color: { back: 'blue', front: 'white' },
           quantity: 35,
-          is_active: true,
-          last_updated_by: 'bnk6IO0965chhjj'
+          is_active: true
         })
         .set('Accept', 'application/json')
         .expect('Content-Type', /json/)
@@ -351,8 +311,7 @@ describe('Test on product endpoints', () => {
           image_url: 'href:oooo',
           available_color: { back: 'blue', front: 'white' },
           quantity: 35,
-          is_active: true,
-          last_updated_by: 'bnk6IO0965chhjj'
+          is_active: true
         })
         .set('Accept', 'application/json')
         .expect('Content-Type', /json/)
@@ -382,8 +341,7 @@ describe('Test on product endpoints', () => {
           image_url: 'href:oooo',
           available_color: { back: 'blue', front: 'white' },
           quantity: 35,
-          is_active: true,
-          last_updated_by: 'bnk6IO0965chhjj'
+          is_active: true
         })
         .set('Accept', 'application/json')
         .expect('Content-Type', /json/)
@@ -414,8 +372,7 @@ describe('Test on product endpoints', () => {
           image_url: 'href:oooo',
           available_color: { back: 'blue', front: 'white' },
           quantity: 35,
-          is_active: true,
-          last_updated_by: 'bnk6IO0965chhjj'
+          is_active: true
         })
         .set('Accept', 'application/json')
         .expect('Content-Type', /json/)
@@ -445,8 +402,7 @@ describe('Test on product endpoints', () => {
           image_url: 'href:oooo',
           available_color: { back: 'blue', front: 'white' },
           quantity: 35,
-          is_active: true,
-          last_updated_by: 'bnk6IO0965chhjj'
+          is_active: true
         })
         .set('Accept', 'application/json')
         .expect('Content-Type', /json/)
@@ -477,8 +433,7 @@ describe('Test on product endpoints', () => {
           image_url: 'href:oooo',
           available_color: { back: 'blue', front: 'white' },
           quantity: 35,
-          is_active: true,
-          last_updated_by: 'bnk6IO0965chhjj'
+          is_active: true
         })
         .set('Accept', 'application/json')
         .expect('Content-Type', /json/)
@@ -507,38 +462,6 @@ describe('Test on product endpoints', () => {
           image_url: 'href:oooo',
           available_color: { back: 'blue', front: 'white' },
           quantity: 'thirty five',
-          is_active: true,
-          last_updated_by: 'bnk6IO0965chhjj'
-        })
-        .set('Accept', 'application/json')
-        .expect('Content-Type', /json/)
-        .expect(400)
-        .end((err, res) => {
-          expect(res.body.errors[0].msg).to.equal(
-            'Quantity should be an number'
-          );
-          done();
-        });
-    });
-    // test for last updated by
-    it('should check last_updatedby is not empty', (done) => {
-      request(app)
-        .put('/api/v1/products/1')
-        .set('Authorization', `Bearer ${currrentToken}`)
-        .send({
-          prod_name: 'handy',
-          long_desc: 'jh jmlkj kk. hvhvj',
-          short_desc: 'cdkn kjhk  nnn',
-          discount: 20,
-          coupons: {
-            blackfriday: 12334,
-            v1: 'edo'
-          },
-          sku_id: 'S001',
-          price: 5,
-          image_url: 'href:oooo',
-          available_color: { back: 'blue', front: 'white' },
-          quantity: 35,
           is_active: true
         })
         .set('Accept', 'application/json')
@@ -546,7 +469,7 @@ describe('Test on product endpoints', () => {
         .expect(400)
         .end((err, res) => {
           expect(res.body.errors[0].msg).to.equal(
-            'Last updated by should have a value'
+            'Quantity should be an number'
           );
           done();
         });

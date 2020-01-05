@@ -22,7 +22,31 @@ header.shadow__menu {
     margin-top: 20px;
 
 }
-
+.message__display {
+    position: absolute;
+    left: 40%;
+    top: 120px;
+    font-size: 16px;
+    width: 50%;
+}
+.success {
+    background: rgba(87,196,87,0.3);
+    border-radius: 5px;
+    color: green;
+    padding: 10px 20px;
+}
+.error {
+    background: rgb(255, 6, 6, 0.3);
+    border-radius: 5px;
+    color: red;
+    padding: 10px 20px;
+}
+.message__display button {
+    float: right;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+}
 
 
 .topbar .menu button {
@@ -584,7 +608,7 @@ width: 100%;
 .account__sidebar {
     background-color: #fff;
     width: 90%;
-    margin-top: 70px;
+    margin-top: 100px;
     border-radius: 15px;
     overflow: hidden;
 }
@@ -661,7 +685,7 @@ width: 100%;
         background:#fff;
         border-radius: 15px;
         width: 90%;
-        margin-top: 70px;
+        margin-top: 100px;
         margin-bottom: 20px;
         padding-left: 50px;
         padding-bottom: 50px;

@@ -1,7 +1,8 @@
 import React from 'react';
 
 
-export default ({ product }) => {
+export default ({ product, onDelete }) => {
+    
   return (
     <tr>
     <td>{product.prod_id}</td>
@@ -11,7 +12,9 @@ export default ({ product }) => {
     <td>{product.prod_name}</td>
       <td className="action__btn">
         <button>view&edit</button>
-        <button>delete</button>
+        <button onClick={(e) => { if (window.confirm('Are you sure you wish to delete this item?')) onDelete(product.prod_id)}}>
+            delete
+        </button>
       </td>
     </tr>
   );
