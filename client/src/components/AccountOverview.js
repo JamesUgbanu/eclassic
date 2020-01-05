@@ -3,11 +3,13 @@ import SideNav from './SideNav';
 
 // eslint-disable-next-line react/prefer-stateless-function
 class AccountOverview extends Component {
+
   render() {
+    
     return (
     // eslint-disable-next-line react/jsx-filename-extension
       <main className="acc__main">
-        <SideNav />
+        <SideNav auth={this.props.auth} />
         <div className="acc__container">
           <h1>Acount Overview</h1>
           <div className="acc__details">

@@ -12,7 +12,7 @@ const Callback = (props) => {
   }, []);
 
   return (
-    <h1>Loading...</h1>
+    <div className="login__box">Loading...</div>
   );
 };
 

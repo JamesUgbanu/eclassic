@@ -11,7 +11,7 @@ const AdminProducts = ({ getAllProducts, products, onDelete }) => {
 
   if (!products.data) {
     return (
-      <div className="login__box">Loading</div>
+      <div className="login__box">Loading...</div>
     );
   }
   return (
