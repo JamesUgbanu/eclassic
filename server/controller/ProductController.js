@@ -40,7 +40,6 @@ class ProductController {
     const today = new Date();
     const date = `${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate()}`;
     const lastUpdatedBy = removeAuth0fromUserId(request.user.sub);
-    let product;
     const findquery = {
       text: 'SELECT * FROM products WHERE prod_id = $1',
       values: [id]
@@ -54,28 +53,13 @@ class ProductController {
         return queryController.notFoundError(response, 'product not found');
       }
       const { rows } = result;
-      product = {
-        prod_name: rows[0].prod_name,
-        long_desc: rows[0].long_desc,
-        short_desc: rows[0].short_desc,
-        discount: rows[0].discount,
-        coupons: rows[0].coupons,
-        sku_id: rows[0].sku_id,
-        price: rows[0].price,
-        image_url: rows[0].image_url,
-        available_color: rows[0].available_color,
-        quantity: rows[0].quantity,
-        is_active: rows[0].is_active,
-        last_updated_by: rows[0].last_updated_by,
-      };
       const values = [
-        request.body.prod_name || product.prod_name, request.body.long_desc || product.long_desc,
-        request.body.short_desc || product.short_desc, request.body.discount || product.discount,
-        request.body.coupons || product.coupons, request.body.sku_id || product.sku_id,
-        request.body.price || product.price, request.body.image_url || product.image_url,
-        request.body.available_color || product.available_color, request.body.quantity || product.quantity,
-        request.body.is_active || product.is_active, date,
-        lastUpdatedBy || product.last_updated_by, id
+        request.body.prod_name || rows[0].prod_name, request.body.long_desc || rows[0].long_desc,
+        request.body.short_desc || rows[0].short_desc, request.body.discount || rows[0].discount,
+        request.body.coupons || rows[0].coupons, request.body.sku_id || rows[0].sku_id,
+        request.body.price || rows[0].price, request.body.image_url || rows[0].image_url,
+        request.body.available_color || rows[0].available_color, request.body.quantity || rows[0].quantity,
+        request.body.is_active || rows[0].is_active, date, lastUpdatedBy || rows[0].last_updated_by, id
       ];
       const updatequery = {
         text: `UPDATE products SET prod_name = $1, long_desc = $2, short_desc = $3, discount = $4, coupons = $5, 
@@ -86,7 +70,6 @@ class ProductController {
       client.query(updatequery).then((res) => {
         queryController.getSuccess(response, 200, res, 'product updated successfully');
       });
-      // queryController.dbQuery(response, updatequery, 'product updated successfully', 'product not found');
     });
   }
 

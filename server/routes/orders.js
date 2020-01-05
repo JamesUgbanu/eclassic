@@ -7,8 +7,9 @@ import role from '../middleware/user';
 const routes = (app) => {
   app.post('/api/v1/orders', auth, checkNewOrder, validation.validatorError, OrderController.create);
   app.get('/api/v1/orders', auth, role.checkRole('admin'), OrderController.getAll);
-  app.get('/api/v1/orders/:id', auth, OrderController.getById);
   app.get('/api/v1/user/orders', auth, OrderController.getUserOrder);
+  app.get('/api/v1/orders/:id', auth, OrderController.getById);
+  app.put('/api/v1/orders/:id', auth, role.checkRole('admin'), checkNewOrder, OrderController.updateOrder);
 };
 
 export default routes;
