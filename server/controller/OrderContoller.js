@@ -1,5 +1,6 @@
 import { queryController, client } from '../helpers/db';
 import removeAuth0fromUserId from '../helpers/helpers';
+import today from '../helpers/today';
 
 class OrderController {
   /**
@@ -74,15 +75,14 @@ class OrderController {
 */
   static updateOrder(request, response) {
     const { id } = request.params;
-    const today = new Date();
-    const updated_on = `${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate()}`;
+    const updated_on = today();
     const findquery = {
       text: 'SELECT * FROM orders WHERE order_id = $1',
       values: [id]
     };
     client.query(findquery, (err, result) => {
       if (err) {
-        return response.status(500).json({ status: 500, error: `Server error ${err}` });
+        return queryController.serverError(response, err);
       }
       if (result.rowCount === 0) {
         return queryController.notFoundError(response, 'order not found');

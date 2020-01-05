@@ -1,5 +1,6 @@
 import removeAuth0fromUserId from '../helpers/helpers';
 import { queryController, client } from '../helpers/db';
+import today from '../helpers/today';
 
 
 class ProductController {
@@ -37,8 +38,7 @@ class ProductController {
   static updateProduct(request, response) {
     // client.connect();
     const id = parseInt(request.params.id, 10);
-    const today = new Date();
-    const date = `${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate()}`;
+    const last_update = today();
     const lastUpdatedBy = removeAuth0fromUserId(request.user.sub);
     const findquery = {
       text: 'SELECT * FROM products WHERE prod_id = $1',
@@ -47,7 +47,7 @@ class ProductController {
 
     client.query(findquery, (err, result) => {
       if (err) {
-        return response.status(500).json({ status: 500, error: `Server error ${err}` });
+        return queryController.serverError(response, error);
       }
       if (result.rowCount === 0) {
         return queryController.notFoundError(response, 'product not found');
@@ -59,7 +59,7 @@ class ProductController {
         request.body.coupons || rows[0].coupons, request.body.sku_id || rows[0].sku_id,
         request.body.price || rows[0].price, request.body.image_url || rows[0].image_url,
         request.body.available_color || rows[0].available_color, request.body.quantity || rows[0].quantity,
-        request.body.is_active || rows[0].is_active, date, lastUpdatedBy || rows[0].last_updated_by, id
+        request.body.is_active || rows[0].is_active, last_update, lastUpdatedBy || rows[0].last_updated_by, id
       ];
       const updatequery = {
         text: `UPDATE products SET prod_name = $1, long_desc = $2, short_desc = $3, discount = $4, coupons = $5, 
