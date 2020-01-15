@@ -1,10 +1,12 @@
 /* eslint-disable default-case */
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import ProductInfo from './ProductInfo';
 import PriceInfo from './PriceInfo';
 import Quantity from './Quantity';
 import Images from './Images';
 import ProductNav from './AdminProductNav';
+import { addProduct } from '../actions/index';
 
 class ProductForm extends Component {
   state = {
@@ -40,10 +42,13 @@ class ProductForm extends Component {
     this.setState({ [input]: e.target.value });
   };
 
-  // Handle image drop
-  onDrop = input => (pictures) => {
-    this.setState({ [input]: this.state.imageUrl.concat(pictures) });
-  };
+  //Handle image upload
+  handleFile = (file) => {
+    this.setState({
+      imageUrl: this.state.imageUrl.concat(file)
+    });
+  }
+
 
   render() {
     const { step } = this.state;
@@ -53,7 +58,7 @@ class ProductForm extends Component {
     const values = {
       productName, sku, description, beforePrice, afterPrice, discount, quantity, imageUrl
     };
-    
+
     switch (step) {
       case 1:
         return (
@@ -95,15 +100,22 @@ class ProductForm extends Component {
           <div className="product__page">
             <ProductNav step={step} />
             <Images
-              nextStep={this.nextStep}
               prevStep={this.prevStep}
-              onDrop={this.onDrop}
-              values={values}
+              values={this.state}
+              handleFile={this.handleFile}
+              submitForm={this.props.addNewProduct}
             />
           </div>
         );
     }
   }
 }
-
-export default ProductForm;
+const mapDispatchToProps = dispatch => ({
+  addNewProduct: (data) => {
+    dispatch(addProduct(data));
+  }
+});
+export default connect(
+  null,
+  mapDispatchToProps
+)(ProductForm);

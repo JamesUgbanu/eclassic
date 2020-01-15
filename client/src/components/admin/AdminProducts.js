@@ -9,7 +9,7 @@ const AdminProducts = ({ getAllProducts, products, onDelete }) => {
     getAllProducts();
   }, []);
 
-  if (!products.data) {
+  if (!products) {
     return (
       <div className="login__box">Loading...</div>
     );
@@ -65,13 +65,13 @@ const AdminProducts = ({ getAllProducts, products, onDelete }) => {
             </thead>
             <tbody>
               {
-                !products.data.length
+                 !products.length
                   ? (
                     <tr><td>No product</td></tr>
                   )
                   : (
-                    products.data.map((product, index) => (
-                      <Product product={product} onDelete={onDelete} key={index} />
+                    products.map(product => (
+                      <Product product={product} onDelete={onDelete} />
                     ))
                   )
               }

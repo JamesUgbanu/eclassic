@@ -4,7 +4,7 @@ import React from 'react';
 export default ({ product, onDelete }) => {
     
   return (
-    <tr>
+    <tr key={product.prod_id}>
     <td>{product.prod_id}</td>
     <td>{product.short_desc}</td>
     <td>{product.quantity}</td>

@@ -1,5 +1,7 @@
 import axios from 'axios';
-import { DELETE_PRODUCT, FETCH_PRODUCTS, SET_ALERT, REMOVE_ALERT } from './types';
+import {
+  DELETE_PRODUCT, FETCH_PRODUCTS, SET_ALERT, REMOVE_ALERT, ADD_PRODUCT
+} from './types';
 import Auth from '../Auth/Auth';
 import { generateSerial } from '../components/helpers';
 
@@ -18,10 +20,22 @@ const deleteProductSuccess = id => ({
     id
   }
 });
-export const setAlert = (msg, id, alertType) => ({
-  type: SET_ALERT,
-  payload: { msg, id, alertType }
+const addProductSuccess = product => ({
+  type: ADD_PRODUCT,
+  payload: product
 });
+
+export const setAlert = (msg, alertType) => ({
+  type: SET_ALERT,
+  payload: { msg, alertId, alertType }
+});
+
+export const removeAlert = id => dispatch => dispatch(
+  {
+    type: REMOVE_ALERT,
+    payload: { id }
+  }
+);
 
 export const fetchAllProducts = () => dispatch => axios.get(`${ROOT_URL}/products`)
   .then((res) => {
@@ -43,18 +57,36 @@ export const deleteProduct = id => dispatch => axios.delete(`${ROOT_URL}/product
   })
   .then((res) => {
     dispatch(deleteProductSuccess(id));
-    dispatch(setAlert(res.data.message, alertId, 'success'));
+    dispatch(setAlert(res.data.message, 'success'));
   })
   .catch((error) => {
     if (error) {
-      dispatch(setAlert(error.response, alertId, 'error'));
+      dispatch(setAlert(error.response, 'error'));
     }
     throw (error);
   });
 
-export const removeAlert = id => dispatch => dispatch(
-  {
-    type: REMOVE_ALERT,
-    payload: { id }
+export const addProduct = formData => dispatch => axios({
+  method: 'POST',
+  url: `${ROOT_URL}/products`,
+  data: JSON.stringify(formData),
+  headers: {
+    'Content-Type': 'application/json',
+    Authorization: `Bearer ${auth.getAccessToken()}`
   }
-);
+})
+  .then((res) => {
+    console.log(res.data);
+    dispatch(addProductSuccess(res.data));
+    dispatch(setAlert(res.data.message, 'success'));
+  })
+  .catch((error) => {
+    if (error.response.data.errors) {
+      error.response.data.errors.forEach((error) => {
+        dispatch(setAlert(error.msg, 'error'));
+      });
+    } else {
+      dispatch(setAlert(error.response.data.message, 'error'));
+    }
+    throw (error);
+  });

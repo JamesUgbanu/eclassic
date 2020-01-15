@@ -1,47 +1,150 @@
 import React, { Component } from 'react';
-import ImageUploader from 'react-images-upload';
+import AWS from 'aws-sdk';
+import { generateSerial } from './helpers';
 
 class Images extends Component {
-    continue = (e) => {
-      e.preventDefault();
-      console.log(this.props.values)
+  constructor(props) {
+    super(props);
+    this.state = {
+      loader: false,
+      message: '',
     };
+  }
+
+  componentDidMount() {
+    AWS.config.update({
+      region: process.env.REACT_APP_AWS_S3_BUCKET_REGION,
+      credentials: new AWS.CognitoIdentityCredentials({
+        IdentityPoolId: process.env.REACT_APP_AWS_S3_IDENTITY_POOL_ID,
+      }),
+    });
+  }
+
+  statusMessage = (message) => {
+    this.setState({ message });
+  }
+
+  onChangeFile = () => {
+    this.setState({ loader: true });
+    const s3 = new AWS.S3({
+      apiVersion: '2006-03-01',
+      params: { Bucket: process.env.REACT_APP_AWS_S3_BUCKET_NAME },
+    });
+    const { files } = document.getElementById('photoupload');
+    if (!files.length) {
+      return this.statusMessage('Please choose a file to upload first.');
+    }
+    const file = files[0];
+    const fileName = generateSerial() + file.name;
+    s3.upload(
+      {
+        Key: fileName,
+        Body: file,
+        ACL: 'public-read',
+      },
+      (err, data) => {
+        if (err) {
+          this.statusMessage(err);
+        } else {
+          this.setState({ loader: false });
+          this.props.handleFile([data.Location]);
+        }
+      }
+    );
+  };
+
+  onSubmit = () => {
+    const {
+      imageUrl, productName, sku, description,
+      afterPrice, discount, quantity
+    } = this.props.values;
+    const imageUrlObj = { ...imageUrl };
+    const data = {
+      prod_name: productName,
+      sku_id: sku,
+      short_desc: description,
+      price: parseInt(afterPrice),
+      discount: parseInt(discount),
+      quantity: parseInt(quantity),
+      image_url: imageUrlObj
+    };
+    this.props.submitForm(data);
+  };
+
     previous = (e) => {
-        e.preventDefault();
-        this.props.prevStep();
-      };
+      e.preventDefault();
+      this.props.prevStep();
+    };
+
     render() {
-        const { onDrop } = this.props;
+      const { message, loader } = this.state;
+      const { imageUrl } = this.props.values;
       return (
         <div className="tab__page">
-           <div className="tab__button">
-               <button onClick={this.previous}>
-               <i className="fas fa-arrow-left" />previous
+          <div className="tab__button">
+            <button onClick={this.previous}>
+              <i className="fas fa-arrow-left" />
+previous
             </button>
-                <button onClick={this.continue}>
-                    Submit
-                  <i className="fas fa-arrow-right" />
-                </button>
-              </div>
-           <h1>Images Information</h1>
-           <hr />
-           <div className="tab__form">
-                      <div className="file__label">
-                      <ImageUploader
-                      className="image__file"
-                            withIcon={true}
-                            buttonText='Choose images'
-                            onChange={onDrop('imageUrl')}
-                            imgExtension={['.jpg', '.gif', '.png']}
-                            maxFileSize={5242880}
-                            withPreview={true}
-                            fileTypeError='is not supported file extension'
-                            singleImage={true}
-                        />
-                    </div>             
-               </div>
-         </div>
+            <button onClick={this.onSubmit} disabled={`${!imageUrl.length ? 'disabled' : ''}`}>
+                Submit
+              <i className="fas fa-arrow-right" />
+            </button>
+          </div>
+          <h1>Images Information</h1>
+          <hr />
+          <div className="section__box">
+            <div className="file__label">
+              <input
+                type="file"
+                name="myfile"
+                id="photoupload"
+                className="image__file"
+                onChange={this.onChangeFile}
+              />
+            </div>
+            <div className="uploader__image">
+              {loader ? <p>Loading...</p> : null}
+            </div>
+            <div className="upload__status">
+              <span>{message > 0 ? message : null}</span>
+            </div>
+            <div className="image__table">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Image</th>
+                    <th>action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {
+                                  imageUrl ? (
+                                    imageUrl.map((url, index) => (
+                                      <tr key={index}>
+                                        <td>
+                                          <i className="fas fa-cross" />
+                                          <img src={url} alt="fileUpload" />
+                                        </td>
+                                        <td>
+                                          <button>
+                                            <i className="fas fa-trash" />
+                                     Delete Image
+                                          </button>
+                                        </td>
+                                      </tr>
+                                    ))
+                                  ) : (
+                                    <tr><td>No image</td></tr>
+                                  )
+                                }
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
       );
     }
 }
+
 export default Images;

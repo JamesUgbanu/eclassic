@@ -13,12 +13,12 @@ const AdminProductNav = ({ step}) => (
       <span>Price</span>
     </div>
     <div className={`tab__content ${step === 3 ? 'active' : ''}`}>
-      <i className="fas fa-image" />
-      <span>images</span>
-    </div>
-    <div className={`tab__content ${step === 4 ? 'active' : ''}`}>
       <i className="fas fa-file" />
       <span>Quantities</span>
+    </div>
+    <div className={`tab__content ${step === 4 ? 'active' : ''}`}>
+      <i className="fas fa-image" />
+      <span>images</span>
     </div>
   </div>
 );

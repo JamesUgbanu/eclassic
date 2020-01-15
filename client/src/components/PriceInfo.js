@@ -44,7 +44,7 @@ class PriceInfo extends Component {
               <legend>Discount in %</legend>
               <input type="number"
                onChange={handleChange('discount')}
-               value={values.discount}
+               value={values.discount === '' ? 0 : values.discount}
                />
             </div>
 
