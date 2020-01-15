@@ -38,7 +38,7 @@ describe('Test on product endpoints', () => {
           },
           sku_id: 'S001',
           price: 3000,
-          image_url: 'href:oooo',
+          image_url: {0:'test.jpg',1:'test2.png'},
           available_color: { back: 'blue', front: 'white' },
           quantity: 35,
           is_active: true
@@ -66,7 +66,7 @@ describe('Test on product endpoints', () => {
           },
           sku_id: 'S001',
           price: 3000,
-          image_url: 'href:oooo',
+          image_url: {0:'test.jpg',1:'test2.png'},
           available_color: { back: 'blue', front: 'white' },
           quantity: 35,
           is_active: true
@@ -96,7 +96,7 @@ describe('Test on product endpoints', () => {
           },
           sku_id: 'S001',
           price: 3000,
-          image_url: 'href:oooo',
+          image_url: {0:'test.jpg',1:'test2.png'},
           available_color: { back: 'blue', front: 'white' },
           quantity: 35,
           is_active: true
@@ -127,7 +127,7 @@ describe('Test on product endpoints', () => {
           },
           sku_id: 'S001',
           price: 3000,
-          image_url: 'href:oooo',
+          image_url: {0:'test.jpg',1:'test2.png'},
           available_color: { back: 'blue', front: 'white' },
           quantity: 35,
           is_active: true
@@ -157,7 +157,7 @@ describe('Test on product endpoints', () => {
           },
           sku_id: 'S001',
           price: 3000,
-          image_url: 'href:oooo',
+          image_url: {0:'test.jpg',1:'test2.png'},
           available_color: { back: 'blue', front: 'white' },
           quantity: 35,
           is_active: true
@@ -188,7 +188,7 @@ describe('Test on product endpoints', () => {
           },
           sku_id: 'S001',
           price: 'five naira',
-          image_url: 'href:oooo',
+          image_url: {0:'test.jpg',1:'test2.png'},
           available_color: { back: 'blue', front: 'white' },
           quantity: 35,
           is_active: true
@@ -217,7 +217,7 @@ describe('Test on product endpoints', () => {
           },
           sku_id: 'S001',
           price: 500,
-          image_url: 'href:oooo',
+          image_url: {0:'test.jpg',1:'test2.png'},
           available_color: { back: 'blue', front: 'white' },
           quantity: 'thirty five',
           is_active: true
@@ -251,7 +251,7 @@ describe('Test on product endpoints', () => {
           },
           sku_id: 'S001',
           price: 3000,
-          image_url: 'href:oooo',
+          image_url: {0:'test.jpg',1:'test2.png'},
           available_color: { back: 'blue', front: 'white' },
           quantity: 35,
           is_active: true
@@ -280,7 +280,7 @@ describe('Test on product endpoints', () => {
           },
           sku_id: 'S001',
           price: 3000,
-          image_url: 'href:oooo',
+          image_url: {0:'test.jpg',1:'test2.png'},
           available_color: { back: 'blue', front: 'white' },
           quantity: 35,
           is_active: true
@@ -308,7 +308,7 @@ describe('Test on product endpoints', () => {
           },
           sku_id: 'S001',
           price: 3000,
-          image_url: 'href:oooo',
+          image_url: {0:'test.jpg',1:'test2.png'},
           available_color: { back: 'blue', front: 'white' },
           quantity: 35,
           is_active: true
@@ -338,7 +338,7 @@ describe('Test on product endpoints', () => {
           },
           sku_id: 'S001',
           price: 3000,
-          image_url: 'href:oooo',
+          image_url: {0:'test.jpg',1:'test2.png'},
           available_color: { back: 'blue', front: 'white' },
           quantity: 35,
           is_active: true
@@ -369,7 +369,7 @@ describe('Test on product endpoints', () => {
           },
           sku_id: 'S001',
           price: 3000,
-          image_url: 'href:oooo',
+          image_url: {0:'test.jpg',1:'test2.png'},
           available_color: { back: 'blue', front: 'white' },
           quantity: 35,
           is_active: true
@@ -399,7 +399,7 @@ describe('Test on product endpoints', () => {
           },
           sku_id: 'S001',
           price: 3000,
-          image_url: 'href:oooo',
+          image_url: {0:'test.jpg',1:'test2.png'},
           available_color: { back: 'blue', front: 'white' },
           quantity: 35,
           is_active: true
@@ -430,7 +430,7 @@ describe('Test on product endpoints', () => {
           },
           sku_id: 'S001',
           price: 'five naira',
-          image_url: 'href:oooo',
+          image_url: {0:'test.jpg',1:'test2.png'},
           available_color: { back: 'blue', front: 'white' },
           quantity: 35,
           is_active: true
@@ -459,7 +459,7 @@ describe('Test on product endpoints', () => {
           },
           sku_id: 'S001',
           price: 500,
-          image_url: 'href:oooo',
+          image_url: {0:'test.jpg',1:'test2.png'},
           available_color: { back: 'blue', front: 'white' },
           quantity: 'thirty five',
           is_active: true

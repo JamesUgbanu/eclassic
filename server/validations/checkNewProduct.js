@@ -26,9 +26,7 @@ const checkNewProduct = [
     .isNumeric()
     .withMessage('Price should be a number'),
   check('image_url')
-    .optional()
-    .trim()
-    .escape(),
+    .optional(),
   check('available_color').optional(),
   check('quantity', 'Quantity should be an number')
     .optional()

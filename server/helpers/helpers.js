@@ -1,5 +1,5 @@
 
-const removeAuth0fromUserId = id => id.replace(/(^[\s\S]{0,6})/, '');
+const removeAuth0fromUserId = id => id.replace(/.+\|/, '');
 
 
 export default removeAuth0fromUserId;
