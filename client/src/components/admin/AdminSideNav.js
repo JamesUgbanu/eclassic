@@ -5,7 +5,7 @@ const AdminSideNav = () => (
       <div className="account__sidebar">
           <div className="account__sidebar__top">
               <a href="/admin-dashboard" className="dashboard__menu fas fa-box"><span>Dashboard</span></a>
-              <a href="/admin-products" className="dashboard__menu fas fa-suitcase"><span>Products</span></a>
+              <a href="/admin-products/1" className="dashboard__menu fas fa-suitcase"><span>Products</span></a>
               <a href="/admin-order" className="dashboard__menu fas fa-dolly"><span>Orders</span></a>
               <a href="#" className="dashboard__menu"><span>Change Password</span></a>
             </div>

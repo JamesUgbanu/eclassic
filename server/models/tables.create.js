@@ -8,7 +8,7 @@ const createProductTable = `
     coupons JSONB,
     sku_id VARCHAR,
     price NUMERIC,
-    image_url TEXT,
+    image_url JSONB,
     available_color JSONB,
     quantity INTEGER,
     is_active BOOLEAN DEFAULT false,
