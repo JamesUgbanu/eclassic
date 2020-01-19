@@ -1,16 +1,22 @@
 import React, { Component } from 'react';
 
 class Quantity extends Component {
-    continue = (e) => {
-      e.preventDefault();
-      this.props.nextStep();
+    continue = () => {
+      const { errorMsg, nextStep } = this.props;
+      if (errorMsg.fieldValid('quantity')) {
+        nextStep();
+      } else {
+        errorMsg.showMessages();
+        // rerender to show messages for the first time
+        // you can use the autoForceUpdate option to do this automatically`
+        this.forceUpdate();
+      }
     };
-    previous = (e) => {
-        e.preventDefault();
+    previous = () => {
         this.props.prevStep();
       };
     render() {
-        const { values, handleChange } = this.props;
+        const { values, handleChange, errorMsg } = this.props;
       return (
         <div className="tab__page">
           <div className="tab__button">
@@ -32,6 +38,7 @@ class Quantity extends Component {
               value={values.quantity}
                />
             </div>
+            {errorMsg.message('quantity', values.quantity, 'required|integer')}
           </div>
         </div>
 

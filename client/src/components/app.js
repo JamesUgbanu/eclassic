@@ -21,7 +21,7 @@ import PrivateRoute from './PrivateRoute';
 import AdminRoute from './AdminRoute';
 import Login from './Login';
 import Message from './admin/Message';
-
+import '../../style/style.css';
 // eslint-disable-next-line react/prefer-stateless-function
 class App extends Component {
   constructor(props) {
@@ -39,7 +39,7 @@ class App extends Component {
           <Switch>
             <Route path="/" exact component={Home} />
             <Route path="/cart" component={Cart} />
-            <Route path="/products" component={Products} />
+            <Route path="/products/:pageNo?" component={Products} />
             <PrivateRoute path="/account-overview" component={AccountOverview} />
             <PrivateRoute path="/account-details" component={AccountDetails} />
             <PrivateRoute path="/address-book" component={AddressBook} />
@@ -47,7 +47,7 @@ class App extends Component {
             <PrivateRoute path="/order" component={Order} />
             <PrivateRoute path="/order-details" component={OrderDetails} />
             <AdminRoute path="/admin-dashboard" component={AdminDashboard} />
-            <AdminRoute path="/admin-products" component={AdminProducts} />
+            <AdminRoute path="/admin-products/:pageNo?" component={AdminProducts} />
             <AdminRoute path="/add-product" component={AddProduct} />
             <AdminRoute path="/admin-order" component={AdminOrder} />
             <Route

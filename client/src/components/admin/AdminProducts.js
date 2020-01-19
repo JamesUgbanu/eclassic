@@ -1,15 +1,14 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import AdminSideNav from './AdminSideNav';
 import Product from './AdminProductList';
-import { deleteProduct, fetchAllProducts } from '../../actions/index';
+import { deleteProduct } from '../../actions/index';
 
-const AdminProducts = ({ getAllProducts, products, onDelete }) => {
-  useEffect(() => {
-    getAllProducts();
-  }, []);
+const AdminProducts = ({
+ products, ajaxLoading, onDelete, currentPage, pages
+}) => {
 
-  if (!products) {
+  if (ajaxLoading) {
     return (
       <div className="login__box">Loading...</div>
     );
@@ -47,60 +46,49 @@ const AdminProducts = ({ getAllProducts, products, onDelete }) => {
               <input type="submit" value="GO" />
             </div>
           </form>
-
         </div>
-
-        <div className="product__table">
-
-          <table border="1">
-            <thead>
-              <tr>
-                <th>ID</th>
-                <th>Description</th>
-                <th>Stock</th>
-                <th>Amount</th>
-                <th>Name</th>
-                <th>Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              {
-                 !products.length
-                  ? (
-                    <tr><td>No product</td></tr>
-                  )
-                  : (
-                    products.map(product => (
-                      <Product product={product} onDelete={onDelete} />
-                    ))
-                  )
-              }
-            </tbody>
-
-          </table>
-        </div>
-
-        <div className="pagination__div">
+        <Product products={products} pages={pages} currentPage={currentPage} onDelete={onDelete} />
+        {/* <div className="pagination__div">
           <ul className="pagination">
             <li><a href="#" className="active">1</a></li>
             <li><a href="#">2</a></li>
             <li><a href="#">&gt;</a></li>
           </ul>
-        </div>
+        </div> */}
       </div>
     </main>
   );
 };
 
-const mapStateToProps = ({ products }) => ({ products });
+// Generate list of products for given page number
+const generateProductsByPage = (products, pageNo) => {
+  // I assumed showing 10 products per page
+  const perPage = 10;
+  if (products.length) {
+    // Filter 10 products by page number
+    return products.filter((product, i) => i >= perPage * (pageNo - 1) && i < perPage * pageNo);
+  }
+  return [];
+};
+
+const mapStateToProps = (state, ownProps) => {
+  // Set page number to 1 if no number in url params
+  const pageNo = ownProps.match.params.pageNo || 1;
+  const products = generateProductsByPage(state.products, pageNo);
+  return {
+    products,
+    pages: Math.ceil(state.products.length / 10), // Determine number of pages for pagination
+    currentPage: pageNo,
+    ajaxLoading: state.ajaxLoading
+  };
+};
+
 const mapDispatchToProps = dispatch => ({
   onDelete: (id) => {
     dispatch(deleteProduct(id));
-  },
-  getAllProducts: () => {
-    dispatch(fetchAllProducts());
   }
 });
+
 export default connect(
   mapStateToProps,
   mapDispatchToProps

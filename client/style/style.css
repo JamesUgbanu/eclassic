@@ -7,7 +7,16 @@ h1 {
     font-size: 22px;
     font-weight: 500;
 }
-
+/** Validation error message **/
+.srv-validation-message {
+    color: #f00;
+    font-size: 14px;
+}
+/** Disable pagination **/
+.disabled__link {
+    pointer-events: none;
+    opacity: 0.6;
+}
 /* top navigation */
 
 header {
@@ -1261,7 +1270,6 @@ background-color: #f00;
 .tab__form textarea {
     width: 70%;
     height: 110px;
-    margin-bottom: 6%;
 }
 
 .tab__page hr {

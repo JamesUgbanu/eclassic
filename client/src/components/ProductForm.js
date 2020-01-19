@@ -1,6 +1,7 @@
 /* eslint-disable default-case */
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import SimpleReactValidator from 'simple-react-validator';
 import ProductInfo from './ProductInfo';
 import PriceInfo from './PriceInfo';
 import Quantity from './Quantity';
@@ -9,17 +10,21 @@ import ProductNav from './AdminProductNav';
 import { addProduct } from '../actions/index';
 
 class ProductForm extends Component {
-  state = {
-    step: 1,
-    productName: '',
-    sku: '',
-    description: '',
-    beforePrice: '',
-    afterPrice: '',
-    discount: '',
-    quantity: '',
-    imageUrl: []
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      step: 1,
+      productName: '',
+      sku: '',
+      description: '',
+      beforePrice: '',
+      afterPrice: '',
+      discount: '',
+      quantity: '',
+      imageUrl: []
+    };
+    this.validator = new SimpleReactValidator();
+  }
 
   // Proceed to next step
   nextStep = () => {
@@ -42,13 +47,34 @@ class ProductForm extends Component {
     this.setState({ [input]: e.target.value });
   };
 
-  //Handle image upload
+  // Handle image upload
   handleFile = (file) => {
     this.setState({
       imageUrl: this.state.imageUrl.concat(file)
     });
   }
 
+  // Handle form submission
+  handleSubmit = (formData) => {
+    if (this.validator.allValid()) {
+      this.props.addNewProduct(formData);
+      this.setState({
+        productName: '',
+        sku: '',
+        description: '',
+        beforePrice: '',
+        afterPrice: '',
+        discount: '',
+        quantity: '',
+        imageUrl: []
+      });
+    } else {
+      this.validator.showMessages();
+      // rerender to show messages for the first time
+      // you can use the autoForceUpdate option to do this automatically`
+      this.forceUpdate();
+    }
+  }
 
   render() {
     const { step } = this.state;
@@ -59,6 +85,11 @@ class ProductForm extends Component {
       productName, sku, description, beforePrice, afterPrice, discount, quantity, imageUrl
     };
 
+    if (this.props.ajaxLoading) {
+      return (
+        <p>Loading...</p>
+      );
+    }
     switch (step) {
       case 1:
         return (
@@ -68,6 +99,7 @@ class ProductForm extends Component {
               nextStep={this.nextStep}
               handleChange={this.handleChange}
               values={values}
+              errorMsg={this.validator}
             />
           </div>
         );
@@ -80,6 +112,7 @@ class ProductForm extends Component {
               prevStep={this.prevStep}
               handleChange={this.handleChange}
               values={values}
+              errorMsg={this.validator}
             />
           </div>
         );
@@ -92,6 +125,7 @@ class ProductForm extends Component {
               prevStep={this.prevStep}
               handleChange={this.handleChange}
               values={values}
+              errorMsg={this.validator}
             />
           </div>
         );
@@ -101,21 +135,29 @@ class ProductForm extends Component {
             <ProductNav step={step} />
             <Images
               prevStep={this.prevStep}
-              values={this.state}
+              values={values}
               handleFile={this.handleFile}
-              submitForm={this.props.addNewProduct}
+              submitForm={this.handleSubmit}
+              errorMsg={this.validator}
             />
           </div>
         );
     }
   }
 }
+
 const mapDispatchToProps = dispatch => ({
   addNewProduct: (data) => {
     dispatch(addProduct(data));
   }
 });
+
+const mapStateToProps = state => ({
+  ajaxLoading: state.ajaxLoading,
+  checkState: state.alert
+});
+
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(ProductForm);
