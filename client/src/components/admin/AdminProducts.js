@@ -5,9 +5,8 @@ import Product from './AdminProductList';
 import { deleteProduct } from '../../actions/index';
 
 const AdminProducts = ({
- products, ajaxLoading, onDelete, currentPage, pages
+  products, ajaxLoading, onDelete, currentPage, pages
 }) => {
-
   if (ajaxLoading) {
     return (
       <div className="login__box">Loading...</div>
@@ -48,13 +47,6 @@ const AdminProducts = ({
           </form>
         </div>
         <Product products={products} pages={pages} currentPage={currentPage} onDelete={onDelete} />
-        {/* <div className="pagination__div">
-          <ul className="pagination">
-            <li><a href="#" className="active">1</a></li>
-            <li><a href="#">2</a></li>
-            <li><a href="#">&gt;</a></li>
-          </ul>
-        </div> */}
       </div>
     </main>
   );

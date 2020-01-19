@@ -9,7 +9,7 @@ import Images from './Images';
 import ProductNav from './AdminProductNav';
 import { addProduct } from '../actions/index';
 
-class ProductForm extends Component {
+class EditProductForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -81,22 +81,10 @@ class ProductForm extends Component {
     const {
       productName, sku, description, beforePrice, afterPrice, discount, quantity, imageUrl
     } = this.state;
-    let values = {
+    const values = {
       productName, sku, description, beforePrice, afterPrice, discount, quantity, imageUrl
     };
-    if (this.props.initialValues) {
-      const { initialValues } = this.props;
-      values = {
-        productId: initialValues.prod_id,
-        productName: initialValues.prod_name,
-        sku: initialValues.sku_id,
-        afterPrice: initialValues.price,
-        description: initialValues.short_desc,
-        discount,
-        quantity,
-        imageUrl
-      }
-    }
+
     if (this.props.ajaxLoading) {
       return (
         <p>Loading...</p>
@@ -158,18 +146,28 @@ class ProductForm extends Component {
   }
 }
 
+// Find current product based on ID passed in URL
+const findCurrentProduct = (products, id = -1) => {
+  // Find product for given id
+  return products.find(product => parseInt(product.prod_id, 10) === parseInt(id, 10));
+};
+
 const mapDispatchToProps = dispatch => ({
   addNewProduct: (data) => {
     dispatch(addProduct(data));
   }
 });
 
-const mapStateToProps = state => ({
-  ajaxLoading: state.ajaxLoading,
-  checkState: state.alert
-});
+const mapStateToProps = (state, ownProps) => {
+//const currentProduct = state.products.length > 0 ? findCurrentProduct(state.products, ownProps.match.params.id) : null;
+  console.log(ownProps);
+  return {
+    ajaxLoading: state.ajaxLoading,
+    checkState: state.alert
+  };
+};
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(ProductForm);
+)(EditProductForm);

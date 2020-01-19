@@ -13,6 +13,7 @@ import OrderDetails from './OrderDetails';
 import AdminDashboard from './admin/AdminDashboard';
 import AdminProducts from './admin/AdminProducts';
 import AddProduct from './admin/AddProduct';
+import EditProduct from './admin/EditProduct';
 import AdminOrder from './admin/AdminOrder';
 import Auth from '../Auth/Auth';
 import Callback from './Callback';
@@ -49,6 +50,7 @@ class App extends Component {
             <AdminRoute path="/admin-dashboard" component={AdminDashboard} />
             <AdminRoute path="/admin-products/:pageNo?" component={AdminProducts} />
             <AdminRoute path="/add-product" component={AddProduct} />
+            <AdminRoute path="/edit-product/:id" component={EditProduct} />
             <AdminRoute path="/admin-order" component={AdminOrder} />
             <Route
               path="/login"

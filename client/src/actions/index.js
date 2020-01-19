@@ -47,7 +47,6 @@ export const fetchAllProducts = () => (dispatch) => {
   dispatch(ajaxLoading(true));
   return axios.get(`${ROOT_URL}/products`)
     .then((res) => {
-      console.log(res.data);
       dispatch(ajaxLoading(false));
       // eslint-disable-next-line no-use-before-define
       dispatch(fetchProducts(res.data));
