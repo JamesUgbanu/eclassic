@@ -15,23 +15,16 @@ class EditProduct extends Component {
             <a href="/admin-products" className="fa  fa-arrow-left" />
                 Back to Products
           </h1>
-          <ProductForm initialValues={this.props.currentProduct} />
+          <ProductForm pageNo={this.props.pageNo} />
         </div>
       </main>
     );
   }
 }
 
-// Find current product based on ID passed in URL
-const findCurrentProduct = (products, id = -1) =>
-  // Find product for given id
-  products.find(product => parseInt(product.prod_id, 10) === parseInt(id, 10));
 const mapStateToProps = (state, ownProps) => {
-  const currentProduct = state.products.length ? findCurrentProduct(state.products, ownProps.match.params.id) : null;
   return {
-    currentProduct,
-    ajaxLoading: state.ajaxLoading,
-    goBack: ownProps.history.goBack
+    pageNo: ownProps.match.params.id
   };
 };
 

@@ -26,6 +26,22 @@ class ProductForm extends Component {
     this.validator = new SimpleReactValidator();
   }
 
+  UNSAFE_componentWillReceiveProps(nextProps) {
+    if(this.props.pageNo) {
+      const { prod_name, sku_id, price, short_desc, discount, quantity, image_url} = nextProps.currentProduct;
+      const imageUrl = JSON.parse(image_url);
+      this.setState({
+      productName: prod_name,
+      sku: sku_id,
+      afterPrice: price,
+      description: short_desc,
+      discount: parseInt(discount),
+      quantity: quantity,
+      imageUrl: Object.values(imageUrl)
+    });
+    }
+  }
+
   // Proceed to next step
   nextStep = () => {
     const { step } = this.state;
@@ -81,22 +97,10 @@ class ProductForm extends Component {
     const {
       productName, sku, description, beforePrice, afterPrice, discount, quantity, imageUrl
     } = this.state;
-    let values = {
+    const values = {
       productName, sku, description, beforePrice, afterPrice, discount, quantity, imageUrl
     };
-    if (this.props.initialValues) {
-      const { initialValues } = this.props;
-      values = {
-        productId: initialValues.prod_id,
-        productName: initialValues.prod_name,
-        sku: initialValues.sku_id,
-        afterPrice: initialValues.price,
-        description: initialValues.short_desc,
-        discount,
-        quantity,
-        imageUrl
-      }
-    }
+
     if (this.props.ajaxLoading) {
       return (
         <p>Loading...</p>
@@ -151,6 +155,7 @@ class ProductForm extends Component {
               handleFile={this.handleFile}
               submitForm={this.handleSubmit}
               errorMsg={this.validator}
+              pageNo={this.props.pageNo}
             />
           </div>
         );
@@ -164,10 +169,19 @@ const mapDispatchToProps = dispatch => ({
   }
 });
 
-const mapStateToProps = state => ({
-  ajaxLoading: state.ajaxLoading,
-  checkState: state.alert
-});
+// Find current product based on ID passed in URL
+const findCurrentProduct = (products, id = -1) =>
+  // Find product for given id
+  products.find(product => parseInt(product.prod_id, 10) === parseInt(id, 10));
+const mapStateToProps = (state, ownProps) => {
+  const currentProduct = state.products.length ? findCurrentProduct(state.products, ownProps.pageNo) : null;
+  return {
+    currentProduct,
+    ajaxLoading: state.ajaxLoading,
+    checkState: state.alert,
+    pageNo: ownProps.pageNo
+  };
+};
 
 export default connect(
   mapStateToProps,
