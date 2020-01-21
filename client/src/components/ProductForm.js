@@ -7,7 +7,7 @@ import PriceInfo from './PriceInfo';
 import Quantity from './Quantity';
 import Images from './Images';
 import ProductNav from './AdminProductNav';
-import { addProduct } from '../actions/index';
+import { addProduct, updateProduct } from '../actions/index';
 
 class ProductForm extends Component {
   constructor(props) {
@@ -26,19 +26,23 @@ class ProductForm extends Component {
     this.validator = new SimpleReactValidator();
   }
 
-  UNSAFE_componentWillReceiveProps(nextProps) {
-    if(this.props.pageNo) {
-      const { prod_name, sku_id, price, short_desc, discount, quantity, image_url} = nextProps.currentProduct;
-      const imageUrl = JSON.parse(image_url);
-      this.setState({
-      productName: prod_name,
-      sku: sku_id,
-      afterPrice: price,
-      description: short_desc,
-      discount: parseInt(discount),
-      quantity: quantity,
-      imageUrl: Object.values(imageUrl)
-    });
+  componentDidUpdate(prevProps) {
+    if (prevProps.currentProduct !== this.props.currentProduct) {
+      if (this.props.pageNo && this.props.currentProduct) {
+        const {
+          prod_name, sku_id, price, short_desc, discount, quantity, image_url
+        } = this.props.currentProduct;
+        const imageUrl = JSON.parse(image_url);
+        this.setState({
+          productName: prod_name,
+          sku: sku_id,
+          afterPrice: price,
+          description: short_desc,
+          discount: parseInt(discount),
+          quantity,
+          imageUrl: Object.values(imageUrl)
+        });
+      }
     }
   }
 
@@ -73,17 +77,21 @@ class ProductForm extends Component {
   // Handle form submission
   handleSubmit = (formData) => {
     if (this.validator.allValid()) {
-      this.props.addNewProduct(formData);
-      this.setState({
-        productName: '',
-        sku: '',
-        description: '',
-        beforePrice: '',
-        afterPrice: '',
-        discount: '',
-        quantity: '',
-        imageUrl: []
-      });
+      if (!this.props.pageNo) {
+        this.props.addNewProduct(formData);
+        this.setState({
+          productName: '',
+          sku: '',
+          description: '',
+          beforePrice: '',
+          afterPrice: '',
+          discount: '',
+          quantity: '',
+          imageUrl: []
+        });
+      } else {
+        this.props.updateProduct(formData, this.props.pageNo);
+      }
     } else {
       this.validator.showMessages();
       // rerender to show messages for the first time
@@ -166,6 +174,9 @@ class ProductForm extends Component {
 const mapDispatchToProps = dispatch => ({
   addNewProduct: (data) => {
     dispatch(addProduct(data));
+  },
+  updateProduct: (data, id) => {
+    dispatch(updateProduct(data, id));
   }
 });
 

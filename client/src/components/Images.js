@@ -68,9 +68,7 @@ class Images extends Component {
       quantity: parseInt(quantity),
       image_url: imageUrlObj
     };
-    if (!this.props.pageNo) {
-      this.props.submitForm(data);
-    }
+    this.props.submitForm(data);
   };
 
     previous = (e) => {

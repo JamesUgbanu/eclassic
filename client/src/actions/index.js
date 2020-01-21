@@ -1,6 +1,6 @@
 import axios from 'axios';
 import {
-  DELETE_PRODUCT, FETCH_PRODUCTS, SET_ALERT, REMOVE_ALERT, ADD_PRODUCT, AJAX_LOADING
+  DELETE_PRODUCT, FETCH_PRODUCTS, SET_ALERT, REMOVE_ALERT, ADD_PRODUCT, AJAX_LOADING, UPDATE_PRODUCT
 }
   from './types';
 import Auth from '../Auth/Auth';
@@ -23,6 +23,10 @@ const deleteProductSuccess = id => ({
 });
 const addProductSuccess = product => ({
   type: ADD_PRODUCT,
+  payload: product
+});
+const updateProductSuccess = product => ({
+  type: UPDATE_PRODUCT,
   payload: product
 });
 
@@ -96,6 +100,36 @@ export const addProduct = formData => (dispatch) => {
     .then((res) => {
       dispatch(ajaxLoading(false));
       dispatch(addProductSuccess(res.data));
+      dispatch(setAlert(res.data.message, 'success'));
+    })
+    .catch((error) => {
+      dispatch(ajaxLoading(false));
+      if (error.response.data.errors) {
+        error.response.data.errors.forEach((error) => {
+          dispatch(setAlert(error.msg, 'error'));
+        });
+      } else {
+        dispatch(setAlert(error.response.data.message, 'error'));
+      }
+      throw (error);
+    });
+};
+
+export const updateProduct = (formData, id) => (dispatch) => {
+  dispatch(ajaxLoading(true));
+  return axios({
+    method: 'PUT',
+    url: `${ROOT_URL}/products/${id}`,
+    data: JSON.stringify(formData),
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${auth.getAccessToken()}`
+    }
+  })
+    .then((res) => {
+      console.log(res.data);
+      dispatch(ajaxLoading(false));
+      dispatch(updateProductSuccess(res.data));
       dispatch(setAlert(res.data.message, 'success'));
     })
     .catch((error) => {
