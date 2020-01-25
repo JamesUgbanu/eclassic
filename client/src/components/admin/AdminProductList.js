@@ -29,7 +29,7 @@ export default ({
               <td>{product.price}</td>
               <td>{product.prod_name}</td>
               <td className="action__btn">
-                <button>view&edit</button>
+                <a href={`/edit-product/${product.prod_id}`}>view&edit</a>
                 <button onClick={(e) => { if (window.confirm('Are you sure you wish to delete this item?')) onDelete(product.prod_id); }}>
                   delete
                 </button>

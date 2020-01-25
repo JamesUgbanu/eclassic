@@ -1101,13 +1101,14 @@ border-collapse: collapse;
     padding:10px;
 }
 
-.product__table table  .action__btn button:nth-child(1){
- background: linear-gradient(45deg, #e4c52a 0%,#ffa751  100%) !important;
- border: 2px solid #fff;
- border-radius: 5px;
- height: 30px;
- cursor: pointer;
- color: #fff;
+.product__table table  .action__btn a:nth-child(1){
+    background: linear-gradient(45deg, #e4c52a 0%,#ffa751 100%) !important;
+    border: 2px solid #fff;
+    border-radius: 5px;
+    padding: 5px 10px;
+    text-decoration: none;
+    cursor: pointer;
+    color: #fff;
 
 }
 

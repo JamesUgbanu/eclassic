@@ -7,9 +7,9 @@ import PriceInfo from './PriceInfo';
 import Quantity from './Quantity';
 import Images from './Images';
 import ProductNav from './AdminProductNav';
-import { addProduct, updateProduct } from '../actions/index';
+import { addProduct } from '../actions/index';
 
-class ProductForm extends Component {
+class EditProductForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -24,26 +24,6 @@ class ProductForm extends Component {
       imageUrl: []
     };
     this.validator = new SimpleReactValidator();
-  }
-
-  componentDidUpdate(prevProps) {
-    if (prevProps.currentProduct !== this.props.currentProduct) {
-      if (this.props.pageNo && this.props.currentProduct) {
-        const {
-          prod_name, sku_id, price, short_desc, discount, quantity, image_url
-        } = this.props.currentProduct;
-        const imageUrl = JSON.parse(image_url);
-        this.setState({
-          productName: prod_name,
-          sku: sku_id,
-          afterPrice: price,
-          description: short_desc,
-          discount: parseInt(discount),
-          quantity,
-          imageUrl: Object.values(imageUrl)
-        });
-      }
-    }
   }
 
   // Proceed to next step
@@ -77,21 +57,17 @@ class ProductForm extends Component {
   // Handle form submission
   handleSubmit = (formData) => {
     if (this.validator.allValid()) {
-      if (!this.props.pageNo) {
-        this.props.addNewProduct(formData);
-        this.setState({
-          productName: '',
-          sku: '',
-          description: '',
-          beforePrice: '',
-          afterPrice: '',
-          discount: '',
-          quantity: '',
-          imageUrl: []
-        });
-      } else {
-        this.props.updateProduct(formData, this.props.pageNo);
-      }
+      this.props.addNewProduct(formData);
+      this.setState({
+        productName: '',
+        sku: '',
+        description: '',
+        beforePrice: '',
+        afterPrice: '',
+        discount: '',
+        quantity: '',
+        imageUrl: []
+      });
     } else {
       this.validator.showMessages();
       // rerender to show messages for the first time
@@ -163,7 +139,6 @@ class ProductForm extends Component {
               handleFile={this.handleFile}
               submitForm={this.handleSubmit}
               errorMsg={this.validator}
-              pageNo={this.props.pageNo}
             />
           </div>
         );
@@ -171,30 +146,28 @@ class ProductForm extends Component {
   }
 }
 
+// Find current product based on ID passed in URL
+const findCurrentProduct = (products, id = -1) => {
+  // Find product for given id
+  return products.find(product => parseInt(product.prod_id, 10) === parseInt(id, 10));
+};
+
 const mapDispatchToProps = dispatch => ({
   addNewProduct: (data) => {
     dispatch(addProduct(data));
-  },
-  updateProduct: (data, id) => {
-    dispatch(updateProduct(data, id));
   }
 });
 
-// Find current product based on ID passed in URL
-const findCurrentProduct = (products, id = -1) =>
-  // Find product for given id
-  products.find(product => parseInt(product.prod_id, 10) === parseInt(id, 10));
 const mapStateToProps = (state, ownProps) => {
-  const currentProduct = state.products.length ? findCurrentProduct(state.products, ownProps.pageNo) : null;
+//const currentProduct = state.products.length > 0 ? findCurrentProduct(state.products, ownProps.match.params.id) : null;
+  console.log(ownProps);
   return {
-    currentProduct,
     ajaxLoading: state.ajaxLoading,
-    checkState: state.alert,
-    pageNo: ownProps.pageNo
+    checkState: state.alert
   };
 };
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(ProductForm);
+)(EditProductForm);
