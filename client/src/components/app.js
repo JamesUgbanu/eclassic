@@ -4,6 +4,7 @@ import Nav from './Nav';
 import Home from './Home';
 import Cart from './Cart';
 import Products from './Products';
+import SingleProduct from './SingleProduct';
 import AccountOverview from './AccountOverview';
 import AccountDetails from './AccountDetails';
 import AddressBook from './AddressBook';
@@ -40,7 +41,8 @@ class App extends Component {
           <Switch>
             <Route path="/" exact component={Home} />
             <Route path="/cart" component={Cart} />
-            <Route path="/products/:pageNo?" component={Products} />
+            <Route path="/products" component={Products} />
+            <Route path="/product/:productName/:productId?" component={SingleProduct} />
             <PrivateRoute path="/account-overview" component={AccountOverview} />
             <PrivateRoute path="/account-details" component={AccountDetails} />
             <PrivateRoute path="/address-book" component={AddressBook} />

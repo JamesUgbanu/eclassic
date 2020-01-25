@@ -1,6 +1,7 @@
 import axios from 'axios';
 import {
-  DELETE_PRODUCT, FETCH_PRODUCTS, SET_ALERT, REMOVE_ALERT, ADD_PRODUCT, AJAX_LOADING, UPDATE_PRODUCT
+  DELETE_PRODUCT, FETCH_PRODUCTS, SET_ALERT, REMOVE_ALERT, ADD_PRODUCT, AJAX_LOADING, UPDATE_PRODUCT,
+  ADD_CART
 }
   from './types';
 import Auth from '../Auth/Auth';
@@ -46,6 +47,14 @@ export const removeAlert = id => dispatch => dispatch(
     payload: { id }
   }
 );
+
+export const addToCart = item => (dispatch) => {
+  dispatch(setAlert(`${item.prod_name} added to cart`, 'success'));
+  dispatch({
+    type: ADD_CART,
+    payload: item
+  });
+};
 
 export const fetchAllProducts = () => (dispatch) => {
   dispatch(ajaxLoading(true));

@@ -1,4 +1,6 @@
 export default {
   products: [],
-  ajaxLoading: false
+  ajaxLoading: false,
+  alert: [],
+  cart: []
 };

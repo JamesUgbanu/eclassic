@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import AdminSideNav from './AdminSideNav';
 import Product from './AdminProductList';
 import { deleteProduct } from '../../actions/index';
+import { generateProductsByPage } from '../helpers';
 
 const AdminProducts = ({
   products, ajaxLoading, onDelete, currentPage, pages
@@ -23,7 +24,7 @@ const AdminProducts = ({
         </div>
         <hr />
 
-        <div className="product__form">
+        {/* <div className="product__form">
           <form>
             <div className="product__one">
               <label>Search:</label>
@@ -45,22 +46,11 @@ const AdminProducts = ({
               <input type="submit" value="GO" />
             </div>
           </form>
-        </div>
+        </div> */}
         <Product products={products} pages={pages} currentPage={currentPage} onDelete={onDelete} />
       </div>
     </main>
   );
-};
-
-// Generate list of products for given page number
-const generateProductsByPage = (products, pageNo) => {
-  // I assumed showing 10 products per page
-  const perPage = 10;
-  if (products.length) {
-    // Filter 10 products by page number
-    return products.filter((product, i) => i >= perPage * (pageNo - 1) && i < perPage * pageNo);
-  }
-  return [];
 };
 
 const mapStateToProps = (state, ownProps) => {

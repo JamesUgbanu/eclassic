@@ -1,22 +1,24 @@
-import { FETCH_PRODUCTS, DELETE_PRODUCT, ADD_PRODUCT, UPDATE_PRODUCT } from '../actions/types';
+import {
+  FETCH_PRODUCTS, DELETE_PRODUCT, ADD_PRODUCT, UPDATE_PRODUCT
+} from '../actions/types';
 import initialState from '../store/initialState';
 
 export default function(state = initialState.products, action) {
-  // eslint-disable-next-line default-case
-  switch (action.type) {
+  const { type, payload } = action;
+  switch (type) {
     case FETCH_PRODUCTS:
-      return action.payload.data;
+      return payload.data;
     case ADD_PRODUCT:
       return [
         ...state,
-        action.payload.data
+        payload.data
       ];
     case DELETE_PRODUCT:
-      return [...state.filter(product => product.prod_id !== action.payload.id)];
+      return [...state.filter(product => product.prod_id !== payload.id)];
     case UPDATE_PRODUCT:
       return [
-        ...state.filter(product => product.prod_id === action.payload.data.id),
-        action.payload.data
+        ...state.filter(product => product.prod_id === payload.data.id),
+        payload.data
       ];
     default:
       return state;
