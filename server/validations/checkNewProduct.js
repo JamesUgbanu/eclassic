@@ -21,16 +21,15 @@ const checkNewProduct = [
   check('sku_id')
     .optional()
     .isString(),
-  check('price')
-    .optional()
-    .isNumeric()
-    .withMessage('Price should be a number'),
+  check('price', 'item price is required').not().isEmpty()
+    .isFloat()
+    .withMessage('price should be a floating number'),
   check('image_url')
     .optional(),
   check('available_color').optional(),
-  check('quantity', 'Quantity should be an number')
-    .optional()
-    .isInt(),
+  check('quantity', 'Quantity is required').not().isEmpty()
+    .isInt()
+    .withMessage('Quantity should be an integer'),
   check('is_active')
     .optional()
     .isBoolean()

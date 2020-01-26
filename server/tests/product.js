@@ -173,7 +173,7 @@ describe('Test on product endpoints', () => {
         });
     });
     // test for product price
-    it('should check for product price', (done) => {
+    it('should check if product price is a float', (done) => {
       request(app)
         .post('/api/v1/products')
         .set('Authorization', `Bearer ${currrentToken}`)
@@ -197,7 +197,64 @@ describe('Test on product endpoints', () => {
         .expect('Content-Type', /json/)
         .expect(400)
         .end((err, res) => {
-          expect(res.body.errors[0].msg).to.equal('Price should be a number');
+          expect(res.body.errors[0].msg).to.equal('price should be a floating number');
+          done();
+        });
+    });
+    // price should not be empty
+    it('should check if product price is empty', (done) => {
+      request(app)
+        .post('/api/v1/products')
+        .set('Authorization', `Bearer ${currrentToken}`)
+        .send({
+          prod_name: 'handy',
+          long_desc: 'jh jmlkj kk. hvhvj',
+          short_desc: 'cdkn kjhk  nnn',
+          discount: 20,
+          coupons: {
+            blackfriday: 12334,
+            v1: 'edo'
+          },
+          sku_id: 'S001',
+          image_url: 'href:oooo',
+          available_color: { back: 'blue', front: 'white' },
+          quantity: 35,
+          is_active: true
+        })
+        .set('Accept', 'application/json')
+        .expect('Content-Type', /json/)
+        .expect(400)
+        .end((err, res) => {
+          expect(res.body.errors[0].msg).to.equal('item price is required');
+          done();
+        });
+    });
+    // test if quantity is integer
+    it('should check if quantity is an integer', (done) => {
+      request(app)
+        .post('/api/v1/products')
+        .set('Authorization', `Bearer ${currrentToken}`)
+        .send({
+          prod_name: 'handy',
+          long_desc: 'jh jmlkj kk. hvhvj',
+          short_desc: 'cdkn kjhk  nnn',
+          discount: 20,
+          coupons: {
+            blackfriday: 12334,
+            v1: 'edo'
+          },
+          sku_id: 'S001',
+          price: 500,
+          image_url: 'href:oooo',
+          available_color: { back: 'blue', front: 'white' },
+          quantity: 'thirty',
+          is_active: true
+        })
+        .set('Accept', 'application/json')
+        .expect('Content-Type', /json/)
+        .expect(201)
+        .end((err, res) => {
+          expect(res.body.errors[0].msg).to.equal('Quantity should be an integer');
           done();
         });
     });
@@ -219,7 +276,6 @@ describe('Test on product endpoints', () => {
           price: 500,
           image_url: {0:'test.jpg',1:'test2.png'},
           available_color: { back: 'blue', front: 'white' },
-          quantity: 'thirty five',
           is_active: true
         })
         .set('Accept', 'application/json')
@@ -227,7 +283,7 @@ describe('Test on product endpoints', () => {
         .expect(400)
         .end((err, res) => {
           expect(res.body.errors[0].msg).to.equal(
-            'Quantity should be an number'
+            'Quantity is required'
           );
           done();
         });
@@ -439,7 +495,7 @@ describe('Test on product endpoints', () => {
         .expect('Content-Type', /json/)
         .expect(400)
         .end((err, res) => {
-          expect(res.body.errors[0].msg).to.equal('Price should be a number');
+          expect(res.body.errors[0].msg).to.equal('price should be a floating number');
           done();
         });
     });
@@ -469,7 +525,7 @@ describe('Test on product endpoints', () => {
         .expect(400)
         .end((err, res) => {
           expect(res.body.errors[0].msg).to.equal(
-            'Quantity should be an number'
+            'Quantity should be an integer'
           );
           done();
         });
