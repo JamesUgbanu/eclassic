@@ -90,7 +90,6 @@ class ProductController {
    */
   static getById(request, response) {
     const id = parseInt(request.params.id, 10);
-
     const query = {
       text: 'SELECT * FROM products WHERE prod_id = $1',
       values: [id]
