@@ -13,7 +13,7 @@ class SingleProduct extends Component {
         <div className="login__box">Loading...</div>
       );
     }
-    const images = Object.values(JSON.parse(currentProduct.image_url));
+    const images = Object.values(currentProduct.image_url);
     return (
     // eslint-disable-next-line react/jsx-filename-extension
       <main className="container__section">

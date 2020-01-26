@@ -1,11 +1,11 @@
 import axios from 'axios';
 import {
   DELETE_PRODUCT, FETCH_PRODUCTS, SET_ALERT, REMOVE_ALERT, ADD_PRODUCT, AJAX_LOADING, UPDATE_PRODUCT,
-  ADD_CART
+  ADD_CART, REMOVE_CART, UPDATE_CART
 }
   from './types';
 import Auth from '../Auth/Auth';
-import { generateSerial } from '../components/helpers';
+import { generateSerial, updateQantityInCart } from '../components/helpers';
 
 const auth = new Auth();
 const ROOT_URL = 'http://localhost:3001/api/v1';
@@ -55,6 +55,21 @@ export const addToCart = item => (dispatch) => {
     payload: item
   });
 };
+export const removeFromCart = (id, name) => (dispatch) => {
+  dispatch(setAlert(`${name} removed from cart`, 'success'));
+  dispatch({
+    type: REMOVE_CART,
+    payload: { id }
+  });
+};
+
+export const updateQantity = (change, item) => (dispatch) => {
+  updateQantityInCart(change, item);
+  dispatch({
+    type: UPDATE_CART,
+    payload: { item }
+  });
+};
 
 export const fetchAllProducts = () => (dispatch) => {
   dispatch(ajaxLoading(true));
@@ -67,7 +82,7 @@ export const fetchAllProducts = () => (dispatch) => {
     .catch((error) => {
       dispatch(ajaxLoading(false));
       if (error.response) {
-        console.log(error.response.data);
+        dispatch(setAlert(error.response.data, 'error'));
       }
     });
 };

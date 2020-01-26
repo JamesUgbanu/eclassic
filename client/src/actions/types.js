@@ -7,5 +7,4 @@ export const AJAX_LOADING = 'AJAX_LOADING';
 export const UPDATE_PRODUCT = 'UPDATE_PRODUCT';
 export const ADD_CART = 'ADD_CART';
 export const REMOVE_CART = 'REMOVE_CART';
-export const INC_QTY = 'INC_QTY';
-export const DESC_QTY = 'DESC_QTY';
+export const UPDATE_CART = 'UPDATE_CART';

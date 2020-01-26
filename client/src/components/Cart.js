@@ -1,50 +1,78 @@
-import React, { Component } from 'react';
+import React from 'react';
+import { connect } from 'react-redux';
+import { getCartTotal } from './helpers';
 import Left from './LeftNav';
+import CartList from './CartList';
+import { removeFromCart, updateQantity } from '../actions/index';
 
 // eslint-disable-next-line react/prefer-stateless-function
-class Cart extends Component {
-  render() {
-    return (
-    // eslint-disable-next-line react/jsx-filename-extension
-    <main className="container__section">
-        <Left />
-        <div class="container__box cart__items">
-            <h1>Cart</h1>
-            <p>here you can check your order with futher confirmation and payment</p>
-            <div class="l_box">
-            <img src="./images/lady-on-nike-sneaker.jpg" />
-            <table cellpadding="6">
-                <tr><th width="200">New Product</th> <th>Size</th><th>Quantity</th> <th>Cost</th></tr>
-                <tr><td>Modern Line</td><td>M</td>
-                    <td>
-                    <form>
-                    <div class="value-button" id="decrease">-</div>
-                            <input type="number" id="number" value="0" />
-                            <div class="value-button" id="increase">+</div>
-                        </form>
-                    </td><td>52.99$</td></tr>
-            </table>
-            <div class="remove__btn fa fa-times" />
-            </div>
-             <div class="back__to__product"><a href="#"><i class="fa fa-arrow-left"></i>Back to product</a></div>                                           
-            </div>
-            <div class="container__box">
+const Cart = ({ cart, removeCart, updateQantity }) => (
+  // eslint-disable-next-line react/jsx-filename-extension
+  <main className="container__section">
+    <Left />
+    <div className="container__box cart__items">
+      <h1>Cart</h1>
+      <p>Here you can check your order with futher confirmation and payment</p>
+      <CartList cartItems={cart} removeCart={removeCart} updateQantity={updateQantity} />
+      <div className="back__to__product">
+        <a href="/products">
+          <i className="fa fa-arrow-left" />
+Back to product
+        </a>
+      </div>
+    </div>
+    <div className="container__box">
 
-            <div class="quantity">
-        <table cellspacing="20">
-                <tr><td>Quantity</td> <td >5</td></tr>
-                <tr><td>Total</td> <td >134.48$</td></tr>
-                <tr><td>Discount</td> <td>-5.33</td></tr>
-                <tr><td></td> <td></td></tr>
-                <tr><td></td> <td></td></tr>
-                <tr><td>To Pay</td> <td>119.48$</td></tr>
+      <div className="quantity">
+        <table cellSpacing="20">
+          <tbody>
+            <tr>
+              <td>Quantity</td>
+              <td>5</td>
+            </tr>
+            <tr>
+              <td />
+              <td />
+            </tr>
+            <tr>
+              <td />
+              <td />
+            </tr>
+            <tr>
+              <td>To Pay</td>
+              <td>
+$
+                {getCartTotal(cart)}
+              </td>
+            </tr>
+          </tbody>
         </table>
-            </div>
-            <button>Checkout <i class="fa fa-arrow-right fa-1x"></i><span class="amount__btn">$25000</span></button>
-        </div>
-    </main>
-    );
-  }
-}
+      </div>
+      <button>
+Checkout
+        <i className="fa fa-arrow-right fa-1x" />
+        <span className="amount__btn">
+$
+          {getCartTotal(cart)}
+        </span>
+      </button>
+    </div>
+  </main>
+);
 
-export default Cart;
+const mapStateToProps = state => ({
+  cart: state.cart,
+});
+
+const mapDispatchToProps = dispatch => ({
+  removeCart: (id, name) => {
+    dispatch(removeFromCart(id, name));
+  },
+  updateQantity: (change, item) => {
+    dispatch(updateQantity(change, item));
+  }
+});
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Cart);

@@ -9,7 +9,7 @@ export default function(state = initialState.cart, action) {
     case ADD_CART:
       return [...state, payload];
     case REMOVE_CART:
-      return state.filter(item => item.id !== payload.id);
+      return state.filter(item => item.prod_id !== payload.id);
     default:
       return state;
   }

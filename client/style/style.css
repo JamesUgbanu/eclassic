@@ -67,11 +67,15 @@ header.shadow__menu {
 }
 
 .cart__box {
-    background-color: #35363a;
+    background: #35363a;
     width:100%;
-}
-.cart__box {
     height: 100%;
+}
+.cart__box:hover {
+    background: #fbba3f;
+}
+.cart__box a {
+    text-decoration: none;
 }
 .cart__box .fa {
     color: #fff;
@@ -406,9 +410,7 @@ header.shadow__menu {
 .content_box {
     position: relative;
 }
-.container__box button.active {
-    cursor: pointer;
-}
+
 .container__box button {
     position: fixed;
     bottom: 0;
@@ -419,6 +421,7 @@ header.shadow__menu {
     color: #fff;
     font-size: 18px;
     background: orange;
+    cursor: pointer;
 }
 
 .single_img {
@@ -478,7 +481,10 @@ header.shadow__menu {
 }
 
 .remove__btn {
-    width: 20px;
+    display: block;
+    width: 20px !important;
+    color: #000 !important;
+    background: transparent !important;
 }
 
 .l_box th {
@@ -537,7 +543,7 @@ header.shadow__menu {
     padding: 0px;
   }
   
-  .l_box input#number {
+  .l_box input[type=number] {
     text-align: center;
     border: none;
     border-top: 1px solid #ddd;
