@@ -67,11 +67,15 @@ header.shadow__menu {
 }
 
 .cart__box {
-    background-color: #35363a;
+    background: #35363a;
     width:100%;
-}
-.cart__box {
     height: 100%;
+}
+.cart__box:hover {
+    background: #fbba3f;
+}
+.cart__box a {
+    text-decoration: none;
 }
 .cart__box .fa {
     color: #fff;
@@ -185,9 +189,6 @@ header.shadow__menu {
     bottom: 50px;
     left: 4%;
     }
-    /* .top__menu {
-        border-right: 1px solid #509197;
-    } */
     aside.container__box {
         border-right: 1px solid #509197;
         height: 100%;
@@ -229,10 +230,7 @@ header.shadow__menu {
         }
 }
 
-
-
 /* Left Section */
-
 .banner .main_text {
     font-size:50px;
     color: #000;
@@ -263,7 +261,6 @@ header.shadow__menu {
 
 
 /* Navigation */
-
 .navigation__menu ul li {
     padding: 10px 0 10px 0;
 }
@@ -314,7 +311,10 @@ header.shadow__menu {
     margin: 0 20px;
 }
 
-
+.cloth_img .price {
+    float: right;
+    font-size: 20px;
+}
 
 
 .cloth_img img {
@@ -334,9 +334,8 @@ header.shadow__menu {
         margin-left: 20px;
         }
         .cloth_img {
-        width: 21%;
+        width: 25%;
         float: left;
-        height: 100%;
         margin: 50px 2% 10px 2%;
      }
      
@@ -352,9 +351,13 @@ header.shadow__menu {
         }
         .cloth_img {
             float: left;
+            width: 100%;
             height: 100%;
             margin: 10px;
      }
+     .cloth_img a {
+        padding: 10px 30% !important;
+    }
      
      .cloth_img hr {
         width: 50%;
@@ -363,26 +366,22 @@ header.shadow__menu {
         
 }
 
-.cloth_img button {
-    background: linear-gradient(45deg, #e4c52a 0%,#ffa751  100%);
-color: #fff;
-border: none;
-padding: 10px 10px 10px 10px;
-text-align: centre;
-cursor: pointer;
-width: 100%;
+.cloth_img a {
+    background: linear-gradient(45deg, #e4c52a 0%,#ffa751 100%);
+    color: #fff;
+    border: none;
+    padding: 10px 50px;
+    cursor: pointer;
+    text-decoration: none;
 }
 
-
-
-.cloth_img button:hover {
+.cloth_img a:hover {
     background: linear-gradient(45deg, #ffa751 0%,#e4c52a  100%);   
 }
 
 .cloth_img img:hover {
     opacity: 0.5;
 }
-
 
 /** Single Page **/
 @media only screen and (min-width: 768px) {
@@ -411,8 +410,8 @@ width: 100%;
 .content_box {
     position: relative;
 }
+
 .container__box button {
-    background: orange;
     position: fixed;
     bottom: 0;
     width: 20vw;
@@ -420,14 +419,15 @@ width: 100%;
     border: none;
     text-align: center;
     color: #fff;
-    cursor: pointer;
     font-size: 18px;
+    background: orange;
+    cursor: pointer;
 }
-
 
 .single_img {
     height: 400px;
-    margin: 0 10px;
+    margin: 10px;
+    
 }
 .single_img img {
     width: 100%;
@@ -481,7 +481,10 @@ width: 100%;
 }
 
 .remove__btn {
-    width: 20px;
+    display: block;
+    width: 20px !important;
+    color: #000 !important;
+    background: transparent !important;
 }
 
 .l_box th {
@@ -534,26 +537,9 @@ width: 100%;
     cursor: pointer;
   }
   
-
-  .l_box form #input-wrap {
-    margin: 0px;
-    padding: 0px;
-  }
-  
-  .l_box input#number {
-    text-align: center;
-    border: none;
-    border-top: 1px solid #ddd;
-    border-bottom: 1px solid #ddd;
-    margin: 0px;
-    width: 40px;
-    height: 30px;
-  }
-  
-  .l_box input[type=number]::-webkit-inner-spin-button,
-  .l_box input[type=number]::-webkit-outer-spin-button {
-      -webkit-appearance: none;
-      margin: 0;
+  .l_box .cart__quantity {
+    padding: 4px 15px;
+    border: 1px solid #dadada;
   }
 
 @media only screen and (min-width: 768px) {

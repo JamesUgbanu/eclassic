@@ -1,12 +1,14 @@
 import { combineReducers } from 'redux';
 import ProductReducer from './reducer_product';
 import AlertReducer from './reducer_alert';
-import AjaxLoading from './ajaxLoadingReducer';
+import ajaxLoading from './ajaxLoadingReducer';
+import cartReducer from './reducer_cart';
 
 const rootReducer = combineReducers({
   products: ProductReducer,
   alert: AlertReducer,
-  AjaxLoading
+  cart: cartReducer,
+  ajaxLoading
 });
 
 export default rootReducer;

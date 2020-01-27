@@ -58,7 +58,8 @@ class Images extends Component {
       imageUrl, productName, sku, description,
       afterPrice, discount, quantity
     } = this.props.values;
-    const imageUrlObj = { ...imageUrl };
+    let imageUrlObj = { ...imageUrl };
+
     const data = {
       prod_name: productName,
       sku_id: sku,
@@ -79,6 +80,7 @@ class Images extends Component {
     render() {
       const { message, loader } = this.state;
       const { imageUrl } = this.props.values;
+      const { loading } = this.props.loading;
       return (
         <div className="tab__page">
           <div className="tab__button">
@@ -86,8 +88,8 @@ class Images extends Component {
               <i className="fas fa-arrow-left" />
 previous
             </button>
-            <button onClick={this.onSubmit} disabled={`${!imageUrl.length ? 'disabled' : ''}`}>
-                Submit
+            <button onClick={this.onSubmit} disabled={`${!imageUrl || loading ? 'disabled' : ''}`}>
+                { loading ? <span>Loading...</span> : <span>Submit</span> }
               <i className="fas fa-arrow-right" />
             </button>
           </div>

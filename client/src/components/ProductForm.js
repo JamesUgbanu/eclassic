@@ -8,6 +8,7 @@ import Quantity from './Quantity';
 import Images from './Images';
 import ProductNav from './AdminProductNav';
 import { addProduct, updateProduct } from '../actions/index';
+import { findCurrentProduct } from './helpers';
 
 class ProductForm extends Component {
   constructor(props) {
@@ -109,11 +110,6 @@ class ProductForm extends Component {
       productName, sku, description, beforePrice, afterPrice, discount, quantity, imageUrl
     };
 
-    if (this.props.ajaxLoading) {
-      return (
-        <p>Loading...</p>
-      );
-    }
     switch (step) {
       case 1:
         return (
@@ -164,6 +160,7 @@ class ProductForm extends Component {
               submitForm={this.handleSubmit}
               errorMsg={this.validator}
               pageNo={this.props.pageNo}
+              loading={this.props.ajaxLoading}
             />
           </div>
         );
@@ -180,10 +177,6 @@ const mapDispatchToProps = dispatch => ({
   }
 });
 
-// Find current product based on ID passed in URL
-const findCurrentProduct = (products, id = -1) =>
-  // Find product for given id
-  products.find(product => parseInt(product.prod_id, 10) === parseInt(id, 10));
 const mapStateToProps = (state, ownProps) => {
   const currentProduct = state.products.length ? findCurrentProduct(state.products, ownProps.pageNo) : null;
   return {

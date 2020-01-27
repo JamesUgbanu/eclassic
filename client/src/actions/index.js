@@ -1,6 +1,7 @@
 import axios from 'axios';
 import {
-  DELETE_PRODUCT, FETCH_PRODUCTS, SET_ALERT, REMOVE_ALERT, ADD_PRODUCT, AJAX_LOADING, UPDATE_PRODUCT
+  DELETE_PRODUCT, FETCH_PRODUCTS, SET_ALERT, REMOVE_ALERT, ADD_PRODUCT, AJAX_LOADING, UPDATE_PRODUCT,
+  ADD_CART, REMOVE_CART, INCREMENT_QUANTITY, DECREMENT_QUANTITY
 }
   from './types';
 import Auth from '../Auth/Auth';
@@ -47,6 +48,35 @@ export const removeAlert = id => dispatch => dispatch(
   }
 );
 
+export const addToCart = item => (dispatch) => {
+  dispatch(setAlert(`${item.prod_name} added to cart`, 'success'));
+  dispatch({
+    type: ADD_CART,
+    payload: item
+  });
+};
+export const removeFromCart = (id, name) => (dispatch) => {
+  dispatch(setAlert(`${name} removed from cart`, 'success'));
+  dispatch({
+    type: REMOVE_CART,
+    payload: { id }
+  });
+};
+
+export const increaseQuantity = id => (dispatch) => {
+  dispatch({
+    type: INCREMENT_QUANTITY,
+    payload: { id }
+  });
+};
+
+export const decreaseQuantity = id => (dispatch) => {
+  dispatch({
+    type: DECREMENT_QUANTITY,
+    payload: { id }
+  });
+};
+
 export const fetchAllProducts = () => (dispatch) => {
   dispatch(ajaxLoading(true));
   return axios.get(`${ROOT_URL}/products`)
@@ -58,7 +88,7 @@ export const fetchAllProducts = () => (dispatch) => {
     .catch((error) => {
       dispatch(ajaxLoading(false));
       if (error.response) {
-        console.log(error.response.data);
+        dispatch(setAlert(error.response.data, 'error'));
       }
     });
 };

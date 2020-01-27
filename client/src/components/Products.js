@@ -1,75 +1,45 @@
-import React, { Component } from 'react';
+import React from 'react';
+import { connect } from 'react-redux';
 import Left from './LeftNav';
-
+import { generateProductsByPage } from './helpers';
+import ProductList from './ProductList';
 // eslint-disable-next-line react/prefer-stateless-function
-class Products extends Component {
-  render() {
+const Products = ({
+  products, currentPage, pages, ajaxLoading
+}) => {
+  if (ajaxLoading) {
     return (
-    // eslint-disable-next-line react/jsx-filename-extension
-    <main className="container__page">
-        <Left />
-        <div class="cloth_text">
-            <h1>ALL CLOTHES</h1>
-
-            <p>
-                lorem ipsum  lorem ipsum lorem ipsum
-                lorem ipsum lorem ipsum lorem ipsum
-                lorem ipsum
-            </p>
-        </div>
-        <div class="product__container">
-        <div class="cloth_img">
-           <img src="./images/lady-on-nike-sneaker.jpg" />
-           <hr />
-           <p>Hoody</p>
-           <button>Add To Cart <span class="fa fa-arrow-right fa-1x"></span></button>  
-        </div>
-        <div class="cloth_img">
-                <img src="./images/man-on-nike-sneaker.jpg" />
-                <hr />
-                <p>Hoody</p>
-                <button>Add To Cart <span class="fa fa-arrow-right fa-1x"></span></button>   
-        </div>
-        <div class="cloth_img">
-                <img src="./images/lady-on-nike-sneaker.jpg" />
-                <hr />
-                <p>Hoody</p>
-                <button>Add To Cart <span class="fa fa-arrow-right fa-1x"></span></button> 
-        </div>
-        <div class="cloth_img">
-                <img src="./images/man-on-nike-sneaker.jpg" />
-                <hr />
-                <p>Hoody</p>
-                <button>Add To Cart <span class="fa fa-arrow-right fa-1x"></span></button>  
-        </div>
-        <div class="cloth_img">
-                <img src="./images/lady-on-nike-sneaker.jpg" />
-                <hr />
-                <p>Hoody</p>
-                <button>Add To Cart <span class="fa fa-arrow-right fa-1x"></span></button> 
-        </div>
-        <div class="cloth_img">
-                <img src="./images/man-on-nike-sneaker.jpg" />
-                <hr />
-                <p>Hoody</p>
-                <button>Add To Cart <span class="fa fa-arrow-right fa-1x"></span></button>  
-        </div>
-        <div class="cloth_img">
-                <img src="./images/lady-on-nike-sneaker.jpg" />
-                <hr />
-                <p>Hoody</p>
-                <button>Add To Cart <span class="fa fa-arrow-right fa-1x"></span></button> 
-        </div>
-        <div class="cloth_img">
-                <img src="./images/man-on-nike-sneaker.jpg" />
-                <hr />
-                <p>Hoody</p>
-                <button>Add To Cart <span class="fa fa-arrow-right fa-1x"></span></button>     
-        </div>
-    </div>
-    </main>
+      <div className="login__box">Loading...</div>
     );
   }
-}
+  return (
+  // eslint-disable-next-line react/jsx-filename-extension
+    <main className="container__page">
+      <Left />
+      <div className="cloth_text">
+        <h1>ALL CLOTHES</h1>
+        <p>Lovely collections for you</p>
+      </div>
+      <div className="product__container">
+        <ProductList products={products} pages={pages} currentPage={currentPage} />
+      </div>
+    </main>
+  );
+};
 
-export default Products;
+const mapStateToProps = (state, ownProps) => {
+  // Set page number to 1 if no number in url params
+  const pageNo = ownProps.match.params.pageNo || 1;
+  const products = generateProductsByPage(state.products, pageNo);
+  return {
+    products,
+    pages: Math.ceil(state.products.length / 10), // Determine number of pages for pagination
+    currentPage: pageNo,
+    ajaxLoading: state.ajaxLoading
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  null
+)(Products);

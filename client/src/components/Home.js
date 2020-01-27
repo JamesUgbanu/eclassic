@@ -17,7 +17,7 @@ class Home extends Component {
         </div>
       </div>
       <div className="container__box">
-        <a href="#" className="box box__one"><p>Categories</p></a>
+        {/* <a href="#" className="box box__one"><p>Categories</p></a> */}
         <a href="/products" className="box box__two"> <p>All Products</p></a>
       </div>
     </main>
