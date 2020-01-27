@@ -1,7 +1,7 @@
 import React from 'react';
 
 export default ({
-  cartItems, removeCart, updateQantity
+  cartItems, removeCart, incrementQuantity, decrementQuantity
 }) => (
   !cartItems.length
     ? (
@@ -27,13 +27,13 @@ export default ({
                   {cartItem.prod_name}
                 </td>
                 <td>
-                  <div className="value-button" onClick={() => updateQantity('decrement', cartItem)}>-</div>
-                  <input type="number" defaultValue="1" />
-                  <div className="value-button" onClick={() => updateQantity('increment', cartItem)}>+</div>
+                  <div className="value-button" onClick={() => cartItem.cartQuantity !== 1 ? decrementQuantity(cartItem.prod_id) : null}>-</div>
+                  <span className="cart__quantity">{cartItem.cartQuantity}</span>
+                  <div className="value-button" onClick={() => incrementQuantity(cartItem.prod_id)}>+</div>
                 </td>
                 <td>
 $
-                  {cartItem.price}
+                  {cartItem.price * cartItem.cartQuantity}
                 </td>
               </tr>
             </tbody>

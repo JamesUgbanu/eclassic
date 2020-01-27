@@ -25,8 +25,7 @@ export const generateProductsByPage = (products, pageNo) => {
 // Find current product based on ID passed in URL
 export const findCurrentProduct = (products, id = -1) =>
   // Find product for given id
-  products.find(product => parseInt(product.prod_id, 10) === parseInt(id, 10))
-;
+  products.find(product => parseInt(product.prod_id, 10) === parseInt(id, 10));
 
 // Check if current state has cart item
 export const checkForItemState = (products, id) => {
@@ -40,26 +39,17 @@ export const getCartTotal = (cartItems) => {
   let total = 0;
   // Find product for given id
   cartItems.forEach((item) => {
-    total += parseFloat(item.price);
+    total += parseFloat(item.price) * parseInt(item.cartQuantity);
   });
   return total;
 };
 
 // Return item total from the cart
-export const updateQantityInCart = (change, item) => {
-  let quantity = 1;
-
-  switch (change) {
-    case 'increment':
-
-      quantity += 1;
-      break;
-    case 'decrement':
-      quantity -= 1;
-      break;
-    default:
-      quantity;
-  }
-  item.cartItem = quantity;
-  console.log(item);
+export const getQuantity = (cartItems) => {
+  let quantity = 0;
+  // Find product for given id
+  cartItems.forEach((item) => {
+    quantity += parseInt(item.cartQuantity);
+  });
+  return quantity;
 };

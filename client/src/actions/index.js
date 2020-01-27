@@ -1,11 +1,11 @@
 import axios from 'axios';
 import {
   DELETE_PRODUCT, FETCH_PRODUCTS, SET_ALERT, REMOVE_ALERT, ADD_PRODUCT, AJAX_LOADING, UPDATE_PRODUCT,
-  ADD_CART, REMOVE_CART, UPDATE_CART
+  ADD_CART, REMOVE_CART, INCREMENT_QUANTITY, DECREMENT_QUANTITY
 }
   from './types';
 import Auth from '../Auth/Auth';
-import { generateSerial, updateQantityInCart } from '../components/helpers';
+import { generateSerial } from '../components/helpers';
 
 const auth = new Auth();
 const ROOT_URL = 'http://localhost:3001/api/v1';
@@ -63,11 +63,17 @@ export const removeFromCart = (id, name) => (dispatch) => {
   });
 };
 
-export const updateQantity = (change, item) => (dispatch) => {
-  updateQantityInCart(change, item);
+export const increaseQuantity = id => (dispatch) => {
   dispatch({
-    type: UPDATE_CART,
-    payload: { item }
+    type: INCREMENT_QUANTITY,
+    payload: { id }
+  });
+};
+
+export const decreaseQuantity = id => (dispatch) => {
+  dispatch({
+    type: DECREMENT_QUANTITY,
+    payload: { id }
   });
 };
 

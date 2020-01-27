@@ -537,26 +537,9 @@ header.shadow__menu {
     cursor: pointer;
   }
   
-
-  .l_box form #input-wrap {
-    margin: 0px;
-    padding: 0px;
-  }
-  
-  .l_box input[type=number] {
-    text-align: center;
-    border: none;
-    border-top: 1px solid #ddd;
-    border-bottom: 1px solid #ddd;
-    margin: 0px;
-    width: 40px;
-    height: 30px;
-  }
-  
-  .l_box input[type=number]::-webkit-inner-spin-button,
-  .l_box input[type=number]::-webkit-outer-spin-button {
-      -webkit-appearance: none;
-      margin: 0;
+  .l_box .cart__quantity {
+    padding: 4px 15px;
+    border: 1px solid #dadada;
   }
 
 @media only screen and (min-width: 768px) {

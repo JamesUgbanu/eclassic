@@ -1,5 +1,5 @@
 import {
-  ADD_CART, REMOVE_CART
+  ADD_CART, REMOVE_CART, INCREMENT_QUANTITY, DECREMENT_QUANTITY
 } from '../actions/types';
 import initialState from '../store/initialState';
 
@@ -10,6 +10,20 @@ export default function(state = initialState.cart, action) {
       return [...state, payload];
     case REMOVE_CART:
       return state.filter(item => item.prod_id !== payload.id);
+    case INCREMENT_QUANTITY:
+      return Object.assign([], state.map((item) => {
+        if (item.prod_id === payload.id) {
+          item.cartQuantity += 1;
+        }
+        return item;
+      }));
+    case DECREMENT_QUANTITY:
+      return Object.assign([], state.map((item) => {
+        if (item.prod_id === payload.id) {
+          item.cartQuantity -= 1;
+        }
+        return item;
+      }));
     default:
       return state;
   }

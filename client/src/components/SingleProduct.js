@@ -14,6 +14,14 @@ class SingleProduct extends Component {
       );
     }
     const images = Object.values(currentProduct.image_url);
+    const cartObj = {
+      prod_id: currentProduct.prod_id,
+      prod_name: currentProduct.prod_name,
+      image_url: currentProduct.image_url,
+      price: currentProduct.price,
+      short_desc: currentProduct.short_desc,
+      cartQuantity: 1
+    };
     return (
     // eslint-disable-next-line react/jsx-filename-extension
       <main className="container__section">
@@ -42,7 +50,7 @@ class SingleProduct extends Component {
           {
                 checkForItemState(cart, currentProduct.prod_id)
                   ? <button disabled>Item already in cart</button>
-                  : <button class="active" onClick={() => this.props.addCart(currentProduct)}>Add to Cart</button>
+                  : <button class="active" onClick={() => this.props.addCart(cartObj)}>Add to Cart</button>
             }
         </div>
       </main>
