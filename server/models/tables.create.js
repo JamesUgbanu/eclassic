@@ -30,5 +30,15 @@ const createOrderTable = `
   );
 `;
 
-const createQuery = `${createProductTable}${createOrderTable}`;
+const createShippingTable = `
+  CREATE TABLE IF NOT EXISTS shipping(
+    shipping_id SERIAL PRIMARY KEY NOT NULL,
+    customer_id VARCHAR(50),
+    address VARCHAR(200) NOT NULL,
+    city VARCHAR(50) NOT NULL,
+    state VARCHAR(50) NOT NULL,
+    phone VARCHAR(12) NOT NULL
+  );
+`;
+const createQuery = `${createProductTable}${createOrderTable}${createShippingTable}`;
 export default createQuery;
