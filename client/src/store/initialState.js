@@ -2,5 +2,6 @@ export default {
   products: [],
   ajaxLoading: false,
   alert: [],
-  cart: []
+  cart: [],
+  user: []
 };

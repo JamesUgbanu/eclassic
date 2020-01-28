@@ -1,7 +1,7 @@
 import axios from 'axios';
 import {
   DELETE_PRODUCT, FETCH_PRODUCTS, SET_ALERT, REMOVE_ALERT, ADD_PRODUCT, AJAX_LOADING, UPDATE_PRODUCT,
-  ADD_CART, REMOVE_CART, INCREMENT_QUANTITY, DECREMENT_QUANTITY
+  ADD_CART, REMOVE_CART, INCREMENT_QUANTITY, DECREMENT_QUANTITY, FETCH_PROFILE
 }
   from './types';
 import Auth from '../Auth/Auth';
@@ -77,6 +77,19 @@ export const decreaseQuantity = id => (dispatch) => {
   });
 };
 
+export const fetchUserProfile = () => (dispatch) => {
+  auth.getProfile((profile = null, error = '') => {
+    const { nickname, email, picture } = profile;
+    const profileDetails = {
+      nickname, email, picture
+    };
+    dispatch({
+      type: FETCH_PROFILE,
+      payload: { profileDetails }
+    });
+  });
+};
+
 export const fetchAllProducts = () => (dispatch) => {
   dispatch(ajaxLoading(true));
   return axios.get(`${ROOT_URL}/products`)
@@ -99,7 +112,7 @@ export const deleteProduct = id => (dispatch) => {
     {
       headers: {
         'Content-Type': 'application/json',
-        Authorization: `Bearer ${auth.getAccessToken()}`
+        Authorization: `Bearer ${auth.getIdToken()}`
       }
     })
     .then((res) => {
@@ -124,7 +137,7 @@ export const addProduct = formData => (dispatch) => {
     data: JSON.stringify(formData),
     headers: {
       'Content-Type': 'application/json',
-      Authorization: `Bearer ${auth.getAccessToken()}`
+      Authorization: `Bearer ${auth.getIdToken()}`
     }
   })
     .then((res) => {
@@ -153,7 +166,7 @@ export const updateProduct = (formData, id) => (dispatch) => {
     data: JSON.stringify(formData),
     headers: {
       'Content-Type': 'application/json',
-      Authorization: `Bearer ${auth.getAccessToken()}`
+      Authorization: `Bearer ${auth.getIdToken()}`
     }
   })
     .then((res) => {

@@ -23,7 +23,8 @@ export default class Auth {
       if (authResult && authResult.accessToken && authResult.idToken) {
         this.setSession(authResult);
       } else if (err) {
-        console.log(err)
+        history.push('/');
+        console.log(err);
       }
     });
   };
@@ -36,7 +37,7 @@ export default class Auth {
     localStorage.setItem('access_token', authResult.accessToken);
     localStorage.setItem('id_token', authResult.idToken);
     localStorage.setItem('expires_at', expiresAt);
-    !this.isAdmin(authResult.idToken) ? history.replace('/account-overview') : history.replace('/admin-dashboard');
+    !this.isAdmin(authResult.idToken) ? history.push('/account-overview') : history.push('/admin-dashboard');
     location.reload();
   };
 
@@ -65,8 +66,16 @@ export default class Auth {
     });
   };
 
+  getIdToken = () => {
+    const idToken = localStorage.getItem('id_token');
+    if (!idToken) {
+      throw new Error('No id token found.');
+    }
+    return idToken;
+  };
+
   getAccessToken = () => {
-    const accessToken = localStorage.getItem('id_token');
+    const accessToken = localStorage.getItem('access_token');
     if (!accessToken) {
       throw new Error('No access token found.');
     }

@@ -33,7 +33,7 @@ class ProductForm extends Component {
         const {
           prod_name, sku_id, price, short_desc, discount, quantity, image_url
         } = this.props.currentProduct;
-        const imageUrl = JSON.parse(image_url);
+        const imageUrl = image_url;
         this.setState({
           productName: prod_name,
           sku: sku_id,

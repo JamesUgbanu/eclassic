@@ -25,10 +25,6 @@ class AccountDetails extends Component {
               <div className="form__field">
                 <label className="dtail__label">EMAIL</label>
                 <span>singlecliq@gmail.com</span>
-                <select>
-                  <option>MALE</option>
-                  <option>FEMALE</option>
-                </select>
               </div>
               <div className="form__field">
                 <label className="dtail__label">Prefix</label>

@@ -9,7 +9,6 @@ import App from './components/app';
 const { persistor, store } = createAppStore();
 // Load Products list from API as soon as application initiates
 store.dispatch(fetchAllProducts());
-
 ReactDOM.render(
   <Provider store={store}>
     <PersistGate loading={null} persistor={persistor}>
