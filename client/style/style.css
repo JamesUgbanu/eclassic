@@ -327,7 +327,15 @@ header.shadow__menu {
     .container__page {
         display: grid;
         grid-template-columns: 15% 15% 70%;
-        height: 86vh;  
+        height: 86vh;
+    }
+    .container__checkout__page {
+        display: grid;
+        grid-template-columns: 15% 45% 40%;
+        height: 86vh;
+    }
+    .checkout__product {
+        margin-top: 100px;
     }
     .cloth_text {
         margin-top: 140%;
@@ -1400,3 +1408,14 @@ background-color: #f00;
         width: 60%;
     }
 /** quantity ends here**/
+/** Checkout Page **/
+.bg__header {
+    background: linear-gradient(45deg, #e4c52a 0%,#ffa751  100%);
+    width: 93%;
+    padding: 20px 0;
+    text-align: center;
+    color: #fff;
+}
+.checkout__amount {
+    font-size: 25px;
+}

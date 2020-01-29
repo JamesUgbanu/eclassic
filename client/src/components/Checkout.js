@@ -4,15 +4,11 @@ import Left from './LeftNav';
 // eslint-disable-next-line react/prefer-stateless-function
 const Checkout = () => (
   // eslint-disable-next-line react/jsx-filename-extension
-  <main className="container__page">
+  <main className="container__checkout__page">
     <Left />
-    <div className="cloth_text">
-      <h1>Lorem ipsum</h1>
-      <p>Fill Information correctly</p>
-    </div>
     <div className="acc__container">
-      <h1>Shipping Information</h1>
-      <form className="form__control">
+      <h1 className="bg__header">Shipping Information</h1>
+      <div className="form__control">
         <div className="form__two__grid">
           <div className="form__field">
             <label className="dtail__label">FIRST NAME</label>
@@ -39,8 +35,30 @@ const Checkout = () => (
             <textarea name="" placeholder="Address" />
           </div>
         </div>
-        <input type="submit" value="PAY NOW - $1000" />
-      </form>
+
+      </div>
+    </div>
+    <div class="form__control checkout__product">
+        <table cellSpacing="20">
+          <tbody>
+            <tr>
+              <td>Puma</td>
+              <td>$1000</td>
+              <td>1</td>
+            </tr>
+            <tr>
+              <td />
+              <td />
+            </tr>
+            <tr class="checkout__amount">
+              <td>To Pay</td>
+              <td>
+                  $1000
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      <input type="submit" value="PAY NOW - $1000" />
     </div>
   </main>
 );
