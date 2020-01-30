@@ -3,5 +3,6 @@ export default {
   ajaxLoading: false,
   alert: [],
   cart: [],
+  orders: [],
   user: []
 };

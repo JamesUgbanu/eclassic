@@ -1,5 +1,5 @@
 import {
-  ADD_CART, REMOVE_CART, INCREMENT_QUANTITY, DECREMENT_QUANTITY
+  ADD_CART, REMOVE_CART, INCREMENT_QUANTITY, DECREMENT_QUANTITY, CLEAR_CART
 } from '../actions/types';
 import initialState from '../store/initialState';
 
@@ -8,6 +8,8 @@ export default function(state = initialState.cart, action) {
   switch (type) {
     case ADD_CART:
       return [...state, payload];
+    case CLEAR_CART:
+      return state = payload.cart;
     case REMOVE_CART:
       return state.filter(item => item.prod_id !== payload.id);
     case INCREMENT_QUANTITY:

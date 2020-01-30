@@ -1,7 +1,7 @@
 import axios from 'axios';
 import {
   DELETE_PRODUCT, FETCH_PRODUCTS, SET_ALERT, REMOVE_ALERT, ADD_PRODUCT, AJAX_LOADING, UPDATE_PRODUCT,
-  ADD_CART, REMOVE_CART, INCREMENT_QUANTITY, DECREMENT_QUANTITY, FETCH_PROFILE
+  ADD_CART, REMOVE_CART, INCREMENT_QUANTITY, DECREMENT_QUANTITY, FETCH_PROFILE, ADD_ORDER, CLEAR_CART
 }
   from './types';
 import Auth from '../Auth/Auth';
@@ -25,6 +25,10 @@ const deleteProductSuccess = id => ({
 const addProductSuccess = product => ({
   type: ADD_PRODUCT,
   payload: product
+});
+const addOrderSuccess = order => ({
+  type: ADD_ORDER,
+  payload: order
 });
 const updateProductSuccess = product => ({
   type: UPDATE_PRODUCT,
@@ -62,6 +66,11 @@ export const removeFromCart = (id, name) => (dispatch) => {
     payload: { id }
   });
 };
+
+const clearCart = () => ({
+  type: CLEAR_CART,
+  payload: { cart: [] }
+});
 
 export const increaseQuantity = id => (dispatch) => {
   dispatch({
@@ -128,7 +137,9 @@ export const deleteProduct = id => (dispatch) => {
       throw (error);
     });
 };
-
+/** Add new Product
+ * dispatch result to the reducer
+ */
 export const addProduct = formData => (dispatch) => {
   dispatch(ajaxLoading(true));
   return axios({
@@ -170,10 +181,39 @@ export const updateProduct = (formData, id) => (dispatch) => {
     }
   })
     .then((res) => {
-      console.log(res.data);
       dispatch(ajaxLoading(false));
       dispatch(updateProductSuccess(res.data));
       dispatch(setAlert(res.data.message, 'success'));
+    })
+    .catch((error) => {
+      dispatch(ajaxLoading(false));
+      if (error.response.data.errors) {
+        error.response.data.errors.forEach((error) => {
+          dispatch(setAlert(error.msg, 'error'));
+        });
+      } else {
+        dispatch(setAlert(error.response.data.message, 'error'));
+      }
+      throw (error);
+    });
+};
+/** Add new order */
+export const addOrder = data => (dispatch) => {
+  dispatch(ajaxLoading(true));
+  return axios({
+    method: 'POST',
+    url: `${ROOT_URL}/orders`,
+    data: JSON.stringify(data),
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${auth.getIdToken()}`
+    }
+  })
+    .then((res) => {
+      dispatch(ajaxLoading(false));
+      dispatch(addOrderSuccess(res.data));
+      dispatch(setAlert(res.data.message, 'success'));
+      dispatch(clearCart());
     })
     .catch((error) => {
       dispatch(ajaxLoading(false));

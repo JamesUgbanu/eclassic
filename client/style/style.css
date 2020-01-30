@@ -419,11 +419,11 @@ header.shadow__menu {
     position: relative;
 }
 
-.container__box button {
+.container__box .checkBtn, .container__box button{
     position: fixed;
     bottom: 0;
     width: 20vw;
-    height: 10%;
+    padding: 20px 0;
     border: none;
     text-align: center;
     color: #fff;
@@ -492,6 +492,7 @@ header.shadow__menu {
     display: block;
     width: 20px !important;
     color: #000 !important;
+    border: none;
     background: transparent !important;
 }
 
@@ -520,7 +521,7 @@ header.shadow__menu {
     padding-right: 10px;
 }
 .amount__btn {
-    padding-left: 50px;
+    padding: 0 50px 0 10px;
     font-size: 22px;
 }
 
@@ -851,14 +852,15 @@ header.shadow__menu {
     outline: none;
 }
 
-.form__control input[type=submit] {
+.form__control input[type=submit], .form__control button {
     border:none;
     background: linear-gradient(45deg, #e4c52a 0%,#ffa751  100%);
-    height: 50px;
+    padding: 20px 70px;
+    cursor: pointer;
     color: #fff;
     border-radius: 2px;
 }
-.form__control input[type=submit]:hover {
+.form__control input[type=submit]:hover, .form__control button:hover {
     background: linear-gradient(45deg, #ffa751 0%,#e4c52a  100%);
     cursor: pointer;
 }
