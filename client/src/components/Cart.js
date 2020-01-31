@@ -55,14 +55,14 @@ $
           </tbody>
         </table>
       </div>
-      <button>
-Checkout
+      <a className="checkBtn" href="/checkout">
+Checkout 
         <i className="fa fa-arrow-right fa-1x" />
         <span className="amount__btn">
 $
           {getCartTotal(cart)}
         </span>
-      </button>
+      </a>
     </div>
   </main>
 );

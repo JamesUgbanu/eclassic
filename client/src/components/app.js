@@ -9,6 +9,7 @@ import AccountOverview from './AccountOverview';
 import AccountDetails from './AccountDetails';
 import AddressBook from './AddressBook';
 import AddAddress from './AddAddress';
+import Checkout from './Checkout';
 import Order from './Order';
 import OrderDetails from './OrderDetails';
 import AdminDashboard from './admin/AdminDashboard';
@@ -44,6 +45,7 @@ class App extends Component {
             <Route path="/products" component={Products} />
             <Route path="/product/:productName/:productId?" component={SingleProduct} />
             <PrivateRoute path="/account-overview" component={AccountOverview} />
+            <PrivateRoute path="/checkout" component={Checkout} />
             <PrivateRoute path="/account-details" component={AccountDetails} />
             <PrivateRoute path="/address-book" component={AddressBook} />
             <PrivateRoute path="/add-address" component={AddAddress} />
