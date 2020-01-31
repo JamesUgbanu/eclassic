@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import AdminSideNav from './AdminSideNav';
 import Product from './AdminProductList';
 import { deleteProduct } from '../../actions/index';
-import { generateProductsByPage } from '../helpers';
+import { generateByPage } from '../helpers';
 
 const AdminProducts = ({
   products, ajaxLoading, onDelete, currentPage, pages
@@ -56,7 +56,7 @@ const AdminProducts = ({
 const mapStateToProps = (state, ownProps) => {
   // Set page number to 1 if no number in url params
   const pageNo = ownProps.match.params.pageNo || 1;
-  const products = generateProductsByPage(state.products, pageNo);
+  const products = generateByPage(state.products, pageNo, 10);
   return {
     products,
     pages: Math.ceil(state.products.length / 10), // Determine number of pages for pagination

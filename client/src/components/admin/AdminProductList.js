@@ -39,7 +39,7 @@ export default ({
           </tbody>
         </table>
         { /* show pagination if there are more than 1 page */
-        pages > 1 && <Pagination pages={pages} currentPage={currentPage} />
+        pages > 1 && <Pagination pages={pages} currentPage={currentPage} currentUrl={'admin-products'} />
     }
       </div>
     )

@@ -8,7 +8,7 @@ import Quantity from './Quantity';
 import Images from './Images';
 import ProductNav from './AdminProductNav';
 import { addProduct, updateProduct } from '../actions/index';
-import { findCurrentProduct } from './helpers';
+import { findCurrentItem } from './helpers';
 
 class ProductForm extends Component {
   constructor(props) {
@@ -178,7 +178,7 @@ const mapDispatchToProps = dispatch => ({
 });
 
 const mapStateToProps = (state, ownProps) => {
-  const currentProduct = state.products.length ? findCurrentProduct(state.products, ownProps.pageNo) : null;
+  const currentProduct = state.products.length ? findCurrentItem(state.products, ownProps.pageNo) : null;
   return {
     currentProduct,
     ajaxLoading: state.ajaxLoading,
