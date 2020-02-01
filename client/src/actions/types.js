@@ -13,3 +13,4 @@ export const FETCH_PROFILE = 'FETCH_PROFILE';
 export const ADD_ORDER = 'ADD_ORDER';
 export const FETCH_ORDERS = 'FETCH_ORDERS';
 export const CLEAR_CART = 'CLEAR_CART';
+export const FETCH_ALL_ORDERS = 'FETCH_ALL_ORDERS';

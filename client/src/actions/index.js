@@ -1,7 +1,8 @@
 import axios from 'axios';
 import {
   DELETE_PRODUCT, FETCH_PRODUCTS, SET_ALERT, REMOVE_ALERT, ADD_PRODUCT, AJAX_LOADING, UPDATE_PRODUCT,
-  ADD_CART, REMOVE_CART, INCREMENT_QUANTITY, DECREMENT_QUANTITY, FETCH_PROFILE, ADD_ORDER, CLEAR_CART, FETCH_ORDERS
+  ADD_CART, REMOVE_CART, INCREMENT_QUANTITY, DECREMENT_QUANTITY, FETCH_PROFILE, ADD_ORDER, CLEAR_CART,
+  FETCH_ORDERS, FETCH_ALL_ORDERS
 }
   from './types';
 import Auth from '../Auth/Auth';
@@ -18,6 +19,11 @@ const fetchProducts = products => ({
 
 const fetchOrderSuccess = orders => ({
   type: FETCH_ORDERS,
+  payload: orders
+});
+
+const fetchAdminOrderSuccess = orders => ({
+  type: FETCH_ALL_ORDERS,
   payload: orders
 });
 
@@ -248,6 +254,30 @@ export const fetchOrder = () => (dispatch) => {
       dispatch(ajaxLoading(false));
       // eslint-disable-next-line no-use-before-define
       dispatch(fetchOrderSuccess(res.data));
+    })
+    .catch((error) => {
+      dispatch(ajaxLoading(false));
+      if (error.response) {
+        dispatch(setAlert(error.response.data, 'error'));
+      }
+    });
+};
+
+/** Fetch for all order */
+export const fetchAllOrder = () => (dispatch) => {
+  dispatch(ajaxLoading(true));
+  return axios({
+    method: 'GET',
+    url: `${ROOT_URL}/orders`,
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${auth.getIdToken()}`
+    }
+  })
+    .then((res) => {
+      dispatch(ajaxLoading(false));
+      // eslint-disable-next-line no-use-before-define
+      dispatch(fetchAdminOrderSuccess(res.data));
     })
     .catch((error) => {
       dispatch(ajaxLoading(false));
