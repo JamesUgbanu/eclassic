@@ -1,9 +1,17 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import SideNav from './SideNav';
+import { findCurrentItem } from './helpers';
 
 // eslint-disable-next-line react/prefer-stateless-function
 class OrderDetails extends Component {
   render() {
+    const { ajaxLoading, currentOrder } = this.props;
+    if (ajaxLoading || !currentOrder) {
+      return (
+        <div className="login__box">Loading...</div>
+      );
+    }
     return (
     // eslint-disable-next-line react/jsx-filename-extension
       <main className="acc__main">
@@ -14,29 +22,31 @@ class OrderDetails extends Component {
                 Order details
           </h1>
           <div className="order__list">
-            <p>Order nº 355775598</p>
-            <p>1 Items</p>
-            <p>Placed on 11-11-2019</p>
-            <h4>Total: ₦ 8,242</h4>
+            <p>
+              {`Order nº ${currentOrder.order_id}`}
+            </p>
+            <p>{currentOrder.item.products.length === 1 ? '1 Item' : `${currentOrder.item.products.length} Items`}</p>
+            <p>
+              {`Placed on ${currentOrder.created_on}`}
+            </p>
+            <p>
+              {`status: ${currentOrder.status}`}
+              <span>
+                {`    Total: ₦ ${currentOrder.total_prize}`}
+              </span>
+            </p>
           </div>
-          <div className="order__list">
-            <div className="order__content order__img">
-              <img src="./images/man-on-nike-sneaker.jpg" />
+          { currentOrder.item.products.map(order => (
+            <div key={order.order_id} className="order__list">
+              <div className="order__content order__img">
+                <img src={order.image_url[0]} />
+              </div>
+              <div className="order__content order__text">
+                <p>{order.prod_name}</p>
+              </div>
             </div>
-            <div className="order__content order__text">
-              <p>Xiaomi xi band the best of the best </p>
-              <h4>status: UNSUCESSFUL PAYMENT-CANCEL</h4>
-            </div>
-          </div>
-          <div className="order__list">
-            <div className="order__content order__img">
-              <img src="./images/man-on-nike-sneaker.jpg" />
-            </div>
-            <div className="order__content order__text">
-              <p>Xiaomi xi band the best of the best </p>
-              <h4>status: UNSUCESSFUL PAYMENT-CANCEL</h4>
-            </div>
-          </div>
+          ))
+  }
           <div className="acc__details">
             <div className="acc__details__head">PAYMENT INFORMATION</div>
             <div className="acc__details__body">
@@ -56,5 +66,15 @@ class OrderDetails extends Component {
     );
   }
 }
-
-export default OrderDetails;
+const mapStateToProps = (state, ownProps) => {
+  const currentOrder = state.order.length ? findCurrentItem(state.order, ownProps.match.params.OrderId, true) : null;
+  console.log(currentOrder.item.products);
+  return {
+    currentOrder,
+    ajaxLoading: state.ajaxLoading
+  };
+};
+export default connect(
+  mapStateToProps,
+  null
+)(OrderDetails);

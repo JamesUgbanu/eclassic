@@ -11,10 +11,9 @@ export const generateSerial = () => {
   return randomSerial;
 };
 
-// Generate list of products for given page number
-export const generateProductsByPage = (products, pageNo) => {
+// Generate list of items, products, order for given page number
+export const generateByPage = (products, pageNo, perPage) => {
   // I assumed showing 10 products per page
-  const perPage = 10;
   if (products.length) {
     // Filter 10 products by page number
     return products.filter((product, i) => i >= perPage * (pageNo - 1) && i < perPage * pageNo);
@@ -22,11 +21,12 @@ export const generateProductsByPage = (products, pageNo) => {
   return [];
 };
 
-// Find current product based on ID passed in URL
-export const findCurrentProduct = (products, id = -1) =>
+// Find current Item based on ID passed in URL
+export const findCurrentItem = (items, id = -1, isOrder = false) => {
   // Find product for given id
-  products.find(product => parseInt(product.prod_id, 10) === parseInt(id, 10));
-
+  if (!isOrder) return items.find(item => parseInt(item.prod_id, 10) === parseInt(id, 10));
+  return items.find(item => item.order_id === id);
+};
 // Check if current state has cart item
 export const checkForItemState = (products, id) => {
   // Find product for given id

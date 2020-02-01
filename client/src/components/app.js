@@ -49,8 +49,8 @@ class App extends Component {
             <PrivateRoute path="/account-details" component={AccountDetails} />
             <PrivateRoute path="/address-book" component={AddressBook} />
             <PrivateRoute path="/add-address" component={AddAddress} />
-            <PrivateRoute path="/order" component={Order} />
-            <PrivateRoute path="/order-details" component={OrderDetails} />
+            <PrivateRoute path="/order/:pageNo?" component={Order} />
+            <PrivateRoute path="/order-details/:OrderId?" component={OrderDetails} />
             <AdminRoute path="/admin-dashboard" component={AdminDashboard} />
             <AdminRoute path="/admin-products/:pageNo?" component={AdminProducts} />
             <AdminRoute path="/add-product" component={AddProduct} />

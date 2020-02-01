@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { addToCart } from '../actions/index';
 import Left from './LeftNav';
-import { findCurrentProduct, checkForItemState } from './helpers';
+import { findCurrentItem, checkForItemState } from './helpers';
 
 // eslint-disable-next-line react/prefer-stateless-function
 class SingleProduct extends Component {
@@ -59,7 +59,7 @@ class SingleProduct extends Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-  const currentProduct = state.products.length ? findCurrentProduct(state.products, ownProps.match.params.productId) : null;
+  const currentProduct = state.products.length ? findCurrentItem(state.products, ownProps.match.params.productId) : null;
   return {
     currentProduct,
     cart: state.cart,

@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import Left from './LeftNav';
-import { generateProductsByPage } from './helpers';
+import { generateByPage } from './helpers';
 import ProductList from './ProductList';
 // eslint-disable-next-line react/prefer-stateless-function
 const Products = ({
@@ -30,7 +30,7 @@ const Products = ({
 const mapStateToProps = (state, ownProps) => {
   // Set page number to 1 if no number in url params
   const pageNo = ownProps.match.params.pageNo || 1;
-  const products = generateProductsByPage(state.products, pageNo);
+  const products = generateByPage(state.products, pageNo, 10);
   return {
     products,
     pages: Math.ceil(state.products.length / 10), // Determine number of pages for pagination

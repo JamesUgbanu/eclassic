@@ -9,10 +9,7 @@ export default function(state = initialState.orders, action) {
     case FETCH_ORDERS:
       return payload.data;
     case ADD_ORDER:
-      return [
-        ...state,
-        payload.data
-      ];
+      return state = payload;
     default:
       return state;
   }

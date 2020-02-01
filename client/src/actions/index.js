@@ -1,7 +1,7 @@
 import axios from 'axios';
 import {
   DELETE_PRODUCT, FETCH_PRODUCTS, SET_ALERT, REMOVE_ALERT, ADD_PRODUCT, AJAX_LOADING, UPDATE_PRODUCT,
-  ADD_CART, REMOVE_CART, INCREMENT_QUANTITY, DECREMENT_QUANTITY, FETCH_PROFILE, ADD_ORDER, CLEAR_CART
+  ADD_CART, REMOVE_CART, INCREMENT_QUANTITY, DECREMENT_QUANTITY, FETCH_PROFILE, ADD_ORDER, CLEAR_CART, FETCH_ORDERS
 }
   from './types';
 import Auth from '../Auth/Auth';
@@ -16,6 +16,11 @@ const fetchProducts = products => ({
   payload: products
 });
 
+const fetchOrderSuccess = orders => ({
+  type: FETCH_ORDERS,
+  payload: orders
+});
+
 const deleteProductSuccess = id => ({
   type: DELETE_PRODUCT,
   payload: {
@@ -26,9 +31,9 @@ const addProductSuccess = product => ({
   type: ADD_PRODUCT,
   payload: product
 });
-const addOrderSuccess = order => ({
+const addOrderSuccess = () => ({
   type: ADD_ORDER,
-  payload: order
+  payload: []
 });
 const updateProductSuccess = product => ({
   type: UPDATE_PRODUCT,
@@ -211,7 +216,7 @@ export const addOrder = data => (dispatch) => {
   })
     .then((res) => {
       dispatch(ajaxLoading(false));
-      dispatch(addOrderSuccess(res.data));
+      dispatch(addOrderSuccess());
       dispatch(setAlert(res.data.message, 'success'));
       dispatch(clearCart());
     })
@@ -225,5 +230,29 @@ export const addOrder = data => (dispatch) => {
         dispatch(setAlert(error.response.data.message, 'error'));
       }
       throw (error);
+    });
+};
+
+/** Fetch for user order */
+export const fetchOrder = () => (dispatch) => {
+  dispatch(ajaxLoading(true));
+  return axios({
+    method: 'GET',
+    url: `${ROOT_URL}/user/orders`,
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${auth.getIdToken()}`
+    }
+  })
+    .then((res) => {
+      dispatch(ajaxLoading(false));
+      // eslint-disable-next-line no-use-before-define
+      dispatch(fetchOrderSuccess(res.data));
+    })
+    .catch((error) => {
+      dispatch(ajaxLoading(false));
+      if (error.response) {
+        dispatch(setAlert(error.response.data, 'error'));
+      }
     });
 };
