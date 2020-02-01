@@ -29,16 +29,16 @@ const createOrderTable = `
     updated_on TIMESTAMP WITH TIME ZONE
   );
 `;
-
-const createShippingTable = `
-  CREATE TABLE IF NOT EXISTS shipping(
-    shipping_id SERIAL PRIMARY KEY NOT NULL,
-    customer_id VARCHAR(50),
-    address VARCHAR(200) NOT NULL,
-    city VARCHAR(50) NOT NULL,
-    state VARCHAR(50) NOT NULL,
-    phone VARCHAR(12) NOT NULL
+const createUserTable = `
+  CREATE TABLE IF NOT EXISTS users(
+    user_id VARCHAR(50) PRIMARY KEY NOT NULL,
+    first_name VARCHAR(50),
+    last_name VARCHAR(50) NOT NULL,
+    email VARCHAR(50) NOT NULL,
+    address VARCHAR(100),
+    state VARCHAR(50),
+    phone VARCHAR(12)
   );
 `;
-const createQuery = `${createProductTable}${createOrderTable}${createShippingTable}`;
+const createQuery = `${createProductTable}${createOrderTable}${createUserTable}`;
 export default createQuery;

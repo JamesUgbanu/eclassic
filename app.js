@@ -5,7 +5,7 @@ import cors from 'cors';
 import orderRoutes from './server/routes/orders';
 import productRoutes from './server/routes/products';
 import userRoutes from './server/routes/users';
-import shippingRoutes from './server/routes/shippings';
+import userAddressRoutes from './server/routes/userAddress';
 
 dotenv.config();
 
@@ -42,7 +42,7 @@ app.use(bodyParser.json());
 orderRoutes(app);
 productRoutes(app);
 userRoutes(app);
-shippingRoutes(app);
+userAddressRoutes(app);
 
 // declare 404 route
 app.all('*', (req, res) => res.status(404).json({
