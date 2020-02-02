@@ -686,13 +686,12 @@ header.shadow__menu {
         margin-right: 10px;
     }
     .acc__container {
-        background:#fff;
+        background: #fff;
         border-radius: 15px;
         width: 90%;
-        margin-top: 100px;
-        margin-bottom: 20px;
+        position: relative;
+        top: 100px;
         padding-left: 50px;
-        padding-bottom: 50px;
     }
     .mobile__nav__container {
         display: none;
@@ -1423,4 +1422,9 @@ background-color: #f00;
 }
 .checkout__amount {
     font-size: 25px;
+}
+
+/** Progress bar **/
+.progress__bar__container {
+    pointer-events: none;
 }

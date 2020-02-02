@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { Router, Route, Switch } from 'react-router-dom';
 import Nav from './Nav';
 import Home from './Home';
@@ -25,7 +26,9 @@ import PrivateRoute from './PrivateRoute';
 import AdminRoute from './AdminRoute';
 import Login from './Login';
 import Message from './admin/Message';
+import ProgressBar from './ProgressBar';
 import '../../style/style.css';
+import '../../node_modules/react-progress-bar-plus/lib/progress-bar.css';
 // eslint-disable-next-line react/prefer-stateless-function
 class App extends Component {
   constructor(props) {
@@ -37,7 +40,8 @@ class App extends Component {
     return (
       // eslint-disable-next-line react/jsx-filename-extension
       <Router history={history}>
-        <div>
+        <div className={this.props.ajaxLoading ? 'progress__bar__container' : null}>
+          <ProgressBar />
           <Nav auth={this.auth} />
           <Message />
           <Switch>
@@ -72,4 +76,8 @@ class App extends Component {
     );
   }
 }
-export default App;
+const mapStateToProps = ({ ajaxLoading }) => ({
+  ajaxLoading
+});
+
+export default connect(mapStateToProps, null)(App);
