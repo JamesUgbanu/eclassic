@@ -1,6 +1,6 @@
 import React from 'react';
 
-const OrderList = ({ orders }) => (
+const OrderList = ({ orders, orderStatusChange }) => (
   !orders.length
     ? (
       <tr>
@@ -31,9 +31,9 @@ item(s)
             <details>
               <summary className="fas fa-eye" />
               <div className="dropdown__button">
-                <button>completed</button>
-                <button>processing</button>
-                <button>cancel</button>
+                <button onClick={() => orderStatusChange({id: order.order_id, status: 'completed'})}>completed</button>
+                <button onClick={() => orderStatusChange({id: order.order_id, status: 'processing'})}>processing</button>
+                <button onClick={() => orderStatusChange({id: order.order_id, status: 'cancelled'})}>cancel</button>
               </div>
             </details>
           </td>
