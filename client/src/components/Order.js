@@ -5,7 +5,7 @@ import OrderList from './OrderList';
 import { generateByPage } from './helpers';
 import { fetchOrder } from '../actions/index';
 import Pagination from './pagination';
-
+import Loading from './Loading';
 // eslint-disable-next-line react/prefer-stateless-function
 const Order = ({ fetchUserOrder, orders, allOrders, pages, currentPage, ajaxLoading }) => {
   useEffect(() => {
@@ -13,7 +13,7 @@ const Order = ({ fetchUserOrder, orders, allOrders, pages, currentPage, ajaxLoad
   }, []);
   if (ajaxLoading) {
     return (
-      <div className="login__box">Loading...</div>
+      <Loading />
     );
   }
   return (

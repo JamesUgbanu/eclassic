@@ -124,7 +124,7 @@ export const fetchAllProducts = () => (dispatch) => {
     .catch((error) => {
       dispatch(ajaxLoading(false));
       if (error.response) {
-        dispatch(setAlert(error.response.data, 'error'));
+        !error.response.data.message ? dispatch(setAlert(error.response.data, 'error')) : dispatch(setAlert(error.response.data.message, 'error'));
       }
     });
 };

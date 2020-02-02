@@ -4,13 +4,14 @@ import AdminSideNav from './AdminSideNav';
 import Product from './AdminProductList';
 import { deleteProduct } from '../../actions/index';
 import { generateByPage } from '../helpers';
+import Loading from '../Loading';
 
 const AdminProducts = ({
   products, ajaxLoading, onDelete, currentPage, pages
 }) => {
   if (ajaxLoading) {
     return (
-      <div className="login__box">Loading...</div>
+      <Loading />
     );
   }
   return (

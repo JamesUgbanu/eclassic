@@ -3,13 +3,14 @@ import { connect } from 'react-redux';
 import Left from './LeftNav';
 import { generateByPage } from './helpers';
 import ProductList from './ProductList';
+import Loading from './Loading';
 // eslint-disable-next-line react/prefer-stateless-function
 const Products = ({
   products, currentPage, pages, ajaxLoading
 }) => {
   if (ajaxLoading) {
     return (
-      <div className="login__box">Loading...</div>
+      <Loading />
     );
   }
   return (

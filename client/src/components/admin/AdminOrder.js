@@ -5,6 +5,7 @@ import { generateByPage, SearchItems } from '../helpers';
 import { fetchAllOrder, changeOrderStatus } from '../../actions/index';
 import AdminOrderList from '../AdminOrderList';
 import Pagination from '../pagination';
+import Loading from '../Loading';
 
 // eslint-disable-next-line react/prefer-stateless-function
 const AdminOrder = ({
@@ -16,7 +17,7 @@ const AdminOrder = ({
 
   if (ajaxLoading) {
     return (
-      <div className="login__box">Loading...</div>
+      <Loading />
     );
   }
   return (
