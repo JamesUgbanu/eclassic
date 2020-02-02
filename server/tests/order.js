@@ -30,7 +30,7 @@ describe('Test order endpoints', () => {
         .send({
           total_prize: 10000,
           item: {
-            product_id: 6, qty: 9
+            products: []
           }
         })
         .set('Accept', 'application/json')
@@ -117,10 +117,6 @@ describe('Test order endpoints', () => {
         .put(`/api/v1/orders/${id}`)
         .set('Authorization', `Bearer ${currrentToken}`)
         .send({
-          total_prize: 10000,
-          item: {
-            product_id: 6, qty: 30
-          },
           status: 'completed'
         })
         .set('Accept', 'application/json')
@@ -136,10 +132,6 @@ describe('Test order endpoints', () => {
         .put('/api/v1/orders/206f6e92-a568-46cb-89aa-d138d1ad345a')
         .set('Authorization', `Bearer ${currrentToken}`)
         .send({
-          total_prize: 10000,
-          item: {
-            product_id: 6, qty: 30
-          },
           status: 'completed'
         })
         .set('accept', 'application/json')
@@ -155,10 +147,6 @@ describe('Test order endpoints', () => {
         .put('/api/v1/orders/206f6e92-a568-46cb-89aj-d138d1ad345a')
         .set('Authorization', `Bearer ${currrentToken}`)
         .send({
-          total_prize: 10000,
-          item: {
-            product_id: 6, qty: 30
-          },
           status: 'completed'
         })
         .set('accept', 'application/json')

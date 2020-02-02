@@ -2,7 +2,7 @@ import axios from 'axios';
 import {
   DELETE_PRODUCT, FETCH_PRODUCTS, SET_ALERT, REMOVE_ALERT, ADD_PRODUCT, AJAX_LOADING, UPDATE_PRODUCT,
   ADD_CART, REMOVE_CART, INCREMENT_QUANTITY, DECREMENT_QUANTITY, FETCH_PROFILE, ADD_ORDER, CLEAR_CART,
-  FETCH_ORDERS, FETCH_ALL_ORDERS
+  FETCH_ORDERS, FETCH_ALL_ORDERS, ORDER_STATUS
 }
   from './types';
 import Auth from '../Auth/Auth';
@@ -45,7 +45,10 @@ const updateProductSuccess = product => ({
   type: UPDATE_PRODUCT,
   payload: product
 });
-
+const changeOrderStatusSuccess = (order, id) => ({
+  type: ORDER_STATUS,
+  payload: { order, id }
+});
 const ajaxLoading = status => ({
   type: AJAX_LOADING,
   status
@@ -121,11 +124,12 @@ export const fetchAllProducts = () => (dispatch) => {
     .catch((error) => {
       dispatch(ajaxLoading(false));
       if (error.response) {
-        dispatch(setAlert(error.response.data, 'error'));
+        !error.response.data.message ? dispatch(setAlert(error.response.data, 'error')) : dispatch(setAlert(error.response.data.message, 'error'));
       }
     });
 };
 
+/** Delete products */
 export const deleteProduct = id => (dispatch) => {
   dispatch(ajaxLoading(true));
   return axios.delete(`${ROOT_URL}/product/${id}`,
@@ -284,5 +288,32 @@ export const fetchAllOrder = () => (dispatch) => {
       if (error.response) {
         dispatch(setAlert(error.response.data, 'error'));
       }
+    });
+};
+
+/** Change order status */
+export const changeOrderStatus = ({ id, status }) => (dispatch) => {
+  dispatch(ajaxLoading(true));
+  return axios({
+    method: 'PUT',
+    url: `${ROOT_URL}/orders/${id}`,
+    data: JSON.stringify({ status }),
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${auth.getIdToken()}`
+    }
+  })
+    .then((res) => {
+      console.log(res.data)
+      dispatch(ajaxLoading(false));
+      dispatch(changeOrderStatusSuccess(res.data, id));
+      dispatch(setAlert(res.data.message, 'success'));
+    })
+    .catch((error) => {
+      dispatch(ajaxLoading(false));
+      if (error) {
+        dispatch(setAlert(error.response, 'error'));
+      }
+      throw (error);
     });
 };

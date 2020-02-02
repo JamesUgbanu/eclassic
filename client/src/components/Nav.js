@@ -29,7 +29,7 @@ class Nav extends Component {
         </div>
 
         <div className="topbar">
-          <a href="/"><img className="logo" src="images/eclassic.png" alt="Eclassic logo" /></a>
+          <a href="/"><img className="logo" src="images/eclassik-small-logo.png" alt="Eclassic logo" /></a>
         </div>
         <div className="topbar">
           <div className="cart__box">

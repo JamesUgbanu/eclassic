@@ -89,9 +89,9 @@ class OrderController {
       }
       const { rows } = result;
       const updatequery = {
-        text: `UPDATE orders SET total_prize = $1, item = $2, status = $3, updated_on = $4 WHERE order_id = $5 RETURNING *`,
+        text: `UPDATE orders SET status = $1, updated_on = $2 WHERE order_id = $3 RETURNING *`,
         values: [
-          request.body.total_prize || rows[0].total_prize, request.body.item || rows[0].item, request.body.status || rows[0].status, updated_on, id,
+          request.body.status || rows[0].status, updated_on, id,
         ]
       };
       client.query(updatequery).then((res) => {
