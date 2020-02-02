@@ -4,5 +4,6 @@ export default {
   alert: [],
   cart: [],
   orders: [],
+  adminOrders: [],
   user: []
 };

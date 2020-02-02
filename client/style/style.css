@@ -1207,11 +1207,14 @@ background-color: #f00;
       width: 100%;
   }
 
-  .admin__sortable a{
+  .admin__sortable a, .admin__sortable a:active{
     text-decoration: none;
     padding: 0 5px;
+    color: #000;
   }
-  
+  .admin__sortable .active {
+    color: blue;
+  }
  .product__page {
      display: grid;
      grid-template-columns: 20% 80%;

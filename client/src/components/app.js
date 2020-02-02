@@ -12,6 +12,7 @@ import AddAddress from './AddAddress';
 import Checkout from './Checkout';
 import Order from './Order';
 import OrderDetails from './OrderDetails';
+import AdminOrderDetails from './admin/AdminOrderDetails';
 import AdminDashboard from './admin/AdminDashboard';
 import AdminProducts from './admin/AdminProducts';
 import AddProduct from './admin/AddProduct';
@@ -51,11 +52,12 @@ class App extends Component {
             <PrivateRoute path="/add-address" component={AddAddress} />
             <PrivateRoute path="/order/:pageNo?" component={Order} />
             <PrivateRoute path="/order-details/:OrderId?" component={OrderDetails} />
+            <PrivateRoute path="/admin-order-details/:OrderId?" component={AdminOrderDetails} />
             <AdminRoute path="/admin-dashboard" component={AdminDashboard} />
             <AdminRoute path="/admin-products/:pageNo?" component={AdminProducts} />
             <AdminRoute path="/add-product" component={AddProduct} />
             <AdminRoute path="/edit-product/:id" component={EditProduct} />
-            <AdminRoute path="/admin-order" component={AdminOrder} />
+            <AdminRoute path="/admin-order/:pageNo?/:status?" component={AdminOrder} />
             <Route
               path="/login"
               render={props => <Login auth={this.auth} {...props} />}

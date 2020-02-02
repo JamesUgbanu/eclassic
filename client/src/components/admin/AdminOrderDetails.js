@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import SideNav from './SideNav';
-import { findCurrentItem } from './helpers';
+import SideNav from '../SideNav';
+import { findCurrentItem } from '../helpers';
 
 // eslint-disable-next-line react/prefer-stateless-function
 class OrderDetails extends Component {
@@ -18,7 +18,7 @@ class OrderDetails extends Component {
         <SideNav />
         <div className="acc__container order__details">
           <h1>
-            <a href="/order" className="fa  fa-arrow-left" />
+            <a href="/admin-order" className="fa  fa-arrow-left" />
                 Order details
           </h1>
           <div className="order__list">
@@ -67,7 +67,8 @@ class OrderDetails extends Component {
   }
 }
 const mapStateToProps = (state, ownProps) => {
-  const currentOrder = state.order.length ? findCurrentItem(state.order, ownProps.match.params.OrderId, true) : null;
+  const currentOrder = state.adminOrder.length ? findCurrentItem(state.adminOrder, ownProps.match.params.OrderId, true) : null;
+  console.log(state);
   return {
     currentOrder,
     ajaxLoading: state.ajaxLoading
