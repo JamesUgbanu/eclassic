@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import AdminSideNav from './AdminSideNav';
-import { generateByPage } from '../helpers';
+import { generateByPage, SearchItems } from '../helpers';
 import { fetchAllOrder } from '../../actions/index';
 import AdminOrderList from '../AdminOrderList';
 import Pagination from '../pagination';
@@ -14,7 +14,7 @@ class AdminOrder extends Component {
 
   render() {
     const {
-      orders, pages, currentPage, allOrders, ajaxLoading
+      orders, pages, currentPage, allOrders, ajaxLoading, status
     } = this.props;
 
     if (ajaxLoading) {
@@ -32,7 +32,7 @@ class AdminOrder extends Component {
           </div>
           <hr />
           <div className="admin__sortable">
-            <a href="/">
+            <a href="/admin-order" className={!status ? 'active' : null}>
                 All
               <span>
 (
@@ -41,19 +41,19 @@ class AdminOrder extends Component {
               </span>
             </a>
                 |
-            <a href="?processing">
+            <a href="?status=open" className={status === 'open' ? 'active' : null}>
             processing
-              <span>(18)</span>
+              <span></span>
             </a>
                 |
-            <a href="#">
+            <a href="?status=delivered" className={status === 'delivered' ? 'active' : null}>
             delivered
-              <span>(2)</span>
+              <span></span>
             </a>
                 |
-            <a href="#">
+            <a href="?status=cancelled" className={status === 'cancelled' ? 'active' : null}>
             cancelled
-              <span>(0)</span>
+              <span></span>
             </a>
           </div>
           <div className="product__table">
@@ -73,11 +73,11 @@ class AdminOrder extends Component {
               </thead>
               <tbody>
                 <AdminOrderList orders={orders} />
-               </tbody>
+              </tbody>
             </table>
           </div>
           { /* show pagination if there are more than 1 page */
-        pages > 1 && <Pagination pages={pages} currentPage={currentPage} currentUrl={'admin-order'} />
+        pages > 1 && <Pagination pages={pages} currentPage={currentPage} currentUrl="admin-order" />
     }
         </div>
       </main>
@@ -87,14 +87,17 @@ class AdminOrder extends Component {
 
 const mapStateToProps = (state, ownProps) => {
   // Set page number to 1 if no number in url params
+  const params = new URLSearchParams(ownProps.location.search);
+  const status = params.get('status');
   const pageNo = ownProps.match.params.pageNo || 1;
-  const orders = generateByPage(state.adminOrder, pageNo, 10);
-
+  const orders = generateByPage(SearchItems(state.adminOrder, status), pageNo, 10);
+  console.log(pageNo);
   return {
     orders,
     pages: Math.ceil(state.adminOrder.length / 10), // Determine number of pages for pagination
     currentPage: pageNo,
     ajaxLoading: state.ajaxLoading,
+    status,
     allOrders: state.adminOrder.length
   };
 };

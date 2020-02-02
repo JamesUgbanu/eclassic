@@ -53,3 +53,10 @@ export const getQuantity = (cartItems) => {
   });
   return quantity;
 };
+
+// Filter items based on query passed in URL
+export const SearchItems = (items, status) => {
+  // returned item based on status
+  if (status) return items.filter(item => item.status === status);
+  return items;
+};

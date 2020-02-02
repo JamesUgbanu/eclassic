@@ -57,7 +57,7 @@ class App extends Component {
             <AdminRoute path="/admin-products/:pageNo?" component={AdminProducts} />
             <AdminRoute path="/add-product" component={AddProduct} />
             <AdminRoute path="/edit-product/:id" component={EditProduct} />
-            <AdminRoute path="/admin-order" component={AdminOrder} />
+            <AdminRoute path="/admin-order/:pageNo?/:status?" component={AdminOrder} />
             <Route
               path="/login"
               render={props => <Login auth={this.auth} {...props} />}
