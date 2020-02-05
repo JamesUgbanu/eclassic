@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import AdminSideNav from './AdminSideNav';
 import Product from './AdminProductList';
 import { deleteProduct } from '../../actions/index';
@@ -21,7 +22,7 @@ const AdminProducts = ({
       <div className="acc__container">
         <div className="product__header">
           <span>Product</span>
-          <a href="/add-product">Add a new</a>
+          <Link to="/add-product">Add a new</Link>
         </div>
         <hr />
 

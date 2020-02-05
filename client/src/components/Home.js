@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import Left from './LeftNav';
 
 // eslint-disable-next-line react/prefer-stateless-function
@@ -12,13 +13,13 @@ class Home extends Component {
         <img className="banner__img" src="images/banner.png" />
         <div className="collection">
           <h1 className="main_text">Urban <br/> COLLECTION</h1>
-          <a href="/products"><span>see collection</span><i className="fa fa-arrow-right fa-1x" ></i>
-           </a>
+          <Link to="/products"><span>see collection</span><i className="fa fa-arrow-right fa-1x" ></i>
+           </Link>
         </div>
       </div>
       <div className="container__box">
         {/* <a href="#" className="box box__one"><p>Categories</p></a> */}
-        <a href="/products" className="box box__two"> <p>All Products</p></a>
+        <Link to="/products" className="box box__two"> <p>All Products</p></Link>
       </div>
     </main>
     );

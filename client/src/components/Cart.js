@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { getCartTotal, getQuantity } from './helpers';
 import Left from './LeftNav';
 import CartList from './CartList';
@@ -55,14 +56,14 @@ $
           </tbody>
         </table>
       </div>
-      <a className="checkBtn" href="/checkout">
-Checkout 
+      <Link className="checkBtn" to="/checkout">
+Checkout
         <i className="fa fa-arrow-right fa-1x" />
         <span className="amount__btn">
 $
           {getCartTotal(cart)}
         </span>
-      </a>
+      </Link>
     </div>
   </main>
 );

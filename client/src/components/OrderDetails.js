@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import SideNav from './SideNav';
 import { findCurrentItem } from './helpers';
 
@@ -18,7 +19,7 @@ class OrderDetails extends Component {
         <SideNav />
         <div className="acc__container order__details">
           <h1>
-            <a href="/order" className="fa  fa-arrow-left" />
+            <Link to="/order" className="fa  fa-arrow-left" />
                 Order details
           </h1>
           <div className="order__list">

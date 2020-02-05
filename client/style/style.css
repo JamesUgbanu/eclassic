@@ -178,7 +178,7 @@ header.shadow__menu {
     .container__section {
         display:grid;
         grid-template-columns: 15% 65% 20%;
-        min-height: 100%;
+        min-height: 87.2vh;
         }
      .dotted__box .dots {
             display: block;
@@ -635,7 +635,7 @@ header.shadow__menu {
     position: relative;
 }
 .account__sidebar .active {
-    background: #ededed;
+    background: #ffa700;
 }
 
 .account__sidebar__bottom button{
@@ -1211,7 +1211,7 @@ background-color: #f00;
     padding: 0 5px;
     color: #000;
   }
-  .admin__sortable .active {
+  .admin__sortable .active__status {
     color: blue;
   }
  .product__page {

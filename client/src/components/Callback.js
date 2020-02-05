@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import Loading from './Loading';
 
 const Callback = (props) => {
   useEffect(() => {
@@ -11,7 +12,7 @@ const Callback = (props) => {
   }, []);
 
   return (
-    <div className="login__box">Loading...</div>
+    <Loading />
   );
 };
 
