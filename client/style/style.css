@@ -369,7 +369,8 @@ header.shadow__menu {
 .container__box .checkBtn, .container__box button{
     position: fixed;
     bottom: 0;
-    width: 100%;
+    right: 0;
+    width: 20%;
     padding: 20px 0;
     border: none;
     padding-left: 20px;
