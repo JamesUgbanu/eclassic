@@ -20,6 +20,10 @@ h1 {
 /* top navigation */
 
 header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 99;
     display: grid;
     grid-template-columns: 15% 65% 20%;
     height: 80px;
@@ -27,35 +31,37 @@ header {
 header.shadow__menu {
     box-shadow: 0px 1px 15px 1px ;
     overflow: hidden;
+    background: #ddd;
 }
 .topbar .menu{
     margin-top: 20px;
 
 }
 .message__display {
-    position: relative;
-    left: 40%;
-    top: 40px;
-    font-size: 16px;
-    width: 50%;
+    position: fixed;
+    font-size: 14px;
+    width: 100%;
+    padding: 0 20px;
+    z-index: 999;
 }
 .success {
-    background: rgba(87,196,87,0.3);
-    border-radius: 5px;
-    color: green;
-    padding: 10px 20px;
+    background: rgba(87,196,87);
+    color: #fff;
+    padding: 10px;
 }
 .error {
-    background: rgb(255, 6, 6, 0.3);
-    border-radius: 5px;
-    color: red;
-    padding: 10px 20px;
+    background: rgb(255, 6, 6);
+    color: #fff;
+    padding: 10px;
 }
 .message__display button {
     float: right;
+    color: #fff;
+    font-size: 16px;
     background: transparent;
     border: none;
     cursor: pointer;
+    margin-right: 20px;
 }
 
 
@@ -178,7 +184,7 @@ header.shadow__menu {
     .container__section {
         display:grid;
         grid-template-columns: 15% 65% 20%;
-        min-height: 100%;
+        min-height: 100vh;
         }
      .dotted__box .dots {
             display: block;
@@ -197,13 +203,6 @@ header.shadow__menu {
         width: 100%;
         height: 100%;
     }
-    .navigation__menu {
-        position: absolute;
-        background:linear-gradient(rgb(240,153,60),rgb(244,181,114));
-        height: 100%;
-        left: -150px;
-        z-index: 1;
-        }
 }
 @media only screen and (max-width: 768px) {
     .container__section {
@@ -222,12 +221,6 @@ header.shadow__menu {
         height: 86%;
         background-size: contain;
     }
-    .navigation__menu {
-        position: absolute;
-        background:linear-gradient(rgb(240,153,60),rgb(244,181,114));
-        left: -150px;
-        z-index: 1;
-        }
 }
 
 /* Left Section */
@@ -240,7 +233,6 @@ header.shadow__menu {
 .banner {
     overflow: hidden;
     height: 100vh;
-    margin-top: -80px;
 }
 .collection {
     position: absolute;
@@ -260,55 +252,10 @@ header.shadow__menu {
 }
 
 
-/* Navigation */
-.navigation__menu ul li {
-    padding: 10px 0 10px 0;
-}
-
-.navigation__menu ul {
-    width: 150px;
-    text-align: center;
-    list-style-type: none;
-    margin-top: 100px;
-    color: #fff;
-    padding: 0;
-}
-.navigation__menu a {
-    text-decoration: none;
-    color: #fff;
-}
-.navigation__menu ul li:hover {
-    background: #000;
-    
-}
-
-#menuToggle:checked ~ .navigation__menu {
-    position: absolute;
-    left: 150px;
-    top: 0;
-    animation:move 0.1s;
-}
-
-@keyframes move {
-   from {left: 0px}
-
-   to {left: 0px}
-}
-.menu__icon {
-    padding: 10px 20px;
-    color: #000;
-    cursor: pointer;
-    margin: 6px 6px 0 30%;
-    border-radius: 5px;
-}
-#menuToggle {
-    display: none;
-}
-
 /** All products page **/
 
 .product__container {
-    margin: 0 20px;
+    margin: 80px 20px 0 0;
 }
 
 .cloth_img .price {
@@ -327,7 +274,7 @@ header.shadow__menu {
     .container__page {
         display: grid;
         grid-template-columns: 15% 15% 70%;
-        height: 86vh;
+        height: 100vh;
     }
     .container__checkout__page {
         display: grid;
@@ -422,10 +369,11 @@ header.shadow__menu {
 .container__box .checkBtn, .container__box button{
     position: fixed;
     bottom: 0;
-    width: 20vw;
+    right: 0;
+    width: 20%;
     padding: 20px 0;
     border: none;
-    text-align: center;
+    padding-left: 20px;
     color: #fff;
     font-size: 18px;
     background: orange;
@@ -635,7 +583,7 @@ header.shadow__menu {
     position: relative;
 }
 .account__sidebar .active {
-    background: #ededed;
+    background: #ffa700;
 }
 
 .account__sidebar__bottom button{
@@ -713,7 +661,7 @@ header.shadow__menu {
     }
     .acc__container {
         width: 90%;
-        margin-top: 70px;
+        margin-top: 85px;
         margin-left: 4%;
         padding-left: 10px;
         padding-bottom: 50px;
@@ -1211,7 +1159,7 @@ background-color: #f00;
     padding: 0 5px;
     color: #000;
   }
-  .admin__sortable .active {
+  .admin__sortable .active__status {
     color: blue;
   }
  .product__page {
@@ -1433,7 +1381,7 @@ background-color: #f00;
 .loading__wrapper{
     position: absolute;
     top: 50%;
-    left: 48%;
+    left: 46%;
     width: 150px;
     height: 150px;
   }
@@ -1463,3 +1411,66 @@ background-color: #f00;
             transform:scale(1,1);
           }
   }
+
+  /* The rest copied directly from react-burger-menu docs */
+
+/* Position and sizing of burger button */
+.bm-burger-button {
+    position: fixed;
+    width: 36px;
+    height: 30px;
+    left: 100px;
+    top: 30px;
+}
+/* Color/shape of burger icon bars */
+.bm-burger-bars {
+    background: #373a47;
+  }
+
+  /* Position and sizing of clickable cross button */
+.bm-cross-button {
+    height: 24px;
+    width: 24px;
+  }
+
+  /* Color/shape of close button cross */
+.bm-cross {
+    background: #bdc3c7;
+  }
+  
+  /* General sidebar styles */
+.bm-menu {
+    background: linear-gradient(rgb(240,153,60),rgb(244,181,114));
+    padding-top: 2.5em;
+    font-size: 1.15em;
+  }
+  /* Morph shape necessary with bubble or elastic */
+.bm-morph-shape {
+    fill:linear-gradient(rgb(240,153,60),rgb(244,181,114));
+  }
+  
+  /* Wrapper for item list */
+  .bm-item-list {
+    color: #b8b7ad;
+  }
+  
+  /* Styling of overlay */
+  .bm-overlay {
+    background: rgba(0, 0, 0, 0.3);
+  }
+  /* Navigation */
+
+.bm-item-list div{
+    width: 100%;
+    color: #fff;
+    padding: 15px;
+    border: none;
+}
+.bm-item-list a {
+    text-decoration: none;
+}
+
+.bm-item-list div:hover, .bm-item-list .active{
+    background: #000;
+    border: none;
+}

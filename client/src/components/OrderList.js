@@ -1,4 +1,5 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 
 const OrderList = ({ orders }) => (
   !orders.length
@@ -18,7 +19,7 @@ const OrderList = ({ orders }) => (
       <p>{order.item.products.length} product(s) - {order.item.products[0].prod_name}...</p>
       <p>placed on {order.created_on}</p>
       <h4>{order.status}</h4>
-            <a href={`/order-details/${order.order_id}`}>SEE DETAILS</a>
+            <NavLink to={`/order-details/${order.order_id}`}>SEE DETAILS</NavLink>
           </div>
         </div>
       ))

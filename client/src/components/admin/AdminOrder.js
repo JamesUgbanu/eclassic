@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
+import { NavLink } from 'react-router-dom';
 import AdminSideNav from './AdminSideNav';
 import { generateByPage, SearchItems } from '../helpers';
 import { fetchAllOrder, changeOrderStatus } from '../../actions/index';
@@ -30,29 +31,29 @@ const AdminOrder = ({
         </div>
         <hr />
         <div className="admin__sortable">
-          <a href="/admin-order" className={!status ? 'active' : null}>
+          <NavLink to="/admin-order" className={!status ? 'active__status' : null}>
                 All
             <span>
 (
               {allOrders}
 )
             </span>
-          </a>
+          </NavLink>
                 |
-          <a href="?status=processing" className={status === 'processing' ? 'active' : null}>
+          <NavLink to="?status=processing" className={status === 'processing' ? 'active__status' : null}>
             processing
             <span />
-          </a>
+          </NavLink>
                 |
-          <a href="?status=completed" className={status === 'completed' ? 'active' : null}>
+          <NavLink to="?status=completed" className={status === 'completed' ? 'active__status' : null}>
             completed
             <span />
-          </a>
+          </NavLink>
                 |
-          <a href="?status=cancelled" className={status === 'cancelled' ? 'active' : null}>
+          <NavLink to="?status=cancelled" className={status === 'cancelled' ? 'active__status' : null}>
             cancelled
             <span />
-          </a>
+          </NavLink>
         </div>
         <div className="product__table">
 

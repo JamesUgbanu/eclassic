@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import AdminSideNav from './AdminSideNav';
 import ProductForm from '../ProductForm';
 
@@ -11,7 +12,7 @@ class AddProduct extends Component {
         <AdminSideNav />
         <div className="acc__container">
           <h1>
-            <a href="/admin-products" className="fa  fa-arrow-left" />
+            <Link to="/admin-products" className="fa  fa-arrow-left" />
                 Product Table
           </h1>
             <ProductForm />

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import SideNav from './SideNav';
 
 // eslint-disable-next-line react/prefer-stateless-function
@@ -10,7 +11,7 @@ class AddAddress extends Component {
         <SideNav />
         <div className="acc__container">
           <h1>
-            <a href="/address-book" className="fa  fa-arrow-left" />
+            <Link to="/address-book" className="fa  fa-arrow-left" />
                 Add new address
           </h1>
           <form className="form__control">

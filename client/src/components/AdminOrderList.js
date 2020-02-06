@@ -1,4 +1,5 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 
 const OrderList = ({ orders, orderStatusChange }) => (
   !orders.length
@@ -13,10 +14,10 @@ const OrderList = ({ orders, orderStatusChange }) => (
         <tr key={order.order_id}>
           <td>{index+1}</td>
           <td>
-            <a href={`/admin-order-details/${order.order_id}`}>
+            <NavLink to={`/admin-order-details/${order.order_id}`}>
               {order.item.products ? order.item.products[0].prod_name : null}
 ...
-            </a>
+            </NavLink>
           by James
           </td>
           <td>

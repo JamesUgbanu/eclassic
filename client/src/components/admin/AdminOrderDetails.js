@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import SideNav from '../SideNav';
 import { findCurrentItem } from '../helpers';
 
@@ -18,7 +19,7 @@ class OrderDetails extends Component {
         <SideNav />
         <div className="acc__container order__details">
           <h1>
-            <a href="/admin-order" className="fa  fa-arrow-left" />
+            <Link to="/admin-order" className="fa  fa-arrow-left" />
                 Order details
           </h1>
           <div className="order__list">
@@ -68,7 +69,6 @@ class OrderDetails extends Component {
 }
 const mapStateToProps = (state, ownProps) => {
   const currentOrder = state.adminOrder.length ? findCurrentItem(state.adminOrder, ownProps.match.params.OrderId, true) : null;
-  console.log(state);
   return {
     currentOrder,
     ajaxLoading: state.ajaxLoading
