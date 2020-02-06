@@ -41,7 +41,7 @@ class UserAddressController {
   static getById(request, response) {
     const query = {
       text: 'SELECT * FROM users WHERE user_id = $1',
-      values: [request.params.id]
+      values: [UserAddressController.getID(request)]
     };
     queryController.dbQuery(response, query, 'shipping address retrieved', 'address not found');
   }
@@ -54,7 +54,7 @@ class UserAddressController {
   static removeById(request, response) {
     const query = {
       text: 'DELETE FROM users WHERE user_id = $1',
-      values: [request.params.id]
+      values: [UserAddressController.getID(request)]
     };
     queryController.dbQuery(response, query, 'user address removed successfully', 'address not found');
   }
@@ -65,10 +65,9 @@ class UserAddressController {
 * @return {Object} json
 */
   static updateAddress(request, response) {
-    const { id } = request.params;
+    const id = UserAddressController.getID(request);
     const findquery = {
-      text: 'SELECT * FROM users WHERE user_id = $1',
-      values: [id]
+      text: 'SELECT * FROM users WHERE user_id = $1', values: [id]
     };
     client.query(findquery, (err, result) => {
       if (err) {
@@ -91,6 +90,10 @@ class UserAddressController {
         queryController.getSuccess(response, 200, res, 'user address updated successfully');
       });
     });
+  }
+
+  static getID(req) {
+    return req.params.id;
   }
 }
 
