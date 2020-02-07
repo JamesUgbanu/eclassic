@@ -29,6 +29,16 @@ const createOrderTable = `
     updated_on TIMESTAMP WITH TIME ZONE
   );
 `;
-
-const createQuery = `${createProductTable}${createOrderTable}`;
+const createUserTable = `
+  CREATE TABLE IF NOT EXISTS users(
+    user_id VARCHAR(50) PRIMARY KEY NOT NULL,
+    first_name VARCHAR(50),
+    last_name VARCHAR(50) NOT NULL,
+    email VARCHAR(50) NOT NULL,
+    address VARCHAR(100),
+    state VARCHAR(50),
+    phone VARCHAR(12)
+  );
+`;
+const createQuery = `${createProductTable}${createOrderTable}${createUserTable}`;
 export default createQuery;

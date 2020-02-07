@@ -5,6 +5,7 @@ import cors from 'cors';
 import orderRoutes from './server/routes/orders';
 import productRoutes from './server/routes/products';
 import userRoutes from './server/routes/users';
+import userAddressRoutes from './server/routes/userAddress';
 
 dotenv.config();
 
@@ -25,7 +26,7 @@ app.use(cors({
     if (!origin) return callback(null, true);
     if (allowedOrigins.indexOf(origin) === -1) {
       const msg = 'The CORS policy for this site does not '
-                + 'allow access from the specified Origin.';
+        + 'allow access from the specified Origin.';
       return callback(new Error(msg), false);
     }
     return callback(null, true);
@@ -41,6 +42,8 @@ app.use(bodyParser.json());
 orderRoutes(app);
 productRoutes(app);
 userRoutes(app);
+userAddressRoutes(app);
+
 // declare 404 route
 app.all('*', (req, res) => res.status(404).json({
   status: 404,
