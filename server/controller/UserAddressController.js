@@ -39,9 +39,10 @@ class UserAddressController {
    * @return {Object} json
    */
   static getById(request, response) {
+    const { id } = request.params;
     const query = {
       text: 'SELECT * FROM users WHERE user_id = $1',
-      values: [UserAddressController.getID(request)]
+      values: [id]
     };
     queryController.dbQuery(response, query, 'shipping address retrieved', 'address not found');
   }
@@ -66,34 +67,43 @@ class UserAddressController {
 */
   static updateAddress(request, response) {
     const id = UserAddressController.getID(request);
-    const findquery = {
-      text: 'SELECT * FROM users WHERE user_id = $1', values: [id]
-    };
-    client.query(findquery, (err, result) => {
-      if (err) {
-        return queryController.serverError(response, err);
-      }
-      if (result.rowCount === 0) {
-        return queryController.notFoundError(response, 'address not found');
-      }
-      const { rows } = result;
-      const updatequery = {
-        text: `UPDATE users SET first_name = $1, last_name = $2, email = $3, address = $4, state = $5,
-         phone = $6 WHERE user_id = $7 RETURNING *`,
-        values: [
-          request.body.first_name || rows[0].first_name, request.body.last_name || rows[0].last_name,
-          request.body.email || rows[0].email, request.body.address || rows[0].address,
-          request.body.state || rows[0].state, request.body.phone || rows[0].phone, id
-        ]
-      };
+    const selectText = UserAddressController.getQuery('SELECT * FROM users WHERE user_id = $1', [id]);
+    client.query(selectText, (err, result) => {
+      if (err) { return queryController.serverError(response, err); }
+      if (result.rowCount === 0) { return queryController.notFoundError(response, 'address not found'); }
+      const updateText = `UPDATE users SET first_name = $1, last_name = $2, email = $3, address = $4, state = $5,
+      phone = $6 WHERE user_id = $7 RETURNING *`;
+      const val = [
+        request.body.first_name || rows[0].first_name, request.body.last_name || rows[0].last_name,
+        request.body.email || rows[0].email, request.body.address || rows[0].address,
+        request.body.state || rows[0].state, request.body.phone || rows[0].phone, id
+      ];
+      const updatequery = UserAddressController.getQuery(updateText, val);
       client.query(updatequery).then((res) => {
         queryController.getSuccess(response, 200, res, 'user address updated successfully');
       });
     });
   }
 
+  /**
+   *
+   * @param {object} req
+   * @return {value} number
+   */
   static getID(req) {
     return req.params.id;
+  }
+
+  /**
+ *
+ * @param {String} text
+ * @param {Object} val
+ * @return {object} queryText
+ */
+  static getQuery(text, val) {
+    return {
+      text, values: val
+    };
   }
 }
 
