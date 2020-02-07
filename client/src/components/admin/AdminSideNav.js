@@ -8,7 +8,6 @@ const AdminSideNav = () => (
               <NavLink to="/admin-dashboard" className="dashboard__menu fas fa-box"><span>Dashboard</span></NavLink>
               <NavLink to="/admin-products" className="dashboard__menu fas fa-suitcase"><span>Products</span></NavLink>
               <NavLink to="/admin-order" className="dashboard__menu fas fa-dolly"><span>Orders</span></NavLink>
-              <NavLink to="/change-password" className="dashboard__menu"><span>Change Password</span></NavLink>
             </div>
           {/* <div className="account__sidebar__bottom">
               <button>Log Out</button>

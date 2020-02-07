@@ -1,14 +1,14 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { slide as Menu } from 'react-burger-menu';
 
 const SideBar = ({props, authenticate}) => (
   // Pass on our props
   <Menu {...props}>
-        <NavLink to="/"><div>Home</div></NavLink>
-        <NavLink to="/products"><div activeClassName="active">All Products</div></NavLink>
-        <NavLink to="about-us"><div activeClassName="active">About us</div></NavLink>
-        <NavLink to="/contact-us"><div activeClassName="active">Contact us</div></NavLink>
+        <Link to="/"><div>Home</div></Link>
+        <Link to="/products"><div >All Products</div></Link>
+        <Link to="#"><div >About us</div></Link>
+        <Link to="#"><div >Contact us</div></Link>
         {authenticate.isAuthenticated() ? (
           <button className="auth__btn" onClick={authenticate.logout}>Logout</button>
         ) : (

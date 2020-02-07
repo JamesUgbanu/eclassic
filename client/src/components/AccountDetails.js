@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import SideNav from './SideNav';
 
 // eslint-disable-next-line react/prefer-stateless-function
@@ -9,7 +10,10 @@ class AccountDetails extends Component {
       <main className="acc__main">
         <SideNav />
         <div className="acc__container">
-          <h1>Detail</h1>
+          <h1>
+            <Link to="/account-overview" className="fa  fa-arrow-left" />
+                Detail
+          </h1>
           <form className="form__control">
             <div className="form__two__grid">
               <div className="form__field">

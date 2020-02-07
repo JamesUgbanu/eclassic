@@ -9,7 +9,6 @@ const SideNav = () => (
         <NavLink to="/account-overview" className="dashboard__menu fas fa-user" activeClassName="active"><span>Account</span></NavLink>
         <NavLink to="/order" className="dashboard__menu fas fa-suitcase" activeClassName="active"><span>Orders</span></NavLink>
         <NavLink to="/address-book" className="dashboard__menu" activeClassName="active"><span>Address Book</span></NavLink>
-        <NavLink to="/change-password" className="dashboard__menu"><span>Change Password</span></NavLink>
       </div>
         {/* <div className="account__sidebar__bottom">
         <button>Log Out</button>

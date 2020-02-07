@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import SideNav from './SideNav';
 
 // eslint-disable-next-line react/prefer-stateless-function
@@ -9,12 +10,12 @@ const AddressBook = () => (
     <div className="acc__container">
       <h1>
             Address Book
-        <a href="/add-address" className="address__book__btn">Add Address</a>
+        <Link to="/add-address" className="address__book__btn">Add Address</Link>
       </h1>
       <div className="acc__details">
         <div className="acc__details__head">
                 James Ugbanu
-          <a href="/add-address"><i className="fas fa-pencil-alt" /></a>
+          <Link to="/add-address"><i className="fas fa-pencil-alt" /></Link>
         </div>
         <div className="acc__details__body">
           <p>Address</p>

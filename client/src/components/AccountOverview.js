@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import SideNav from './SideNav';
 import { fetchUserProfile } from '../actions/index';
 // eslint-disable-next-line react/prefer-stateless-function
@@ -16,20 +17,20 @@ const AccountOverview = ({ fetchUser, auth, user }) => {
         <div className="acc__details">
           <div className="acc__details__head">
                 ACCOUNT DETAIL
-            <a href="/account-details"><i className="fas fa-pencil-alt" /></a>
+            <Link to="/account-details"><i className="fas fa-pencil-alt" /></Link>
           </div>
           <div className="acc__details__body">
   <p>{user.nickname}</p>
             <em>{user.email}</em>
           </div>
           <div className="acc__details__footer">
-            <a href="#">CHANGE PASSWORD</a>
+            <Link to="#">CHANGE PASSWORD</Link>
           </div>
         </div>
         <div className="acc__details">
           <div className="acc__details__head">
                 ADDRESS BOOK
-            <a href="/address-book"><i className="fas fa-pencil-alt" /></a>
+            <Link to="/address-book"><i className="fas fa-pencil-alt" /></Link>
           </div>
           <div className="acc__details__body">
             <p>Your Shipping addres:</p>

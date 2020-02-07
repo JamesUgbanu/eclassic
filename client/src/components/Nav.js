@@ -10,11 +10,11 @@ class Nav extends Component {
     // eslint-disable-next-line react/jsx-filename-extension
       <header className="shadow__menu">
         <div className="topbar top__menu">
-          <SideBar authenticate={this.props.auth} />
+          <SideBar bubble authenticate={this.props.auth} />
         </div>
 
         <div className="topbar">
-          <NavLink to="/"><img className="logo" src="images/eclassik-small-logo.png" alt="Eclassic logo" /></NavLink>
+          <NavLink to="/"><img className="logo" src="../../images/eclassik-small-logo.png" alt="Eclassic logo" /></NavLink>
         </div>
         <div className="topbar">
           <div className="cart__box">
