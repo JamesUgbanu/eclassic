@@ -37,7 +37,7 @@ class ProductInfo extends Component {
                 value={values.productName}
               />
             </div>
-            {errorMsg.message('productName', values.productName, 'required|alpha_space')}
+            {errorMsg.message('productName', values.productName, 'required|alpha_num_space')}
             <div className="section__box">
               <label>SK</label>
               <input
