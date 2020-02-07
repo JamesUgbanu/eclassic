@@ -6,7 +6,7 @@ class Login extends Component {
     const { isAuthenticated, login } = this.props.auth;
     return (
     // eslint-disable-next-line react/jsx-filename-extension
-      <div>
+      <div className="product__container">
         { !isAuthenticated() && (
           <div className="login__box"><h1>Login to continue</h1>
         <button className="login__btn" onClick={login}>Login</button>

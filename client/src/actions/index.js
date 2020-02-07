@@ -9,7 +9,7 @@ import Auth from '../Auth/Auth';
 import { generateSerial } from '../components/helpers';
 
 const auth = new Auth();
-const ROOT_URL = 'http://localhost:3001/api/v1';
+const ROOT_URL = 'https://e-classik.herokuapp.com/api/v1';
 const alertId = generateSerial();
 
 const fetchProducts = products => ({
