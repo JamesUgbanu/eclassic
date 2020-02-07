@@ -44,11 +44,9 @@ class OrderController {
    * @return {Object} json
    */
   static getById(request, response) {
-    const { id } = request.params;
-
     const query = {
       text: 'SELECT * FROM orders WHERE order_id = $1',
-      values: [id]
+      values: [request.params.id]
     };
     queryController.dbQuery(response, query, 'orders retrieved successfully', 'order not found');
   }
