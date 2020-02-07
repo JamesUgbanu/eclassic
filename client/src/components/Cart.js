@@ -23,10 +23,10 @@ const Cart = ({
         incrementQuantity={incrementQuantity}
       />
       <div className="back__to__product">
-        <a href="/products">
+        <Link to="/products">
           <i className="fa fa-arrow-left" />
 Back to product
-        </a>
+        </Link>
       </div>
     </div>
     <div className="container__box">

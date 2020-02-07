@@ -2,10 +2,13 @@
   "name": "eclassik",
   "version": "1.0.0",
   "description": "Ecommerce app",
+  "homepage": "https://jamesugbanu.github.io/eclassik",
   "main": "index.js",
   "repository": "git@github.com:JamesUgbanu/eclassik.git",
   "scripts": {
     "start": "node ./node_modules/webpack-dev-server/bin/webpack-dev-server.js",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "test": "mocha --compilers js:babel-core/register --require ./test/test_helper.js --recursive ./test",
     "test:watch": "npm run test -- --watch",
     "build": "webpack -p --define process.env.NODE_ENV='\"production\"' --progress --colors"
@@ -32,6 +35,7 @@
     "css-loader": "^3.4.1",
     "dotenv": "^8.2.0",
     "file-loader": "^5.0.2",
+    "gh-pages": "^2.2.0",
     "jwt-decode": "^2.2.0",
     "lodash": "^4.17.15",
     "react": "^16.12.0",

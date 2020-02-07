@@ -3,14 +3,14 @@ import { connect } from 'react-redux';
 import { addToCart } from '../actions/index';
 import Left from './LeftNav';
 import { findCurrentItem, checkForItemState } from './helpers';
-
+import Loading from './Loading';
 // eslint-disable-next-line react/prefer-stateless-function
 class SingleProduct extends Component {
   render() {
     const { ajaxLoading, currentProduct, cart } = this.props;
     if (ajaxLoading || !currentProduct) {
       return (
-        <div className="login__box">Loading...</div>
+        <Loading />
       );
     }
     const images = Object.values(currentProduct.image_url);

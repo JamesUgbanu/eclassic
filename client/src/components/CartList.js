@@ -35,10 +35,10 @@ export default ({
 $
                   {cartItem.price * cartItem.cartQuantity}
                 </td>
+                <td> <button onClick={() => removeCart(cartItem.prod_id, cartItem.prod_name)} className="remove__btn fa fa-times" /></td>
               </tr>
             </tbody>
           </table>
-          <button onClick={() => removeCart(cartItem.prod_id, cartItem.prod_name)} className="remove__btn fa fa-times" />
         </div>
       ))
     )
