@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { getCartTotal } from './helpers';
 import SideBar from './SideBar';
+import logo from '../../images/eclassik-small-logo.png';
 // eslint-disable-next-line react/prefer-stateless-function
 class Nav extends Component {
   render() {
@@ -14,7 +15,7 @@ class Nav extends Component {
         </div>
 
         <div className="topbar">
-          <NavLink to="/"><img className="logo" src="../../images/eclassik-small-logo.png" alt="Eclassic logo" /></NavLink>
+          <NavLink to="/"><img className="logo" src={logo} alt="Eclassic logo" /></NavLink>
         </div>
         <div className="topbar">
           <div className="cart__box">

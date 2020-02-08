@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Left from './LeftNav';
+import banner from '../../images/banner.png';
 
 // eslint-disable-next-line react/prefer-stateless-function
 class Home extends Component {
@@ -10,7 +11,7 @@ class Home extends Component {
     <main className="container__section">
         <Left />
       <div className="container__box banner">
-        <img className="banner__img" src="images/banner.png" />
+        <img className="banner__img" src={banner} />
         <div className="collection">
           <h1 className="main_text">Urban <br/> COLLECTION</h1>
           <Link to="/products"><span>see collection</span><i className="fa fa-arrow-right fa-1x" ></i>
