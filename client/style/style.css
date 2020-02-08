@@ -337,7 +337,7 @@ header.shadow__menu {
     .content_box {
         display: grid;
         grid-template-columns: 50% 50%;
-        height: 87vh;
+        padding-top: 85px;
     }
 }
 @media only screen and (max-width: 768px) {
