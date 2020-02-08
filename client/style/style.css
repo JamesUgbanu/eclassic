@@ -33,9 +33,8 @@ header.shadow__menu {
     overflow: hidden;
     background: #ddd;
 }
-.topbar .menu{
+.topbar .menu {
     margin-top: 20px;
-
 }
 .message__display {
     position: fixed;
@@ -96,7 +95,7 @@ header.shadow__menu {
 .cart__box .cart__total {
     color: #fff;
     display: block;
-    margin-left: 125px;
+    margin-left: 120px;
     font-weight: bolder;
     font-size: 12px;
 }
@@ -204,12 +203,7 @@ header.shadow__menu {
         height: 100%;
     }
 }
-@media only screen and (max-width: 768px) {
-    .container__section {
-        /* display: grid;
-        grid-template-rows: 10% 70% 20%;
-        height: 87vh;    */
-    }     
+@media only screen and (max-width: 768px) {   
     .container__box .box {
         width: 100%;
     }
@@ -361,20 +355,16 @@ header.shadow__menu {
     .description__box .description {
         margin-top: 140px;
     }
-    .container__box .checkBtn, .container__box button{
-        width: 100% !important;
-    }
 }
 .content_box {
     position: relative;
-    top: 90px;
 }
 
 .container__box .checkBtn, .container__box button{
     position: fixed;
     bottom: 0;
     right: 0;
-    width: 18%;
+    width: 20%;
     padding: 20px 0;
     border: none;
     padding-left: 20px;
@@ -382,7 +372,6 @@ header.shadow__menu {
     font-size: 18px;
     background: orange;
     cursor: pointer;
-    text-align: center;
 }
 
 .single_img {
@@ -459,7 +448,6 @@ header.shadow__menu {
 .cart__items {
     padding-bottom: 50px;
     margin-left: 10%;
-    padding-top: 100px;
 }
 
 .cart__items p {
@@ -501,9 +489,8 @@ header.shadow__menu {
   }
   
   .l_box .cart__quantity {
-    padding: 3px 15px 6px 15px;
+    padding: 4px 15px;
     border: 1px solid #dadada;
-    background: #fff;
   }
 
 @media only screen and (min-width: 768px) {
@@ -551,14 +538,11 @@ header.shadow__menu {
         height: 90%;
     }
     .l_box .fa {
-        position: relative;
+        position: absolute;
+        right: 0;
         color: #fff;
         cursor: pointer;
         font-size: 26px;
-    }
-    .back__to__product {
-        position: absolute;
-        top: 10px;
     }
 }
 
@@ -633,7 +617,6 @@ header.shadow__menu {
     .acc__main {
         display: grid;
         grid-template-columns: 35% 65%;
-        padding-top: 100px;
     }
     .acc__details {
         position: relative;
@@ -1426,25 +1409,13 @@ background-color: #f00;
   /* The rest copied directly from react-burger-menu docs */
 
 /* Position and sizing of burger button */
-@media only screen and (max-width: 768px) {
-    .bm-burger-button {
-        position: fixed;
-        width: 36px;
-        height: 30px;
-        left: 40px;
-        top: 30px;
-    }
+.bm-burger-button {
+    position: fixed;
+    width: 36px;
+    height: 30px;
+    left: 100px;
+    top: 30px;
 }
-@media only screen and (min-width: 768px) {
-    .bm-burger-button {
-        position: fixed;
-        width: 36px;
-        height: 30px;
-        left: 100px;
-        top: 30px;
-    }
-}
-
 /* Color/shape of burger icon bars */
 .bm-burger-bars {
     background: #373a47;

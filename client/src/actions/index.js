@@ -178,6 +178,7 @@ export const addProduct = formData => (dispatch) => {
           dispatch(setAlert(error.msg, 'error'));
         });
       } else {
+        console.log(error.response)
         dispatch(setAlert(error.response.data.message, 'error'));
       }
       throw (error);
