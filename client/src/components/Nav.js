@@ -22,7 +22,7 @@ class Nav extends Component {
             <NavLink to="/cart">
               <i className="fa fa-shopping-bag fa-3x"><span>{this.props.cart ? this.props.cart.length : 0}</span></i>
               <div className="cart__total">
-                { getCartTotal(this.props.cart) !== 0 ? `$${getCartTotal(this.props.cart)}` : 'no item in cart'}
+                { getCartTotal(this.props.cart) !== 0 ? `$${getCartTotal(this.props.cart)}` : 'no item'}
               </div>
             </NavLink>
           </div>

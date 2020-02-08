@@ -5,7 +5,7 @@ export default ({
 }) => (
   !cartItems.length
     ? (
-      <div>
+      <div className="empty__cart__box">
         <p>No Item in cart</p>
       </div>
     )
