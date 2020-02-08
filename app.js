@@ -17,7 +17,7 @@ const port = process.env.PORT;
 // declare accepted cors URL
 // Set up a whitelist and check against it:
 const allowedOrigins = ['http://localhost:3001', 'http://localhost:8080', 'https://e-classik.herokuapp.com',
-'https://eloquent-almeida-a44d93.netlify.com/'];
+'https://eloquent-almeida-a44d93.netlify.com'];
 
 app.use(cors({
   origin(origin, callback) {
