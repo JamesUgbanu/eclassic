@@ -6,7 +6,7 @@ export default class Auth {
   constructor() {
     this.userProfile = null;
     this.auth0 = new auth0.WebAuth({
-      domain: process.env.REACT_APP_AUTH0_DOMAIN,
+      domain: process.env.REACT_APP_AUTH0_DOMAI,
       clientID: process.env.REACT_APP_AUTH0_CLIENT_ID,
       redirectUri: process.env.REACT_APP_AUTH0_CALLBACK_URL,
       responseType: 'token id_token',
