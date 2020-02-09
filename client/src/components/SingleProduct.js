@@ -50,7 +50,7 @@ class SingleProduct extends Component {
           {
                 checkForItemState(cart, currentProduct.prod_id)
                   ? <button disabled>Item already in cart</button>
-                  : <button class="active" onClick={() => this.props.addCart(cartObj)}>Add to Cart</button>
+                  : <button className="active" onClick={() => this.props.addCart(cartObj)}>Add to Cart</button>
             }
         </div>
       </main>

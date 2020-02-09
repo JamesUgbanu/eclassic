@@ -9,7 +9,8 @@ const Checkout = ({ cart, orderAction }) => (
   // eslint-disable-next-line react/jsx-filename-extension
   <main className="container__checkout__page">
     <Left />
-    <div className="acc__container">
+    <div className="container__box">
+      <div className="acc__container">
       <h1 className="bg__header">Shipping Information</h1>
       <div className="form__control">
         <div className="form__two__grid">
@@ -40,6 +41,7 @@ const Checkout = ({ cart, orderAction }) => (
         </div>
 
       </div>
+    </div>
     </div>
     <div className="form__control checkout__product">
       <table cellSpacing="20">

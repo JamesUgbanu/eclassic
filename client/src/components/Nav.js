@@ -1,17 +1,18 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
-import { getCartTotal } from './helpers';
+import { getCartTotal, getQuantity } from './helpers';
 import SideBar from './SideBar';
 import logo from '../../images/eclassik-small-logo.png';
 // eslint-disable-next-line react/prefer-stateless-function
 class Nav extends Component {
   render() {
+    const { cart, auth } = this.props;
     return (
     // eslint-disable-next-line react/jsx-filename-extension
       <header className="shadow__menu">
         <div className="topbar top__menu">
-          <SideBar bubble authenticate={this.props.auth} />
+          <SideBar bubble authenticate={auth} />
         </div>
 
         <div className="topbar">
@@ -20,9 +21,9 @@ class Nav extends Component {
         <div className="topbar">
           <div className="cart__box">
             <NavLink to="/cart">
-              <i className="fa fa-shopping-bag fa-3x"><span>{this.props.cart ? this.props.cart.length : 0}</span></i>
+              <i className="fa fa-shopping-bag fa-3x"><span>{cart ? getQuantity(cart) : 0}</span></i>
               <div className="cart__total">
-                { getCartTotal(this.props.cart) !== 0 ? `$${getCartTotal(this.props.cart)}` : 'no item'}
+                { getCartTotal(cart) !== 0 ? `$${getCartTotal(cart)}` : 'no item'}
               </div>
             </NavLink>
           </div>

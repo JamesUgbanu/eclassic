@@ -9,7 +9,7 @@ import Auth from '../Auth/Auth';
 import { generateSerial } from '../components/helpers';
 
 const auth = new Auth();
-const ROOT_URL = 'https://e-classik.herokuapp.com/api/v1';
+const ROOT_URL = process.env.REACT_ENDPOINT;
 const alertId = generateSerial();
 
 const fetchProducts = products => ({
@@ -178,7 +178,6 @@ export const addProduct = formData => (dispatch) => {
           dispatch(setAlert(error.msg, 'error'));
         });
       } else {
-        console.log(error.response)
         dispatch(setAlert(error.response.data.message, 'error'));
       }
       throw (error);
