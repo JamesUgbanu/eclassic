@@ -19,14 +19,14 @@ class Nav extends Component {
           <NavLink to="/"><img className="logo" src={logo} alt="Eclassic logo" /></NavLink>
         </div>
         <div className="topbar">
-          <div className="cart__box">
-            <NavLink to="/cart">
+          <NavLink to="/cart">
+              <div className="cart__box">
               <i className="fa fa-shopping-bag fa-3x"><span>{cart ? getQuantity(cart) : 0}</span></i>
               <div className="cart__total">
                 { getCartTotal(cart) !== 0 ? `$${getCartTotal(cart)}` : 'no item'}
+                </div>
               </div>
-            </NavLink>
-          </div>
+          </NavLink>
         </div>
       </header>
     );

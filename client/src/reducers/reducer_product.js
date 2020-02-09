@@ -7,18 +7,20 @@ export default function(state = initialState.products, action) {
   const { type, payload } = action;
   switch (type) {
     case FETCH_PRODUCTS:
-      return payload.data;
+      return [
+        ...payload.data
+      ];
     case ADD_PRODUCT:
       return [
         ...state,
-        payload.data
+        ...payload.data
       ];
     case DELETE_PRODUCT:
       return [...state.filter(product => product.prod_id !== payload.id)];
     case UPDATE_PRODUCT:
       return [
         ...state.filter(product => product.prod_id === payload.data.id),
-        payload.data
+        ...payload.data
       ];
     default:
       return state;

@@ -27,7 +27,7 @@ class SingleProduct extends Component {
       <main className="container__section">
         <Left />
         <div className="container__box">
-          <div className="content_box">
+          <div className="content_box container__top__space">
             <div className="single_img">
               <img src={images[0]} />
             </div>

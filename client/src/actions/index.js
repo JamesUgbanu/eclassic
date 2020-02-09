@@ -11,6 +11,7 @@ import { generateSerial } from '../components/helpers';
 const auth = new Auth();
 const ROOT_URL = process.env.REACT_ENDPOINT;
 const alertId = generateSerial();
+const timerInSec = 5000;
 
 const fetchProducts = products => ({
   type: FETCH_PRODUCTS,
@@ -59,12 +60,10 @@ export const setAlert = (msg, alertType) => ({
   payload: { msg, alertId, alertType }
 });
 
-export const removeAlert = id => dispatch => dispatch(
-  {
-    type: REMOVE_ALERT,
-    payload: { id }
-  }
-);
+export const removeAlert = id => ({
+  type: REMOVE_ALERT,
+  payload: { id }
+});
 
 export const addToCart = item => (dispatch) => {
   dispatch(setAlert(`${item.prod_name} added to cart`, 'success'));
@@ -126,6 +125,8 @@ export const fetchAllProducts = () => (dispatch) => {
       if (error.response) {
         !error.response.data.message ? dispatch(setAlert(error.response.data, 'error')) : dispatch(setAlert(error.response.data.message, 'error'));
       }
+      dispatch(setAlert('Network error', 'error'));
+      setTimeout(() => dispatch(removeAlert(alertId)), timerInSec);
     });
 };
 
@@ -143,14 +144,18 @@ export const deleteProduct = id => (dispatch) => {
       dispatch(ajaxLoading(false));
       dispatch(deleteProductSuccess(id));
       dispatch(setAlert(res.data.message, 'success'));
+      setTimeout(() => dispatch(removeAlert(alertId)), timerInSec);
     })
     .catch((error) => {
       dispatch(ajaxLoading(false));
-      if (error) {
+      if (error.response) {
         dispatch(setAlert(error.response, 'error'));
+        setTimeout(() => dispatch(removeAlert(alertId)), timerInSec);
       }
       throw (error);
     });
+  dispatch(setAlert('Network error', 'error'));
+  setTimeout(() => dispatch(removeAlert(alertId)), timerInSec);
 };
 /** Add new Product
  * dispatch result to the reducer
@@ -170,16 +175,21 @@ export const addProduct = formData => (dispatch) => {
       dispatch(ajaxLoading(false));
       dispatch(addProductSuccess(res.data));
       dispatch(setAlert(res.data.message, 'success'));
+      setTimeout(() => dispatch(removeAlert(alertId)), timerInSec);
     })
     .catch((error) => {
       dispatch(ajaxLoading(false));
       if (error.response.data.errors) {
         error.response.data.errors.forEach((error) => {
           dispatch(setAlert(error.msg, 'error'));
+          setTimeout(() => dispatch(removeAlert(alertId)), timerInSec);
         });
       } else {
         dispatch(setAlert(error.response.data.message, 'error'));
+        setTimeout(() => dispatch(removeAlert(alertId)), timerInSec);
       }
+      dispatch(setAlert('Network error', 'error'));
+      setTimeout(() => dispatch(removeAlert(alertId)), timerInSec);
       throw (error);
     });
 };
@@ -199,16 +209,20 @@ export const updateProduct = (formData, id) => (dispatch) => {
       dispatch(ajaxLoading(false));
       dispatch(updateProductSuccess(res.data));
       dispatch(setAlert(res.data.message, 'success'));
+      setTimeout(() => dispatch(removeAlert(alertId)), timerInSec);
     })
     .catch((error) => {
       dispatch(ajaxLoading(false));
       if (error.response.data.errors) {
         error.response.data.errors.forEach((error) => {
           dispatch(setAlert(error.msg, 'error'));
+          setTimeout(() => dispatch(removeAlert(alertId)), timerInSec);
         });
       } else {
         dispatch(setAlert(error.response.data.message, 'error'));
+        setTimeout(() => dispatch(removeAlert(alertId)), timerInSec);
       }
+      dispatch(setAlert('Network error', 'error'));
       throw (error);
     });
 };
@@ -228,6 +242,7 @@ export const addOrder = data => (dispatch) => {
       dispatch(ajaxLoading(false));
       dispatch(addOrderSuccess());
       dispatch(setAlert(res.data.message, 'success'));
+      setTimeout(() => dispatch(removeAlert(alertId)), timerInSec);
       dispatch(clearCart());
     })
     .catch((error) => {
@@ -235,10 +250,14 @@ export const addOrder = data => (dispatch) => {
       if (error.response.data.errors) {
         error.response.data.errors.forEach((error) => {
           dispatch(setAlert(error.msg, 'error'));
+          setTimeout(() => dispatch(removeAlert(alertId)), timerInSec);
         });
       } else {
         dispatch(setAlert(error.response.data.message, 'error'));
+        setTimeout(() => dispatch(removeAlert(alertId)), timerInSec);
       }
+      dispatch(setAlert('Network error', 'error'));
+      setTimeout(() => dispatch(removeAlert(alertId)), timerInSec);
       throw (error);
     });
 };
@@ -263,6 +282,7 @@ export const fetchOrder = () => (dispatch) => {
       dispatch(ajaxLoading(false));
       if (error.response) {
         dispatch(setAlert(error.response.data, 'error'));
+        setTimeout(() => dispatch(removeAlert(alertId)), timerInSec);
       }
     });
 };
@@ -287,7 +307,10 @@ export const fetchAllOrder = () => (dispatch) => {
       dispatch(ajaxLoading(false));
       if (error.response) {
         dispatch(setAlert(error.response.data, 'error'));
+        setTimeout(() => dispatch(removeAlert(alertId)), timerInSec);
       }
+      dispatch(setAlert('Network error', 'error'));
+      setTimeout(() => dispatch(removeAlert(alertId)), timerInSec);
     });
 };
 
@@ -304,16 +327,19 @@ export const changeOrderStatus = ({ id, status }) => (dispatch) => {
     }
   })
     .then((res) => {
-      console.log(res.data)
       dispatch(ajaxLoading(false));
       dispatch(changeOrderStatusSuccess(res.data, id));
       dispatch(setAlert(res.data.message, 'success'));
+      setTimeout(() => dispatch(removeAlert(alertId)), timerInSec);
     })
     .catch((error) => {
       dispatch(ajaxLoading(false));
       if (error) {
         dispatch(setAlert(error.response, 'error'));
+        setTimeout(() => dispatch(removeAlert(alertId)), timerInSec);
       }
+      dispatch(setAlert('Network error', 'error'));
+      setTimeout(() => dispatch(removeAlert(alertId)), timerInSec);
       throw (error);
     });
 };

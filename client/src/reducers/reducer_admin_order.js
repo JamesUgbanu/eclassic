@@ -7,7 +7,7 @@ export default function(state = initialState.adminOrders, action) {
   const { type, payload } = action;
   switch (type) {
     case FETCH_ALL_ORDERS:
-      return payload.data;
+      return [...payload.data];
     case ORDER_STATUS:
       return Object.assign([], state.map((order) => {
         if (order.order_id === payload.id) {

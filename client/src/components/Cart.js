@@ -13,7 +13,7 @@ const Cart = ({
   // eslint-disable-next-line react/jsx-filename-extension
   <main className="container__section">
     <Left />
-    <div className="container__box cart__items">
+    <div className="container__box cart__items container__top__space">
       <h1>Cart</h1>
       <p>Here you can check your order with futher confirmation and payment</p>
       <CartList

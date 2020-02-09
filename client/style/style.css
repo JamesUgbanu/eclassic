@@ -83,7 +83,7 @@ header.shadow__menu {
 .cart__box:hover {
     background: #fbba3f;
 }
-.cart__box a {
+.topbar a {
     text-decoration: none;
 }
 .cart__box .fa {
@@ -333,6 +333,10 @@ header.shadow__menu {
 
 .cloth_img img:hover {
     opacity: 0.5;
+}
+
+.container__top__space {
+    margin-top: 85px;
 }
 
 /** Single Page **/
