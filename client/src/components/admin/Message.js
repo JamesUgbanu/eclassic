@@ -7,7 +7,7 @@ const Alert = ({ alerts, onRemove }) => alerts !== null
 && alerts.map((alert, index) => (
   <div key={index} className={`message__display ${alert.alertType}`}>
     <span>{alert.msg}</span>
-<button onClick={() => onRemove(alert.id)}>{index === 0 ? 'X' : ''}</button>
+<button onClick={() => onRemove(alert.alertId)}>{index === 0 ? 'X' : ''}</button>
   </div>
 
 ));

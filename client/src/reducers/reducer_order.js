@@ -7,7 +7,7 @@ export default function(state = initialState.orders, action) {
   const { type, payload } = action;
   switch (type) {
     case FETCH_ORDERS:
-      return payload.data;
+      return [...payload.data];
     case ADD_ORDER:
       return state = payload;
     default:

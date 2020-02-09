@@ -27,7 +27,7 @@ class SingleProduct extends Component {
       <main className="container__section">
         <Left />
         <div className="container__box">
-          <div className="content_box">
+          <div className="content_box container__top__space">
             <div className="single_img">
               <img src={images[0]} />
             </div>
@@ -50,7 +50,7 @@ class SingleProduct extends Component {
           {
                 checkForItemState(cart, currentProduct.prod_id)
                   ? <button disabled>Item already in cart</button>
-                  : <button class="active" onClick={() => this.props.addCart(cartObj)}>Add to Cart</button>
+                  : <button className="active" onClick={() => this.props.addCart(cartObj)}>Add to Cart</button>
             }
         </div>
       </main>

@@ -80,16 +80,18 @@ class ProductForm extends Component {
     if (this.validator.allValid()) {
       if (!this.props.pageNo) {
         this.props.addNewProduct(formData);
-        this.setState({
-          productName: '',
-          sku: '',
-          description: '',
-          beforePrice: '',
-          afterPrice: '',
-          discount: '',
-          quantity: '',
-          imageUrl: []
-        });
+        if (this.props.alertState.length) {
+          this.setState({
+            productName: '',
+            sku: '',
+            description: '',
+            beforePrice: '',
+            afterPrice: '',
+            discount: '',
+            quantity: '',
+            imageUrl: []
+          });
+        }
       } else {
         this.props.updateProduct(formData, this.props.pageNo);
       }
@@ -182,7 +184,7 @@ const mapStateToProps = (state, ownProps) => {
   return {
     currentProduct,
     ajaxLoading: state.ajaxLoading,
-    checkState: state.alert,
+    alertState: state.alert,
     pageNo: ownProps.pageNo
   };
 };
