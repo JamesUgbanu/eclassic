@@ -1,7 +1,8 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 // eslint-disable-next-line react/prefer-stateless-function
-const AdminProductNav = ({ step}) => (
+const AdminProductNav = ({ step }) => (
   <div className="product__tab">
     <div className={`tab__content ${step === 1 ? 'active' : ''}`}>
       <i className="fas fa-info-circle" />
@@ -22,5 +23,9 @@ const AdminProductNav = ({ step}) => (
     </div>
   </div>
 );
+
+AdminProductNav.propTypes = {
+  step: PropTypes.number
+};
 
 export default AdminProductNav;

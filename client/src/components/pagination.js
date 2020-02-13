@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 const Pagination = ({ currentPage, pages, currentUrl }) => {
   const prevLink = parseInt(currentPage, 10) - 1;
@@ -23,6 +24,12 @@ const Pagination = ({ currentPage, pages, currentUrl }) => {
       </ul>
     </div>
   );
+};
+
+Pagination.propTypes = {
+  currentPage:PropTypes.number,
+  pages: PropTypes.number,
+  currentUrl: PropTypes.string
 };
 
 export default Pagination;

@@ -1,6 +1,7 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-export default ({
+const CartList = ({
   cartItems, removeCart, incrementQuantity, decrementQuantity
 }) => (
   !cartItems.length
@@ -43,3 +44,12 @@ $
       ))
     )
 );
+
+CartList.propTypes = {
+  cartItems: PropTypes.array,
+  removeCart: PropTypes.func,
+  incrementQuantity: PropTypes.func,
+  decrementQuantity: PropTypes.func
+};
+
+export default CartList;

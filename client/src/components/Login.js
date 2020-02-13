@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import PropTypes from 'prop-types';
 // eslint-disable-next-line react/prefer-stateless-function
 class Login extends Component {
   render() {
@@ -17,5 +17,11 @@ class Login extends Component {
     );
   }
 }
+
+Login.propTypes = {
+  isAuthenticated: PropTypes.func,
+  login: PropTypes.func,
+  auth: PropTypes.object
+};
 
 export default Login;

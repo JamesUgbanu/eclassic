@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import AdminSideNav from './AdminSideNav';
 import ProductForm from '../ProductForm';
 
@@ -22,6 +23,9 @@ class EditProduct extends Component {
   }
 }
 
+EditProduct.propTypes = {
+  pagesNo: PropTypes.number
+};
 const mapStateToProps = (state, ownProps) => {
   return {
     pageNo: ownProps.match.params.id

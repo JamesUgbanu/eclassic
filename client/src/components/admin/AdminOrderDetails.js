@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import SideNav from '../SideNav';
 import { findCurrentItem } from '../helpers';
 
@@ -67,6 +68,10 @@ class OrderDetails extends Component {
     );
   }
 }
+OrderDetails.propTypes = {
+  ajaxLoading: PropTypes.bool,
+  currentOrder: PropTypes.array
+};
 const mapStateToProps = (state, ownProps) => {
   const currentOrder = state.adminOrder.length ? findCurrentItem(state.adminOrder, ownProps.match.params.OrderId, true) : null;
   return {

@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import SideNav from './SideNav';
 import OrderList from './OrderList';
 import { generateByPage } from './helpers';
@@ -33,6 +34,16 @@ Orders(
     </main>
   );
 };
+
+Order.propTypes = {
+  fetchUserOrder: PropTypes.array,
+  orders: PropTypes.array,
+  allOrders: PropTypes.array,
+  pages: PropTypes.number,
+  currentPage: PropTypes.number,
+  ajaxLoading: PropTypes.bool
+};
+
 const mapStateToProps = (state, ownProps) => {
   // Set page number to 1 if no number in url params
   const pageNo = ownProps.match.params.pageNo || 1;

@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import { removeAlert } from '../../actions/index';
 
 const Alert = ({ alerts, onRemove }) => alerts !== null
@@ -11,6 +12,11 @@ const Alert = ({ alerts, onRemove }) => alerts !== null
   </div>
 
 ));
+
+Alert.propTypes = {
+  alerts: PropTypes.number,
+  onRemove: PropTypes.func
+};
 
 const mapStateToProps = ({ alert }) => ({
   alerts: alert

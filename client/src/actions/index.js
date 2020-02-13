@@ -67,6 +67,7 @@ export const removeAlert = id => ({
 
 export const addToCart = item => (dispatch) => {
   dispatch(setAlert(`${item.prod_name} added to cart`, 'success'));
+  setTimeout(() => dispatch(removeAlert(alertId)), timerInSec);
   dispatch({
     type: ADD_CART,
     payload: item
@@ -74,6 +75,7 @@ export const addToCart = item => (dispatch) => {
 };
 export const removeFromCart = (id, name) => (dispatch) => {
   dispatch(setAlert(`${name} removed from cart`, 'success'));
+  setTimeout(() => dispatch(removeAlert(alertId)), timerInSec);
   dispatch({
     type: REMOVE_CART,
     payload: { id }

@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { connect } from "react-redux";
 import AdminSideNav from './AdminSideNav';
 
 // eslint-disable-next-line react/prefer-stateless-function
@@ -36,8 +35,4 @@ class AdminDashboard extends Component {
   }
 }
 
-function mapStateToProps({ products }) {
-  return { products };
-}
-
-export default connect(mapStateToProps)(AdminDashboard);
+export default AdminDashboard;

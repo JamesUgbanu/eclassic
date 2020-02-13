@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import SimpleReactValidator from 'simple-react-validator';
+import PropTypes from 'prop-types';
 import ProductInfo from './ProductInfo';
 import PriceInfo from './PriceInfo';
 import Quantity from './Quantity';
@@ -169,6 +170,10 @@ class ProductForm extends Component {
     }
   }
 }
+
+ProductForm.propTypes = {
+  currentProduct: PropTypes.object
+};
 
 const mapDispatchToProps = dispatch => ({
   addNewProduct: (data) => {

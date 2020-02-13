@@ -1,5 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 const OrderList = ({ orders }) => (
   !orders.length
@@ -25,5 +26,9 @@ const OrderList = ({ orders }) => (
       ))
     )
 );
+
+OrderList.propTypes = {
+  orders: PropTypes.array
+};
 
 export default OrderList;

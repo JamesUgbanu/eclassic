@@ -1,7 +1,8 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Pagination from '../pagination';
 
-export default ({
+const ProductList = ({
   products, onDelete, pages, currentPage
 }) => (
   !products.length
@@ -39,8 +40,17 @@ export default ({
           </tbody>
         </table>
         { /* show pagination if there are more than 1 page */
-        pages > 1 && <Pagination pages={pages} currentPage={currentPage} currentUrl={'admin-products'} />
+        pages > 1 && <Pagination pages={pages} currentPage={currentPage} currentUrl="admin-products" />
     }
       </div>
     )
 );
+
+ProductList.propTypes = {
+  products: PropTypes.array,
+  onDelete: PropTypes.func,
+  pages: PropTypes.number,
+  currentPage: PropTypes.number
+};
+
+export default ProductList;
