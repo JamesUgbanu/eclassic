@@ -105,6 +105,7 @@ class ProductForm extends Component {
   }
 
   render() {
+    const { pageNo, ajaxLoading } = this.props;
     const { step } = this.state;
     const {
       productName, sku, description, beforePrice, afterPrice, discount, quantity, imageUrl
@@ -162,8 +163,8 @@ class ProductForm extends Component {
               handleFile={this.handleFile}
               submitForm={this.handleSubmit}
               errorMsg={this.validator}
-              pageNo={this.props.pageNo}
-              loading={this.props.ajaxLoading}
+              pageNo={pageNo}
+              loading={ajaxLoading}
             />
           </div>
         );
@@ -172,7 +173,9 @@ class ProductForm extends Component {
 }
 
 ProductForm.propTypes = {
-  currentProduct: PropTypes.object
+  currentProduct: PropTypes.object,
+  pageNo: PropTypes.number,
+  ajaxLoading: PropTypes.bool
 };
 
 const mapDispatchToProps = dispatch => ({

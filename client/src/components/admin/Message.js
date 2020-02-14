@@ -14,7 +14,7 @@ const Alert = ({ alerts, onRemove }) => alerts !== null
 ));
 
 Alert.propTypes = {
-  alerts: PropTypes.number,
+  alerts: PropTypes.array,
   onRemove: PropTypes.func
 };
 

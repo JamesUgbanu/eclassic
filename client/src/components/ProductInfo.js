@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 class ProductInfo extends Component {
     continue = () => {
@@ -6,7 +7,7 @@ class ProductInfo extends Component {
       if (errorMsg.fieldValid('productName') && errorMsg.fieldValid('sku') && errorMsg.fieldValid('description')) {
         nextStep();
       } else {
-        this.props.errorMsg.showMessages();
+        errorMsg.showMessages();
         // rerender to show messages for the first time
         // you can use the autoForceUpdate option to do this automatically`
         this.forceUpdate();
@@ -62,4 +63,12 @@ class ProductInfo extends Component {
       );
     }
 }
+
+ProductInfo.propTypes = {
+  errorMsg: PropTypes.object,
+  nextStep: PropTypes.func,
+  handleChange: PropTypes.func,
+  values: PropTypes.object
+
+};
 export default ProductInfo;

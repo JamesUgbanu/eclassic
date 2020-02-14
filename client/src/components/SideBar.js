@@ -1,8 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { slide as Menu } from 'react-burger-menu';
+import PropTypes from 'prop-types';
 
-const SideBar = ({props, authenticate}) => (
+const SideBar = ({ props, authenticate }) => (
   // Pass on our props
   <Menu {...props}>
         <Link to="/"><div>Home</div></Link>
@@ -16,5 +17,10 @@ const SideBar = ({props, authenticate}) => (
         )}
   </Menu>
 );
+
+SideBar.propTypes = {
+  authenticate: PropTypes.object,
+  props: PropTypes.array
+};
 
 export default SideBar;

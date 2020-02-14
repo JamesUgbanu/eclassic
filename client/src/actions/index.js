@@ -11,7 +11,7 @@ import { generateSerial } from '../components/helpers';
 const auth = new Auth();
 const ROOT_URL = process.env.REACT_ENDPOINT;
 const alertId = generateSerial();
-const timerInSec = 5000;
+const timerInSec = 3000;
 
 const fetchProducts = products => ({
   type: FETCH_PRODUCTS,

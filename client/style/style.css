@@ -42,6 +42,7 @@ header.shadow__menu {
     width: 100%;
     padding: 0 20px;
     z-index: 999;
+    text-align: center;
 }
 .success {
     background: rgba(87,196,87);

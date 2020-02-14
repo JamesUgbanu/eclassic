@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import ProgressBarLoading from 'react-progress-bar-plus';
+import PropTypes from 'prop-types';
 
 const ProgressBar = ({ ajaxLoading }) => (
   <div>
@@ -19,7 +20,9 @@ const ProgressBar = ({ ajaxLoading }) => (
   </div>
 );
 
-
+ProgressBar.propTypes = {
+  ajaxLoading: PropTypes.bool
+};
 const mapStateToProps = ({ ajaxLoading }) => ({
   ajaxLoading
 });
