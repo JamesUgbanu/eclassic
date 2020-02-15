@@ -1499,3 +1499,11 @@ background-color: #f00;
     background: #000;
     border: none;
 }
+/** Chatbot Styling **/
+.bot {
+    bottom: 0;
+    right : 0;
+    position: fixed;
+    width: 350px;
+    z-index: 999;
+}
