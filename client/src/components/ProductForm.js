@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import SimpleReactValidator from 'simple-react-validator';
+import PropTypes from 'prop-types';
 import ProductInfo from './ProductInfo';
 import PriceInfo from './PriceInfo';
 import Quantity from './Quantity';
@@ -104,6 +105,7 @@ class ProductForm extends Component {
   }
 
   render() {
+    const { pageNo, ajaxLoading } = this.props;
     const { step } = this.state;
     const {
       productName, sku, description, beforePrice, afterPrice, discount, quantity, imageUrl
@@ -161,14 +163,20 @@ class ProductForm extends Component {
               handleFile={this.handleFile}
               submitForm={this.handleSubmit}
               errorMsg={this.validator}
-              pageNo={this.props.pageNo}
-              loading={this.props.ajaxLoading}
+              pageNo={pageNo}
+              loading={ajaxLoading}
             />
           </div>
         );
     }
   }
 }
+
+ProductForm.propTypes = {
+  currentProduct: PropTypes.object,
+  pageNo: PropTypes.number,
+  ajaxLoading: PropTypes.bool
+};
 
 const mapDispatchToProps = dispatch => ({
   addNewProduct: (data) => {

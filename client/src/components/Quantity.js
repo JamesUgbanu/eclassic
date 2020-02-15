@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 class Quantity extends Component {
     continue = () => {
@@ -12,31 +13,36 @@ class Quantity extends Component {
         this.forceUpdate();
       }
     };
+
     previous = () => {
-        this.props.prevStep();
-      };
+      const { prevStep } = this.props;
+      prevStep();
+    };
+
     render() {
-        const { values, handleChange, errorMsg } = this.props;
+      const { values, handleChange, errorMsg } = this.props;
       return (
         <div className="tab__page">
           <div className="tab__button">
-              <button onClick={this.previous}>
+            <button onClick={this.previous}>
               <i className="fas fa-arrow-left" />
                     Previous
             </button>
             <button onClick={this.continue}>
                 Continue
               <i className="fas fa-arrow-right" />
-            </button>           
+            </button>
           </div>
           <h1>Quantity</h1>
           <hr />
           <div className="tab__form">
             <div className="section__box">
               <legend>quantity</legend>
-              <input type="number" onChange={handleChange('quantity')}
-              value={values.quantity}
-               />
+              <input
+                type="number"
+                onChange={handleChange('quantity')}
+                value={values.quantity}
+              />
             </div>
             {errorMsg.message('quantity', values.quantity, 'required|integer')}
           </div>
@@ -45,4 +51,13 @@ class Quantity extends Component {
       );
     }
 }
+
+Quantity.propTypes = {
+  values: PropTypes.object,
+  handleChange: PropTypes.func,
+  errorMsg: PropTypes.object,
+  nextStep: PropTypes.func,
+  prevStep: PropTypes.func
+};
+
 export default Quantity;

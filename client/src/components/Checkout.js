@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import Left from './LeftNav';
 import { getCartTotal, getQuantity } from './helpers';
 import { addOrder } from '../actions/index';
@@ -92,6 +93,11 @@ const Checkout = ({ cart, orderAction }) => (
     </div>
   </main>
 );
+
+Checkout.propTypes = {
+  cart: PropTypes.array,
+  orderAction: PropTypes.func
+};
 
 const mapStateToProps = state => ({
   cart: state.cart

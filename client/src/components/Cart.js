@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import { getCartTotal, getQuantity } from './helpers';
 import Left from './LeftNav';
 import CartList from './CartList';
@@ -67,6 +68,13 @@ $
     </div>
   </main>
 );
+
+Cart.propTypes = {
+  cart: PropTypes.array,
+  removeCart: PropTypes.func,
+  incrementQuantity: PropTypes.func,
+  decrementQuantity: PropTypes.func
+};
 
 const mapStateToProps = state => ({
   cart: state.cart,

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import AWS from 'aws-sdk';
+import PropTypes from 'prop-types';
 import { generateSerial } from './helpers';
 
 class Images extends Component {
@@ -148,5 +149,18 @@ previous
       );
     }
 }
+
+Images.propTypes = {
+  handleFile: PropTypes.func,
+  imageUrl: PropTypes.array,
+  productName: PropTypes.string,
+  sku: PropTypes.string,
+  description: PropTypes.string,
+  afterPrice: PropTypes.number,
+  discount: PropTypes.number,
+  quantity: PropTypes.number,
+  submitForm: PropTypes.func,
+  prevStep: PropTypes.func
+};
 
 export default Images;

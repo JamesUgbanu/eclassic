@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import { addToCart } from '../actions/index';
 import Left from './LeftNav';
 import { findCurrentItem, checkForItemState } from './helpers';
@@ -58,6 +59,11 @@ class SingleProduct extends Component {
   }
 }
 
+SingleProduct.propTypes = {
+  ajaxLoading: PropTypes.bool,
+  currentProduct: PropTypes.object,
+  cart: PropTypes.array
+};
 const mapStateToProps = (state, ownProps) => {
   const currentProduct = state.products.length ? findCurrentItem(state.products, ownProps.match.params.productId) : null;
   return {

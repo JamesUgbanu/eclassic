@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import Left from './LeftNav';
 import { generateByPage } from './helpers';
 import ProductList from './ProductList';
@@ -28,6 +29,13 @@ const Products = ({
   );
 };
 
+Products.propTypes = {
+  ajaxLoading: PropTypes.bool,
+  currentOrder: PropTypes.array,
+  products: PropTypes.array,
+  currentPage: PropTypes.number,
+  pages: PropTypes.number
+};
 const mapStateToProps = (state, ownProps) => {
   // Set page number to 1 if no number in url params
   const pageNo = ownProps.match.params.pageNo || 1;

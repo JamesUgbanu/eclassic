@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import AdminSideNav from './AdminSideNav';
 import Product from './AdminProductList';
 import { deleteProduct } from '../../actions/index';
@@ -53,6 +54,14 @@ const AdminProducts = ({
       </div>
     </main>
   );
+};
+
+AdminProducts.propTypes = {
+  pages: PropTypes.number,
+  currentPage: PropTypes.number,
+  products: PropTypes.array,
+  ajaxLoading: PropTypes.bool,
+  onDelete: PropTypes.func
 };
 
 const mapStateToProps = (state, ownProps) => {

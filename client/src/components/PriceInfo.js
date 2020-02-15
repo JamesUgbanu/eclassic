@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 class PriceInfo extends Component {
     continue = () => {
@@ -67,4 +68,9 @@ class PriceInfo extends Component {
       );
     }
 }
+
+PriceInfo.propTypes = {
+  errorMsg: PropTypes.object,
+  nextStep: PropTypes.func
+};
 export default PriceInfo;

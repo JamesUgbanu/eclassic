@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import AdminSideNav from './AdminSideNav';
 import { generateByPage, SearchItems } from '../helpers';
 import { fetchAllOrder, changeOrderStatus } from '../../actions/index';
@@ -10,10 +11,10 @@ import Loading from '../Loading';
 
 // eslint-disable-next-line react/prefer-stateless-function
 const AdminOrder = ({
-  orders, pages, currentPage, allOrders, ajaxLoading, status, orderStatusChange, fetchAllOrder
+  orders, pages, currentPage, allOrders, ajaxLoading, status, orderStatusChange, fetchOrders
 }) => {
   useEffect(() => {
-    fetchAllOrder();
+    fetchOrders();
   }, []);
 
   if (ajaxLoading) {
@@ -104,8 +105,19 @@ const mapStateToProps = (state, ownProps) => {
     allOrders: state.adminOrder.length
   };
 };
+AdminOrder.propTypes = {
+  orders: PropTypes.array,
+  pages: PropTypes.number,
+  currentPage: PropTypes.number,
+  allOrders: PropTypes.array,
+  ajaxLoading: PropTypes.bool,
+  status: PropTypes.string,
+  orderStatusChange: PropTypes.array,
+  fetchOrders: PropTypes.array
+};
+
 const mapDispatchToProps = dispatch => ({
-  fetchAllOrder: () => {
+  fetchOrders: () => {
     dispatch(fetchAllOrder());
   },
   orderStatusChange: (data) => {

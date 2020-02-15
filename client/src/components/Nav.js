@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import { getCartTotal, getQuantity } from './helpers';
 import SideBar from './SideBar';
 import logo from '../../images/eclassik-small-logo.png';
@@ -32,6 +33,12 @@ class Nav extends Component {
     );
   }
 }
+
+Nav.propTypes = {
+  cart: PropTypes.array,
+  auth: PropTypes.object
+};
+
 const mapStateToProps = state => ({
   cart: state.cart,
 });

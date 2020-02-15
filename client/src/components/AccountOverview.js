@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import SideNav from './SideNav';
 import { fetchUserProfile } from '../actions/index';
 // eslint-disable-next-line react/prefer-stateless-function
@@ -40,6 +41,12 @@ const AccountOverview = ({ fetchUser, auth, user }) => {
       </div>
     </main>
   );
+};
+
+AccountOverview.propTypes = {
+  fetchUser: PropTypes.func,
+  auth: PropTypes.func,
+  user: PropTypes.object
 };
 
 const mapStateToProps = state => ({ user: state.user });
